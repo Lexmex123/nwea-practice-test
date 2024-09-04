@@ -16,15 +16,20 @@
       <button class="choice-btn" onclick="selectAnswer(2)">Choice C</button>
       <button class="choice-btn" onclick="selectAnswer(3)">Choice D</button>
     </div>
-    <div id="feedback"></div>
     <button id="next-btn" onclick="nextQuestion()">Next</button>
-    <button id="review-btn" onclick="showResults()" style="display:none;">Review Answers</button>
+  </div>
+
+  <div id="results-container" style="display:none;">
+    <h2>Your Results</h2>
+    <ul id="results-list"></ul>
+    <button onclick="restartQuiz()">Restart Quiz</button>
   </div>
 
   <div id="review-container" style="display:none;">
-    <h2>Review Answers</h2>
-    <div id="review-list"></div>
-    <button onclick="restartQuiz()">Restart Quiz</button>
+    <h2>Review Question</h2>
+    <h3 id="review-question"></h3>
+    <p id="review-explanation"></p>
+    <button onclick="backToResults()">Back to Results</button>
   </div>
 
   <script src="script.js"></script>
