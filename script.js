@@ -11,28 +11,10 @@ const quizQuestions = [
     correct: 0,
     explanation: "4/8 simplifies to 2/4, as both 4 and 8 can be divided by 2."
   },
-  {
-    question: "Find the perimeter of a rectangle with a length of 10 cm and a width of 6 cm.",
-    choices: ["16 cm", "32 cm", "26 cm", "40 cm"],
-    correct: 1,
-    explanation: "The perimeter is calculated as 2 * (length + width), which equals 2 * (10 + 6) = 32 cm."
-  },
-  {
-    question: "What is the product of 7 and 9?",
-    choices: ["54", "61", "63", "72"],
-    correct: 2,
-    explanation: "The product of 7 and 9 is 63."
-  },
-  {
-    question: "Round 567 to the nearest ten.",
-    choices: ["560", "570", "600", "500"],
-    correct: 1,
-    explanation: "567 rounds up to 570 as the number in the ones place is 7."
-  },
+  // ... Add more questions here, up to 40 questions ...
 ];
 
 let currentQuestion = 0;
-let score = 0;
 let userAnswers = [];
 
 function loadQuestion() {
@@ -43,73 +25,70 @@ function loadQuestion() {
   buttons.forEach((button, index) => {
     button.textContent = questionData.choices[index];
   });
-
-  document.getElementById("feedback").textContent = "";
-  document.getElementById("next-btn").style.display = "none";
 }
 
 function selectAnswer(index) {
-  const questionData = quizQuestions[currentQuestion];
+  userAnswers[currentQuestion] = index;
 
-  userAnswers[currentQuestion] = {
-    selected: index,
-    correct: questionData.correct,
-    explanation: questionData.explanation,
-    question: questionData.question,
-    choices: questionData.choices
-  };
-
-  if (index === questionData.correct) {
-    document.getElementById("feedback").textContent = "Correct!";
-    document.getElementById("feedback").style.color = "green";
-    score++;
-  } else {
-    document.getElementById("feedback").textContent = "Incorrect.";
-    document.getElementById("feedback").style.color = "red";
-  }
-
+  // Enable the "Next" button after an answer is selected
   document.getElementById("next-btn").style.display = "block";
 }
 
 function nextQuestion() {
   currentQuestion++;
+
   if (currentQuestion < quizQuestions.length) {
     loadQuestion();
+    document.getElementById("next-btn").style.display = "none";
   } else {
-    showScore();
+    showResults();
   }
-}
-
-function showScore() {
-  document.getElementById("quiz-container").innerHTML = `<h2>You scored ${score} out of ${quizQuestions.length}</h2>`;
-  document.getElementById("review-btn").style.display = "block";
 }
 
 function showResults() {
   document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("results-container").style.display = "block";
+
+  const resultsList = document.getElementById("results-list");
+  resultsList.innerHTML = "";
+
+  quizQuestions.forEach((question, index) => {
+    const resultItem = document.createElement("li");
+    resultItem.innerHTML = `
+      <strong>Question ${index + 1}:</strong>
+      <span>${userAnswers[index] === question.correct ? "Correct" : "Incorrect"}</span>
+      <button onclick="reviewQuestion(${index})">Review</button>
+    `;
+    resultsList.appendChild(resultItem);
+  });
+}
+
+function reviewQuestion(index) {
+  const question = quizQuestions[index];
+
+  document.getElementById("results-container").style.display = "none";
   document.getElementById("review-container").style.display = "block";
 
-  const reviewList = document.getElementById("review-list");
-  reviewList.innerHTML = "";
-  
-  userAnswers.forEach((answer, index) => {
-    const questionReview = document.createElement("div");
-    questionReview.innerHTML = `
-      <h3>Question ${index + 1}: ${answer.question}</h3>
-      <p>Your answer: ${answer.choices[answer.selected]} (${answer.selected === answer.correct ? "Correct" : "Incorrect"})</p>
-      <p>Explanation: ${answer.explanation}</p>
-    `;
-    reviewList.appendChild(questionReview);
-  });
+  document.getElementById("review-question").textContent = question.question;
+  document.getElementById("review-explanation").textContent = `
+    Your answer: ${question.choices[userAnswers[index]]}
+    Correct answer: ${question.choices[question.correct]}
+    Explanation: ${question.explanation}
+  `;
+}
+
+function backToResults() {
+  document.getElementById("review-container").style.display = "none";
+  document.getElementById("results-container").style.display = "block";
 }
 
 function restartQuiz() {
   currentQuestion = 0;
-  score = 0;
   userAnswers = [];
-  document.getElementById("review-container").style.display = "none";
+
+  document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
-  document.getElementById("review-btn").style.display = "none";
+
   loadQuestion();
 }
 
