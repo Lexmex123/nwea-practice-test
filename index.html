@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4th Grade Math Practice Test</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="quiz-container">
+    <h2 id="question">Question will go here</h2>
+    <div class="choices">
+      <button class="choice-btn" onclick="selectAnswer(0)">Choice A</button>
+      <button class="choice-btn" onclick="selectAnswer(1)">Choice B</button>
+      <button class="choice-btn" onclick="selectAnswer(2)">Choice C</button>
+      <button class="choice-btn" onclick="selectAnswer(3)">Choice D</button>
+    </div>
+    <div id="feedback"></div>
+    <button id="next-btn" onclick="nextQuestion()">Next</button>
+    <button id="review-btn" onclick="showResults()" style="display:none;">Review Answers</button>
+  </div>
+
+  <div id="review-container" style="display:none;">
+    <h2>Review Answers</h2>
+    <div id="review-list"></div>
+    <button onclick="restartQuiz()">Restart Quiz</button>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
