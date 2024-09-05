@@ -195,11 +195,11 @@ function reviewQuestion(index) {
 
   document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
-
   document.getElementById("question").textContent = question.question;
+  document.getElementById("review-container").textContent = question.explanation;
   const buttons = document.querySelectorAll(".choice-btn");
   buttons.forEach((button, i) => {
-    button.textContent = question.choices[i];
+    button.textContent = question.choices[i].text;
   });
 
   document.getElementById("submit-btn").style.display = "none";
