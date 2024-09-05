@@ -24,14 +24,27 @@ async function fetchNewQuestions() {
         "x-api-key": CLAUDE_API_KEY
       },
       body: JSON.stringify({
-        model: "claude-2", // Specify the latest model of Claude you're using
-        prompt: `Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. 
-                 Each question should include four choices, with one correct answer clearly indicated. 
-                 Provide questions, choices, and correct answer indexes in JSON format.`,
+        model: "claude-3", // Use the Claude 3 model
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert test creator who generates standardized test questions."
+          },
+          {
+            role: "user",
+            content: `Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. 
+                      Each question should include four choices, with one correct answer clearly indicated. 
+                      Provide questions, choices, and correct answer indexes in JSON format.`
+          }
+        ],
         max_tokens_to_sample: 2000,
-        temperature: 0.7,
+        temperature: 0.7
       })
     });
+
+    if (!response.ok) {
+      throw new Error(`Error fetching questions: ${response.statusText}`);
+    }
 
     const data = await response.json();
     const generatedText = data.completion;
@@ -45,9 +58,8 @@ async function fetchNewQuestions() {
 }
 
 function parseQuestionsFromAPI(apiResponse) {
-  // This assumes the Claude API responds with a JSON structure similar to OpenAI's output
   try {
-    return JSON.parse(apiResponse); // The response should contain an array of questions, choices, and correct indexes.
+    return JSON.parse(apiResponse); // Parse the API's response into questions, answers, etc.
   } catch (error) {
     console.error("Error parsing API response:", error);
     return [];
