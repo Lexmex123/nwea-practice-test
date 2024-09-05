@@ -1,4 +1,4 @@
-const OPENAI_API_KEY = "your-api-key-here"; // Replace with your OpenAI API key
+const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfyskW-p-yFFGePoglom7ODvaa8T3BlbkFJQkSG4gKAeOMxb7mA9bCnm7UFuS7PHufxhuqkzEHRR8ffS1CSZKA4kFIK8HoIXv2iylgA"; // Replace with your OpenAI API key
 
 let currentQuestionIndex = 0;
 let currentSection = "";
