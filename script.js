@@ -13,7 +13,7 @@ const ModelType = {
   CLAUDE: 'claude'
 };
 
-let currentModel = ModelType.OPENAI; // Switch between ModelType.OPENAI and ModelType.CLAUDE
+let currentModel = ModelType.CLAUDE; // Switch between ModelType.OPENAI and ModelType.CLAUDE
 
 function startNewTest(section, model = ModelType.OPENAI) {
   currentSection = section;
