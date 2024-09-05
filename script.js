@@ -133,6 +133,7 @@ function loadQuestion() {
   }
 
   const questionData = quizQuestions[currentQuestionIndex];
+console.log(questionData)
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question").textContent = questionData.question;
   document.getElementById("question-number").innerText = currentQuestionIndex + 1;
@@ -237,7 +238,6 @@ function loadPastTests() {
 
 function resumeTest(testIndex) {
   const test = pastTests[testIndex];
-console.log(test)
   quizQuestions = test.questions;
   userAnswers = test.answers;
   currentSection = test.section;
