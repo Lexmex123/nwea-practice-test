@@ -1,4 +1,5 @@
 const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfyskW-p-yFFGePoglom7ODvaa8T3BlbkFJQkSG4gKAeOMxb7mA9bCnm7UFuS7PHufxhuqkzEHRR8ffS1CSZKA4kFIK8HoIXv2iylgA"; // Replace with your OpenAI API key
+const ARLIAI_API_KEY = "16911291-fd4a-4b17-ae91-cbfc101b5aea"
 
 let currentQuestionIndex = 0;
 let currentSection = "";
@@ -15,7 +16,8 @@ function startNewTest(section) {
 
 async function fetchNewQuestions() {
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+/*
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {      
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +40,27 @@ async function fetchNewQuestions() {
         temperature: 0.7
       })
     });
-
+*/
+    const response = fetch("https://api.arliai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${ARLIAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "model": "Meta-Llama-3.1-8B-Instruct",
+        "messages": [
+          {"role": "system", "content": "You are an expert test creator who generates standardized test questions."},
+          {"role": "user", "content": "Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format."},
+        ],
+        "repetition_penalty": 1.1,
+        "temperature": 0.7,
+        "top_p": 0.9,
+        "top_k": 40,
+        "max_tokens": 1024,
+        "stream": true
+      })
+    });
     const data = await response.json();
     const generatedText = data.choices[0].message.content;
 
