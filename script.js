@@ -237,6 +237,7 @@ function loadPastTests() {
 
 function resumeTest(testIndex) {
   const test = pastTests[testIndex];
+console.log(test)
   quizQuestions = test.questions;
   userAnswers = test.answers;
   currentSection = test.section;
