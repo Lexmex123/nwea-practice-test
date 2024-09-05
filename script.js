@@ -1,6 +1,5 @@
 const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfyskW-p-yFFGePoglom7ODvaa8T3BlbkFJQkSG4gKAeOMxb7mA9bCnm7UFuS7PHufxhuqkzEHRR8ffS1CSZKA4kFIK8HoIXv2iylgA"; // Replace with your OpenAI API key
-const CLAUDE_API_KEY2 = "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"
-const CLAUDE_API_KEY = "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"
+const CLAUDE_API_KEY = "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"
 
 let currentQuestionIndex = 0;
 let currentSection = "";
