@@ -134,6 +134,7 @@ function loadQuestion() {
   const questionData = quizQuestions[currentQuestionIndex];
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question").textContent = questionData.question;
+  document.getElementById("question-number").innerText = currentQuestionIndex + 1;
 
   const buttons = document.querySelectorAll(".choice-btn");
   buttons.forEach((button, index) => {
@@ -238,6 +239,17 @@ function resumeTest(testIndex) {
   currentSection = test.section;
   currentQuestionIndex = userAnswers.length;
   loadQuestion();
+}
+
+function showExplanation(questionIndex) {
+  const question = questions[questionIndex];
+  const explanationBox = document.createElement('div');
+  explanationBox.innerHTML = `
+    <h3>Question ${questionIndex + 1}</h3>
+    <p>Your Answer: ${userAnswers[questionIndex]}</p>
+    <p>Explanation: ${question.explanation}</p>
+  `;
+  document.body.appendChild(explanationBox);
 }
 
 function backToMainMenu() {
