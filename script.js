@@ -17,7 +17,7 @@ function startNewTest(section) {
 
 async function fetchNewQuestions() {
   try {
-    const response = await fetch("https://api.anthropic.com/v1/complete", {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ async function fetchNewQuestions() {
                       Provide questions, choices, and correct answer indexes in JSON format.`
           }
         ],
-        max_tokens_to_sample: 2000,
+        max_tokens: 2000,
         temperature: 0.7
       })
     });
