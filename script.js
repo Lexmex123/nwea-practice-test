@@ -17,7 +17,7 @@ function startNewTest(section) {
 }
 
 function extractJsonString(input) {
-  const regex = /```json([\s\S]*?)```/;
+  const regex = /```([\s\S]*?)```/;
   const match = input.match(regex);
   return match ? match[1].trim() : null;
 }
@@ -61,7 +61,7 @@ async function fetchNewQuestions() {
         "model": "Meta-Llama-3.1-8B-Instruct",
         "messages": [
           {"role": "system", "content": "You are an expert test creator for the NWEA MAP test who generates standardized test questions."},
-          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for advanced Grade ${selectedGrade} students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format with questions listed in an array.`},
+          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for Grade ${selectedGrade} students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format. Questions and answer choices should be listed in a simple array. Correct answer shown as correctAnswerIndex. Explanations for each answer provided as an array named explanations at the root of the questoin object.`},
         ],
         "repetition_penalty": 1.1,
         "temperature": 0.7,
@@ -98,7 +98,7 @@ async function fetchNewQuestions() {
     }
   };
 */
-    const generatedText = data.choices[0].message.content;
+    const generatedText = data.choices[0].message.content.replace('json','');
 console.log(generatedText);
 //    quizQuestions = JSON.parse(generatedText.replace('\n','').split('```json')[1]).questions;
   quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))).questions;
@@ -198,7 +198,7 @@ function reviewQuestion(index) {
   document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
   document.getElementById("question").textContent = question.question;
-  document.getElementById("review-container").textContent = question.explanations.toString();
+  document.getElementById("review-container").textContent = question.explanation;
   const buttons = document.querySelectorAll(".choice-btn");
   buttons.forEach(button => button.classList.remove("selected"));
   buttons.forEach((button, i) => {
