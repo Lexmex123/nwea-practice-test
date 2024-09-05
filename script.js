@@ -41,7 +41,7 @@ async function fetchNewQuestions() {
       })
     });
 */
-    const response = fetch("https://api.arliai.com/v1/chat/completions", {
+    const response = await fetch("https://api.arliai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${ARLIAI_API_KEY}`,
