@@ -241,7 +241,7 @@ function resumeTest(testIndex) {
   quizQuestions = test.questions;
   userAnswers = test.answers;
   currentSection = test.section;
-  currentQuestionIndex = userAnswers.length;
+  currentQuestionIndex = userAnswers.length - 1;
   loadQuestion();
 }
 
