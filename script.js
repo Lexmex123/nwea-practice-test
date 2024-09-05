@@ -86,7 +86,7 @@ async function fetchNewQuestions() {
           "total_tokens": 1097,
           "completion_tokens": 1024
       }
-    };
+    });
     const data = await response.json();
     const generatedText = data.choices[0].message.content;
 
