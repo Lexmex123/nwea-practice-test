@@ -24,10 +24,10 @@ async function fetchNewQuestions() {
         "x-api-key": CLAUDE_API_KEY
       },
       body: JSON.stringify({
-        model: "claude-3", // Use the Claude 3 model
+        model: "claude-3-5-sonnet-20240620", // Use the Claude 3 model
         messages: [
           {
-            role: "system",
+            role: "assistant",
             content: "You are an expert test creator who generates standardized test questions."
           },
           {
