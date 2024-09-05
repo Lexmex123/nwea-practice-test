@@ -99,6 +99,7 @@ async function fetchNewQuestions() {
   };
 */
     const generatedText = data.choices[0].message.content;
+console.log(generatedText);
 //    quizQuestions = JSON.parse(generatedText.replace('\n','').split('```json')[1]).questions;
   quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))).questions;
 console.log(quizQuestions);
