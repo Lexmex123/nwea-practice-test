@@ -1,95 +1,39 @@
-const quizQuestions = [
-  {
-    question: "What is the value of the expression: 8 × (5 + 3)?",
-    choices: ["40", "56", "64", "88"],
-    correct: 1,
-    explanation: "The correct answer is 56 because you solve inside the parentheses first (5 + 3 = 8) and then multiply by 8."
-  },
-  {
-    question: "Which fraction is equivalent to 4/8?",
-    choices: ["2/4", "3/4", "5/8", "6/8"],
-    correct: 0,
-    explanation: "4/8 simplifies to 2/4, as both 4 and 8 can be divided by 2."
-  },
-  // ... Add more questions here, up to 40 questions ...
-];
-
-let currentQuestion = 0;
-let userAnswers = [];
-
-function loadQuestion() {
-  const questionData = quizQuestions[currentQuestion];
-  document.getElementById("question").textContent = questionData.question;
-
-  const buttons = document.querySelectorAll(".choice-btn");
-  buttons.forEach((button, index) => {
-    button.textContent = questionData.choices[index];
-  });
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
 }
 
-function selectAnswer(index) {
-  userAnswers[currentQuestion] = index;
-
-  // Enable the "Next" button after an answer is selected
-  document.getElementById("next-btn").style.display = "block";
+button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-function nextQuestion() {
-  currentQuestion++;
-
-  if (currentQuestion < quizQuestions.length) {
-    loadQuestion();
-    document.getElementById("next-btn").style.display = "none";
-  } else {
-    showResults();
-  }
+#quiz-container, #results-container, #main-menu {
+  padding: 20px;
 }
 
-function showResults() {
-  document.getElementById("quiz-container").style.display = "none";
-  document.getElementById("results-container").style.display = "block";
-
-  const resultsList = document.getElementById("results-list");
-  resultsList.innerHTML = "";
-
-  quizQuestions.forEach((question, index) => {
-    const resultItem = document.createElement("li");
-    resultItem.innerHTML = `
-      <strong>Question ${index + 1}:</strong>
-      <span>${userAnswers[index] === question.correct ? "Correct" : "Incorrect"}</span>
-      <button onclick="reviewQuestion(${index})">Review</button>
-    `;
-    resultsList.appendChild(resultItem);
-  });
+.choices {
+  margin: 20px 0;
 }
 
-function reviewQuestion(index) {
-  const question = quizQuestions[index];
-
-  document.getElementById("results-container").style.display = "none";
-  document.getElementById("review-container").style.display = "block";
-
-  document.getElementById("review-question").textContent = question.question;
-  document.getElementById("review-explanation").textContent = `
-    Your answer: ${question.choices[userAnswers[index]]}
-    Correct answer: ${question.choices[question.correct]}
-    Explanation: ${question.explanation}
-  `;
+.choice-btn {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
 }
 
-function backToResults() {
-  document.getElementById("review-container").style.display = "none";
-  document.getElementById("results-container").style.display = "block";
+#submit-btn {
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
 }
-
-function restartQuiz() {
-  currentQuestion = 0;
-  userAnswers = [];
-
-  document.getElementById("results-container").style.display = "none";
-  document.getElementById("quiz-container").style.display = "block";
-
-  loadQuestion();
-}
-
-window.onload = loadQuestion;
