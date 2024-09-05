@@ -2,7 +2,8 @@ const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfys
 const CLAUDE_API_KEY = "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"
 const GEMINI_API_KEY = "AIzaSyD6N-3YH2SsLK-7-b0EuXieQkLzXn92H18"
 const GEMINI_PROJECT = "168287643453"
-const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"; // Example endpoint for Gemini API
+const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"; // Example endpoint for Gemini API
+const API_KEY = "16911291-fd4a-4b17-ae91-cbfc101b5aea"
 
 let currentQuestionIndex = 0;
 let currentSection = "";
@@ -19,17 +20,24 @@ function startNewTest(section) {
 
 async function fetchNewQuestions() {
   try {
-    const response = await fetch(GEMINI_API_URL, {
+    const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${GEMINI_API_KEY}`
+        "Authorization": `Bearer ${API_KEY}`
       },
       body: JSON.stringify({
-        model: "gemini-1.5-flash", // Specify the Gemini 1.5 Flash model
-        prompt: `You are an expert test creator. Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format.`,
-        max_tokens: 2000,
-        temperature: 0.7
+        "model": "Meta-Llama-3.1-8B-Instruct",
+        "messages": [
+          {"role": "system", "content": "You are an expert test creator. "},
+          {"role": "user", "content": "Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format."},
+        ],
+        "repetition_penalty": 1.1,
+        "temperature": 0.7,
+        "top_p": 0.9,
+        "top_k": 40,
+        "max_tokens": 1024,
+        "stream": true
       })
     });
 
