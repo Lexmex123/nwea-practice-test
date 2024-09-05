@@ -63,7 +63,7 @@ async function fetchNewQuestions() {
       })
     });
 */
-    const response = JSON.stringify({
+    const data = {
       "id": "chat-9c5a745864004a099cb20ca66ac5f918",
       "object": "chat.completion",
       "created": 1725552042,
@@ -86,8 +86,9 @@ async function fetchNewQuestions() {
           "total_tokens": 1097,
           "completion_tokens": 1024
       }
-    });
-    const data = await response.json();
+    };
+
+//    const data = await response.json();
     const generatedText = data.choices[0].message.content;
 
     // Parsing the response from OpenAI API to extract the questions
