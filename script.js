@@ -14,7 +14,7 @@ function startNewTest(section) {
 }
 
 function fetchNewQuestions() {
-  fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
+  fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
