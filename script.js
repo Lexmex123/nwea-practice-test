@@ -50,7 +50,7 @@ async function fetchNewQuestions() {
       })
     });
 */
-/*
+
     const response = await fetch("https://api.arliai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -72,9 +72,7 @@ async function fetchNewQuestions() {
       })
     });
     const data = await response.json();
-console.log(data);
-*/
-
+/*
   const data = {
     "id": "chat-7c63294172e84b6bbecb03d4db897603",
     "object": "chat.completion",
@@ -99,7 +97,7 @@ console.log(data);
         "completion_tokens": 868
     }
   };
-
+*/
     const generatedText = data.choices[0].message.content;
 //    quizQuestions = JSON.parse(generatedText.replace('\n','').split('```json')[1]).questions;
   quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))).questions;
