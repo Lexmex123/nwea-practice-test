@@ -13,33 +13,60 @@ function startNewTest(section) {
   fetchNewQuestions();
 }
 
-function fetchNewQuestions() {
-  fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      prompt: `Generate a 40-question ${currentSection} test for 4th grade students with multiple choice options.`,
-      max_tokens: 2000
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    quizQuestions = parseQuestionsFromAPI(data.choices[0].text);
+async function fetchNewQuestions() {
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert test creator who generates standardized test questions."
+          },
+          {
+            role: "user",
+            content: `Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format.`
+          }
+        ],
+        max_tokens: 2000,
+        n: 1,
+        temperature: 0.7
+      })
+    });
+
+    const data = await response.json();
+    const generatedText = data.choices[0].message.content;
+
+    // Parsing the response from OpenAI API to extract the questions
+    quizQuestions = parseQuestionsFromAPI(generatedText);
     loadQuestion();
-  })
-  .catch(error => console.error("Error fetching questions:", error));
+  } catch (error) {
+    console.error("Error fetching questions:", error);
+  }
 }
 
 function parseQuestionsFromAPI(apiResponse) {
-  // Parsing logic to extract questions, options, and correct answers from the API response
-  // This is just a placeholder, you would need to implement a way to correctly split and format the API's response.
-  return JSON.parse(apiResponse); 
+  // This assumes the OpenAI API responds with JSON structured as
+  // [{ question: "...", choices: ["A", "B", "C", "D"], correct: 1 }, ...]
+  try {
+    return JSON.parse(apiResponse);
+  } catch (error) {
+    console.error("Error parsing API response:", error);
+    return [];
+  }
 }
 
 function loadQuestion() {
+  if (quizQuestions.length === 0) {
+    alert("No questions found. Please try again.");
+    return;
+  }
+
   const questionData = quizQuestions[currentQuestionIndex];
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question").textContent = questionData.question;
