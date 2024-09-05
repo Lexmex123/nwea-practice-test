@@ -58,7 +58,7 @@ async function fetchNewQuestions() {
         "top_p": 0.9,
         "top_k": 40,
         "max_tokens": 1024,
-        "stream": true
+        "stream": false
       })
     });
     const data = await response.json();
