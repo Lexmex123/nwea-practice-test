@@ -11,11 +11,20 @@ function startNewTest(section) {
   currentSection = section;
   currentQuestionIndex = 0;
   userAnswers = [];
+  // Show the loading overlay
+  document.getElementById("loading-overlay").style.display = "flex";  
   fetchNewQuestions();
+}
+
+function extractJsonString(input) {
+  const regex = /```json([\s\S]*?)```/;
+  const match = input.match(regex);
+  return match ? match[1].trim() : null;
 }
 
 async function fetchNewQuestions() {
   try {
+    const selectedGrade = document.getElementById("grade-level").value;
 /*
     const response = await fetch("https://api.openai.com/v1/chat/completions", {      
       method: "POST",
@@ -51,8 +60,8 @@ async function fetchNewQuestions() {
       body: JSON.stringify({
         "model": "Meta-Llama-3.1-8B-Instruct",
         "messages": [
-          {"role": "system", "content": "You are an expert test creator who generates standardized test questions."},
-          {"role": "user", "content": "Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format."},
+          {"role": "system", "content": "You are an expert test creator for the NWEA MAP test who generates standardized test questions."},
+          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for ${selectedGrade}th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format with questions listed in an array.`},
         ],
         "repetition_penalty": 1.1,
         "temperature": 0.7,
@@ -62,38 +71,45 @@ async function fetchNewQuestions() {
         "stream": false
       })
     });
+    const data = await response.json();
+console.log(data);
 */
-    const data = {
-      "id": "chat-9c5a745864004a099cb20ca66ac5f918",
-      "object": "chat.completion",
-      "created": 1725552042,
-      "model": "Meta-Llama-3.1-8B-Instruct",
-      "choices": [
-          {
-              "index": 0,
-              "message": {
-                  "role": "assistant",
-                  "content": "Here is a 40-question multiple-choice test for 4th-grade students.\n\n```json\n{\n  \"test\": [\n    {\n      \"question\": \"What is the largest planet in our solar system?\",\n      \"choices\": [\"Earth\", \"Saturn\", \"Jupiter\", \"Mars\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"Which of the following is NOT a primary color?\",\n      \"choices\": [\"Red\", \"Blue\", \"Yellow\", \"Green\"],\n      \"correct_index\": 3\n    },\n    {\n      \"question\": \"What is the process called when plants make their own food from sunlight?\",\n      \"choices\": [\"Respiration\", \"Photosynthesis\", \"Decomposition\", \"Transpiration\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"Which state is known as the 'Sunshine State'?\",\n      \"choices\": [\"California\", \"Florida\", \"New York\", \"Texas\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"How many sides does a square have?\",\n      \"choices\": [3, 4, 5, 6],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"Who wrote the book 'Charlotte's Web'?\",\n      \"choices\": [\"Dr. Seuss\", \"Roald Dahl\", \"E.B. White\", \"J.K. Rowling\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the capital of France?\",\n      \"choices\": [\"Paris\", \"London\", \"Berlin\", \"Rome\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"A group of crows is called a:\",\n      \"choices\": [\"Flock\", \"School\", \"Murder\", \"Colony\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the largest mammal on Earth?\",\n      \"choices\": [\"Elephant\", \"Giraffe\", \"Blue Whale\", \"Lion\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the smallest bone in the human body?\",\n      \"choices\": [\"Stapes\", \"Malleus\", \"Incus\", \"Hyoid\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"Which of the following is a type of rock?\",\n      \"choices\": [\"Igneous\", \"Sedimentary\", \"Metamorphic\", \"Fossil\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"The Great Barrier Reef is located in which ocean?\",\n      \"choices\": [\"Pacific Ocean\", \"Atlantic Ocean\", \"Indian Ocean\", \"Arctic Ocean\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the main purpose of a seed?\",\n      \"choices\": [\"To grow into a tree\", \"To make flowers bloom\", \"To produce fruit\", \"To spread to new places\"],\n      \"correct_index\": 3\n    },\n    {\n      \"question\": \"Who painted the famous painting 'The Starry Night'?\",\n      \"choices\": [\"Leonardo da Vinci\", \"Michelangelo\", \"Vincent van Gogh\", \"Claude Monet\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"A 'hydrogen atom' is made up of what three elements?\",\n      \"choices\": [\"Protons, Neutrons, Electrons\", \"Atoms, Molecules, Ions\", \"Nucleus, Protons, Neutrons\", \"Electrons, Positrons, Photons\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the scientific term for the 'study of the Earth'?\",\n      \"choices\": [\"Geology\", \"Meteorology\", \"Oceanography\", \"Ecology\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the chemical symbol for gold?\",\n      \"choices\": [\"Ag\", \"Au\", \"Hg\", \"Pb\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"What is the process called when water moves through a plant, from roots to leaves?\",\n      \"choices\": [\"Transpiration\", \"Evaporation\", \"Condensation\", \"Diffusion\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"The world's driest desert is the:\",\n      \"choices\": [\"Sahara Desert\", \"Gobi Desert\", \"Atacama Desert\", \"Mojave Desert\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the process called when animals move from one place to another at certain times of the year?\",\n      \"choices\": [\"Migration\", \"Hibernation\", \"Camouflage\", \"Adaptation",
-                  "tool_calls": []
-              },
-              "logprobs": null,
-              "finish_reason": "length",
-              "stop_reason": null
-          }
-      ],
-      "usage": {
-          "prompt_tokens": 73,
-          "total_tokens": 1097,
-          "completion_tokens": 1024
-      }
-    };
 
-//    const data = await response.json();
+  const data = {
+    "id": "chat-7c63294172e84b6bbecb03d4db897603",
+    "object": "chat.completion",
+    "created": 1725556836,
+    "model": "Meta-Llama-3.1-8B-Instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here is a sample 5-question NWEA MAP Math multiple-choice test for 4th-grade students:\n\n```json\n{\n  \"questions\": [\n    {\n      \"question\": \"What is the value of x in the equation: 2x + 5 = 11?\",\n      \"choices\": [\n        {\"text\": \"3\", \"index\": 0},\n        {\"text\": \"4\", \"index\": 1},\n        {\"text\": \"5\", \"index\": 2},\n        {\"text\": \"6\", \"index\": 3}\n      ],\n      \"correctAnswerIndex\": 2,\n      \"explanation\": \"To solve for x, we need to isolate the variable. We can do this by subtracting 5 from both sides of the equation, which gives us 2x = 6. Then, we divide both sides by 2 to get x = 3.\"\n    },\n    {\n      \"question\": \"A bookshelf has 5 shelves, and each shelf can hold 8 books. How many books can the bookshelf hold in total?\",\n      \"choices\": [\n        {\"text\": \"20\", \"index\": 0},\n        {\"text\": \"30\", \"index\": 1},\n        {\"text\": \"40\", \"index\": 2},\n        {\"text\": \"50\", \"index\": 3}\n      ],\n      \"correctAnswerIndex\": 2,\n      \"explanation\": \"We multiply the number of shelves (5) by the number of books each shelf can hold (8), which gives us 5 x 8 = 40.\"\n    },\n    {\n      \"question\": \"A pencil is 15 cm long. If it is divided into 5 parts, how long is each part?\",\n      \"choices\": [\n        {\"text\": \"1 cm\", \"index\": 0},\n        {\"text\": \"2 cm\", \"index\": 1},\n        {\"text\": \"3 cm\", \"index\": 2},\n        {\"text\": \"4 cm\", \"index\": 3}\n      ],\n      \"correctAnswerIndex\": 2,\n      \"explanation\": \"To find the length of each part, we need to divide the total length of the pencil (15 cm) by the number of parts (5). This gives us 15 ÷ 5 = 3 cm per part.\"\n    },\n    {\n      \"question\": \"A group of friends want to share some candy equally. If they have 48 pieces of candy and there are 8 friends, how many pieces of candy will each friend get?\",\n      \"choices\": [\n        {\"text\": \"4\", \"index\": 0},\n        {\"text\": \"6\", \"index\": 1},\n        {\"text\": \"8\", \"index\": 2},\n        {\"text\": \"10\", \"index\": 3}\n      ],\n      \"correctAnswerIndex\": 2,\n      \"explanation\": \"To find out how many pieces of candy each friend will get, we need to divide the total number of candies (48) by the number of friends (8). This gives us 48 ÷ 8 = 6 pieces per friend.\"\n    },\n    {\n      \"question\": \"A water bottle can hold 24 ounces of water. If 12 ounces of water are already in the bottle, what percentage of the bottle's capacity is filled?\",\n      \"choices\": [\n        {\"text\": \"25%\", \"index\": 0},\n        {\"text\": \"33%\", \"index\": 1},\n        {\"text\": \"50%\", \"index\": 2},\n        {\"text\": \"67%\", \"index\": 3}\n      ],\n      \"correctAnswerIndex\": 2,\n      \"explanation\": \"To find the percentage of the bottle that is filled, we need to divide the amount of water currently in the bottle (12 oz) by the total capacity of the bottle (24 oz). Then, we convert this decimal to a percentage by multiplying by 100. This gives us (12/24) x 100% = 50%. \"\n    }\n  ]\n}\n```\n\nThis test covers various math topics such as solving equations, multiplication, division, fractions, and percentages.",
+                "tool_calls": []
+            },
+            "logprobs": null,
+            "finish_reason": "stop",
+            "stop_reason": null
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 94,
+        "total_tokens": 962,
+        "completion_tokens": 868
+    }
+  };
+
     const generatedText = data.choices[0].message.content;
-
-    // Parsing the response from OpenAI API to extract the questions
-    quizQuestions = parseQuestionsFromAPI(generatedText);
+//    quizQuestions = JSON.parse(generatedText.replace('\n','').split('```json')[1]).questions;
+  quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))).questions;
 console.log(quizQuestions);
+    // Parsing the response from OpenAI API to extract the questions
+//    quizQuestions = parseQuestionsFromAPI(generatedText);
+
+    // Hide the loading overlay once questions are fetched
+    document.getElementById("loading-overlay").style.display = "none";
+
     loadQuestion();
   } catch (error) {
     console.error("Error fetching questions:", error);
@@ -123,7 +139,7 @@ function loadQuestion() {
 
   const buttons = document.querySelectorAll(".choice-btn");
   buttons.forEach((button, index) => {
-    button.textContent = questionData.choices[index];
+    button.textContent = questionData.choices[index].text;
   });
 
   document.getElementById("main-menu").style.display = "none";
@@ -132,10 +148,20 @@ function loadQuestion() {
 
 function selectAnswer(index) {
   userAnswers[currentQuestionIndex] = index;
+
+  // Remove the selected class from all buttons
+  const buttons = document.querySelectorAll(".choice-btn");
+  buttons.forEach(button => button.classList.remove("selected"));
+
+  // Add the selected class to the clicked button
+  buttons[index].classList.add("selected");
 }
 
 function submitAnswer() {
   currentQuestionIndex++;
+  // Remove the selected class from all buttons
+  const buttons = document.querySelectorAll(".choice-btn");
+  buttons.forEach(button => button.classList.remove("selected"));
 
   if (currentQuestionIndex < quizQuestions.length) {
     loadQuestion();
