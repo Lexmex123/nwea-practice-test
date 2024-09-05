@@ -41,6 +41,7 @@ async function fetchNewQuestions() {
       })
     });
 */
+/*
     const response = await fetch("https://api.arliai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -61,11 +62,37 @@ async function fetchNewQuestions() {
         "stream": false
       })
     });
+*/
+    const response = JSON.stringify({
+      "id": "chat-9c5a745864004a099cb20ca66ac5f918",
+      "object": "chat.completion",
+      "created": 1725552042,
+      "model": "Meta-Llama-3.1-8B-Instruct",
+      "choices": [
+          {
+              "index": 0,
+              "message": {
+                  "role": "assistant",
+                  "content": "Here is a 40-question multiple-choice test for 4th-grade students.\n\n```json\n{\n  \"test\": [\n    {\n      \"question\": \"What is the largest planet in our solar system?\",\n      \"choices\": [\"Earth\", \"Saturn\", \"Jupiter\", \"Mars\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"Which of the following is NOT a primary color?\",\n      \"choices\": [\"Red\", \"Blue\", \"Yellow\", \"Green\"],\n      \"correct_index\": 3\n    },\n    {\n      \"question\": \"What is the process called when plants make their own food from sunlight?\",\n      \"choices\": [\"Respiration\", \"Photosynthesis\", \"Decomposition\", \"Transpiration\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"Which state is known as the 'Sunshine State'?\",\n      \"choices\": [\"California\", \"Florida\", \"New York\", \"Texas\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"How many sides does a square have?\",\n      \"choices\": [3, 4, 5, 6],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"Who wrote the book 'Charlotte's Web'?\",\n      \"choices\": [\"Dr. Seuss\", \"Roald Dahl\", \"E.B. White\", \"J.K. Rowling\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the capital of France?\",\n      \"choices\": [\"Paris\", \"London\", \"Berlin\", \"Rome\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"A group of crows is called a:\",\n      \"choices\": [\"Flock\", \"School\", \"Murder\", \"Colony\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the largest mammal on Earth?\",\n      \"choices\": [\"Elephant\", \"Giraffe\", \"Blue Whale\", \"Lion\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the smallest bone in the human body?\",\n      \"choices\": [\"Stapes\", \"Malleus\", \"Incus\", \"Hyoid\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"Which of the following is a type of rock?\",\n      \"choices\": [\"Igneous\", \"Sedimentary\", \"Metamorphic\", \"Fossil\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"The Great Barrier Reef is located in which ocean?\",\n      \"choices\": [\"Pacific Ocean\", \"Atlantic Ocean\", \"Indian Ocean\", \"Arctic Ocean\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the main purpose of a seed?\",\n      \"choices\": [\"To grow into a tree\", \"To make flowers bloom\", \"To produce fruit\", \"To spread to new places\"],\n      \"correct_index\": 3\n    },\n    {\n      \"question\": \"Who painted the famous painting 'The Starry Night'?\",\n      \"choices\": [\"Leonardo da Vinci\", \"Michelangelo\", \"Vincent van Gogh\", \"Claude Monet\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"A 'hydrogen atom' is made up of what three elements?\",\n      \"choices\": [\"Protons, Neutrons, Electrons\", \"Atoms, Molecules, Ions\", \"Nucleus, Protons, Neutrons\", \"Electrons, Positrons, Photons\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the scientific term for the 'study of the Earth'?\",\n      \"choices\": [\"Geology\", \"Meteorology\", \"Oceanography\", \"Ecology\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"What is the chemical symbol for gold?\",\n      \"choices\": [\"Ag\", \"Au\", \"Hg\", \"Pb\"],\n      \"correct_index\": 1\n    },\n    {\n      \"question\": \"What is the process called when water moves through a plant, from roots to leaves?\",\n      \"choices\": [\"Transpiration\", \"Evaporation\", \"Condensation\", \"Diffusion\"],\n      \"correct_index\": 0\n    },\n    {\n      \"question\": \"The world's driest desert is the:\",\n      \"choices\": [\"Sahara Desert\", \"Gobi Desert\", \"Atacama Desert\", \"Mojave Desert\"],\n      \"correct_index\": 2\n    },\n    {\n      \"question\": \"What is the process called when animals move from one place to another at certain times of the year?\",\n      \"choices\": [\"Migration\", \"Hibernation\", \"Camouflage\", \"Adaptation",
+                  "tool_calls": []
+              },
+              "logprobs": null,
+              "finish_reason": "length",
+              "stop_reason": null
+          }
+      ],
+      "usage": {
+          "prompt_tokens": 73,
+          "total_tokens": 1097,
+          "completion_tokens": 1024
+      }
+    }
     const data = await response.json();
     const generatedText = data.choices[0].message.content;
 
     // Parsing the response from OpenAI API to extract the questions
     quizQuestions = parseQuestionsFromAPI(generatedText);
+console.log(quizQuestions);
     loadQuestion();
   } catch (error) {
     console.error("Error fetching questions:", error);
