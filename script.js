@@ -61,7 +61,7 @@ async function fetchNewQuestions() {
         "model": "Meta-Llama-3.1-8B-Instruct",
         "messages": [
           {"role": "system", "content": "You are an expert test creator for the NWEA MAP test who generates standardized test questions."},
-          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for ${selectedGrade}th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format with questions listed in an array.`},
+          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for advanced Grade ${selectedGrade} students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format with questions listed in an array.`},
         ],
         "repetition_penalty": 1.1,
         "temperature": 0.7,
