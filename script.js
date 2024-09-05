@@ -1,9 +1,4 @@
 const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfyskW-p-yFFGePoglom7ODvaa8T3BlbkFJQkSG4gKAeOMxb7mA9bCnm7UFuS7PHufxhuqkzEHRR8ffS1CSZKA4kFIK8HoIXv2iylgA"; // Replace with your OpenAI API key
-const CLAUDE_API_KEY = "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"
-const GEMINI_API_KEY = "AIzaSyD6N-3YH2SsLK-7-b0EuXieQkLzXn92H18"
-const GEMINI_PROJECT = "168287643453"
-const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"; // Example endpoint for Gemini API
-const API_KEY = "16911291-fd4a-4b17-ae91-cbfc101b5aea"
 
 let currentQuestionIndex = 0;
 let currentSection = "";
@@ -20,35 +15,34 @@ function startNewTest(section) {
 
 async function fetchNewQuestions() {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${API_KEY}`
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        "model": "Meta-Llama-3.1-8B-Instruct",
-        "messages": [
-          {"role": "system", "content": "You are an expert test creator. "},
-          {"role": "user", "content": "Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format."},
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: "You are an expert test creator who generates standardized test questions."
+          },
+          {
+            role: "user",
+            content: `Generate a 40-question multiple-choice ${currentSection} test for 4th-grade students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices, and correct answer indexes in JSON format.`
+          }
         ],
-        "repetition_penalty": 1.1,
-        "temperature": 0.7,
-        "top_p": 0.9,
-        "top_k": 40,
-        "max_tokens": 1024,
-        "stream": true
+        max_tokens: 2000,
+        n: 1,
+        temperature: 0.7
       })
     });
 
-    if (!response.ok) {
-      throw new Error(`Error fetching questions: ${response.statusText}`);
-    }
-
     const data = await response.json();
-    const generatedText = data.completion;
+    const generatedText = data.choices[0].message.content;
 
-    // Parsing the response from Gemini API to extract the questions
+    // Parsing the response from OpenAI API to extract the questions
     quizQuestions = parseQuestionsFromAPI(generatedText);
     loadQuestion();
   } catch (error) {
@@ -57,8 +51,10 @@ async function fetchNewQuestions() {
 }
 
 function parseQuestionsFromAPI(apiResponse) {
+  // This assumes the OpenAI API responds with JSON structured as
+  // [{ question: "...", choices: ["A", "B", "C", "D"], correct: 1 }, ...]
   try {
-    return JSON.parse(apiResponse); // Parse the API's response into questions, answers, etc.
+    return JSON.parse(apiResponse);
   } catch (error) {
     console.error("Error parsing API response:", error);
     return [];
