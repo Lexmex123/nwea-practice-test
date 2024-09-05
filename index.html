@@ -42,13 +42,14 @@
       <button class="choice-btn" onclick="selectAnswer(2)">Choice C</button>
       <button class="choice-btn" onclick="selectAnswer(3)">Choice D</button>
     </div>
+    <div id="review-container"></div>
+    <button id="back-btn"onclick="backToMainMenu()">Back to Main Menu</button>
     <button id="submit-btn" onclick="submitAnswer()">Submit</button>
   </div>
 
   <div id="results-container" style="display:none;">
     <h2>Your Results</h2>
     <ul id="results-list"></ul>
-    <div id="review-container"></div>
     <button onclick="backToMainMenu()">Back to Main Menu</button>
   </div>
   <div id="loading-overlay" style="display: none;">

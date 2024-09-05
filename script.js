@@ -181,7 +181,7 @@ function showResults() {
     const resultItem = document.createElement("li");
     resultItem.innerHTML = `
       <strong>Question ${index + 1}:</strong> 
-      <span>${userAnswers[index] === question.correct ? "Correct" : "Incorrect"}</span>
+      <span>${userAnswers[index] === question.correctAnswerIndex ? "Correct" : "Incorrect"}</span>
       <button onclick="reviewQuestion(${index})">Review</button>
     `;
     resultsList.appendChild(resultItem);
@@ -197,12 +197,14 @@ function reviewQuestion(index) {
   document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
   document.getElementById("question").textContent = question.question;
-  document.getElementById("review-container").textContent = question.explanation;
+  document.getElementById("review-container").textContent = question.explanations.toString();
   const buttons = document.querySelectorAll(".choice-btn");
+  buttons.forEach(button => button.classList.remove("selected"));
   buttons.forEach((button, i) => {
     button.textContent = question.choices[i].text;
+    buttons.classList.add("selected");
   });
-
+  document.getElementById("back-btn").style.display = "block";
   document.getElementById("submit-btn").style.display = "none";
 }
 
