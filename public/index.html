@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NWEA MAP Test Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="main-menu">
+    <h1>NWEA MAP Test Practice</h1>
+    
+    <form id="start-test-form">
+      <div class="form-group">
+        <label for="grade-level">Select Grade Level:</label>
+        <select id="grade-level" required>
+          <option value="">Choose a grade</option>
+          <option value="1">Grade 1</option>
+          <option value="2">Grade 2</option>
+          <option value="3">Grade 3</option>
+          <option value="4">Grade 4</option>
+          <option value="5">Grade 5</option>
+          <option value="6">Grade 6</option>
+          <option value="7">Grade 7</option>
+          <option value="8">Grade 8</option>
+          <option value="9">Grade 9</option>
+          <option value="10">Grade 10</option>
+          <option value="11">Grade 11</option>
+          <option value="12">Grade 12</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label>Select Test Section:</label>
+        <div class="button-group">
+          <button type="button" onclick="startNewTest('Math')">Math</button>
+          <button type="button" onclick="startNewTest('Reading')">Reading</button>
+          <button type="button" onclick="startNewTest('Language')">Language</button>
+          <button type="button" onclick="startNewTest('Science')">Science</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="past-tests-container">
+      <h2>Past Tests</h2>
+      <ul id="past-tests"></ul>
+    </div>
+  </div>
+
+  <div id="quiz-container" style="display: none;">
+    <h2 id="section">Section</h2>
+    <div id="question-nav"></div>
+    <h2>Question <span id="question-number"></span></h2>
+    <h3 id="question">Question will go here</h3>
+    <div id="diagram-container"></div>
+    <div class="choices">
+      <button class="choice-btn" onclick="selectAnswer(0)">Choice A</button>
+      <button class="choice-btn" onclick="selectAnswer(1)">Choice B</button>
+      <button class="choice-btn" onclick="selectAnswer(2)">Choice C</button>
+      <button class="choice-btn" onclick="selectAnswer(3)">Choice D</button>
+    </div>
+    <div id="explanations-container"></div>
+    <div id="review-container"></div>
+    <button id="back-btn" onclick="backToTestResults()">Back to Test Results</button>
+    <button id="submit-btn" onclick="submitAnswer()">Submit</button>
+  </div>
+
+  <div id="results-container" style="display:none;">
+    <h2>Your Results</h2>
+    <ul id="results-list"></ul>
+    <button onclick="backToMainMenu()">Back to Main Menu</button>
+  </div>
+  <div id="loading-overlay" style="display: none;">
+    <div class="loading-text">Loading questions...</div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

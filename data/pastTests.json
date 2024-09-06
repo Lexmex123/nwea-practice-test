@@ -1,0 +1,236 @@
+[
+  {
+    "section": "Math",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the value of 7 × (6 + 4) - 3?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Choice A (43) is incorrect because it does not follow the order of operations. The correct calculation yields a different result."
+          },
+          {
+            "index": 1,
+            "text": "Choice B (37) is incorrect; while it seems close, it does not correctly apply the order of operations."
+          },
+          {
+            "index": 2,
+            "text": "Choice C (67) is correct. The calculation is: 7 × (6 + 4) = 7 × 10 = 70, then 70 - 3 = 67."
+          },
+          {
+            "index": 3,
+            "text": "Choice D (70) is incorrect because it does not account for the subtraction of 3 after performing the multiplication."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "43"
+          },
+          {
+            "index": 1,
+            "text": "37"
+          },
+          {
+            "index": 2,
+            "text": "67"
+          },
+          {
+            "index": 3,
+            "text": "70"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "If the perimeter of a rectangle is 54 cm and the length is 15 cm, what is the width?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Choice A (12 cm) is incorrect. The width is calculated using the perimeter formula, which shows a different value."
+          },
+          {
+            "index": 1,
+            "text": "Choice B (12 cm) is correct. The perimeter P = 2(length + width). So, 54 = 2(15 + width), which simplifies to 12 cm."
+          },
+          {
+            "index": 2,
+            "text": "Choice C (9 cm) is incorrect because substituting this value in the perimeter formula does not yield 54 cm."
+          },
+          {
+            "index": 3,
+            "text": "Choice D (15 cm) is incorrect. This would mean the rectangle is a square, which does not satisfy the given perimeter."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12 cm"
+          },
+          {
+            "index": 1,
+            "text": "12 cm"
+          },
+          {
+            "index": 2,
+            "text": "9 cm"
+          },
+          {
+            "index": 3,
+            "text": "15 cm"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What fraction is equivalent to 75%?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Choice A (3/4) is correct as 75% can be expressed as 75/100, which simplifies to 3/4."
+          },
+          {
+            "index": 1,
+            "text": "Choice B (1/2) is incorrect because it represents 50%, not 75%."
+          },
+          {
+            "index": 2,
+            "text": "Choice C (2/5) is incorrect as it represents 40%, not 75%."
+          },
+          {
+            "index": 3,
+            "text": "Choice D (4/5) is incorrect because it represents 80%, not 75%."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3/4"
+          },
+          {
+            "index": 1,
+            "text": "1/2"
+          },
+          {
+            "index": 2,
+            "text": "2/5"
+          },
+          {
+            "index": 3,
+            "text": "4/5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "A triangle has sides of lengths 8 cm, 6 cm, and 10 cm. What type of triangle is it?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Choice A (Equilateral) is incorrect because all sides must be equal for a triangle to be equilateral."
+          },
+          {
+            "index": 1,
+            "text": "Choice B (Isosceles) is incorrect as there are no two sides of equal length."
+          },
+          {
+            "index": 2,
+            "text": "Choice C (Scalene) is correct because all sides are of different lengths."
+          },
+          {
+            "index": 3,
+            "text": "Choice D (Right) is incorrect as a right triangle must have a right angle, which this triangle does not."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Equilateral"
+          },
+          {
+            "index": 1,
+            "text": "Isosceles"
+          },
+          {
+            "index": 2,
+            "text": "Scalene"
+          },
+          {
+            "index": 3,
+            "text": "Right"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the area of a triangle with a base of 10 cm and a height of 5 cm?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Choice A (25 cm²) is incorrect because the area calculation does not yield this result."
+          },
+          {
+            "index": 1,
+            "text": "Choice B (25 cm²) is correct. Area = 1/2 × base × height = 1/2 × 10 × 5 = 25 cm²."
+          },
+          {
+            "index": 2,
+            "text": "Choice C (30 cm²) is incorrect; it does not correspond to the area formula for a triangle."
+          },
+          {
+            "index": 3,
+            "text": "Choice D (15 cm²) is incorrect because it does not follow the correct calculation for the area of a triangle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "20 cm²"
+          },
+          {
+            "index": 1,
+            "text": "25 cm²"
+          },
+          {
+            "index": 2,
+            "text": "30 cm²"
+          },
+          {
+            "index": 3,
+            "text": "15 cm²"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      0,
+      3,
+      2,
+      1
+    ],
+    "date": "2024-09-06T15:00:08.829Z"
+  }
+]
