@@ -69,3 +69,18 @@ button {
   background-color: #4CAF50; /* Selected background */
   color: white;
 }
+
+#past-tests li {
+  margin-bottom: 10px;
+}
+
+#past-tests button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+#past-tests button:last-child {
+  background-color: #ff4d4d;
+  color: white;
+}

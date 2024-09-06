@@ -28,8 +28,10 @@
     <button onclick="startNewTest('Math')">Start New Math Test</button>
     <button onclick="startNewTest('Reading')">Start New Reading Test</button>
     <button onclick="startNewTest('Language')">Start New Language Test</button>
-    <h2>Past Tests</h2>
-    <ul id="past-tests"></ul>
+    <div id="past-tests-container">
+      <h2>Past Tests</h2>
+      <ul id="past-tests"></ul>
+    </div>
   </div>
 
   <div id="quiz-container" style="display: none;">
@@ -43,7 +45,7 @@
       <button class="choice-btn" onclick="selectAnswer(3)">Choice D</button>
     </div>
     <div id="review-container"></div>
-    <button id="back-btn"onclick="backToMainMenu()">Back to Main Menu</button>
+    <button id="back-btn" onclick="backToTestResults()">Back to Test Results</button>
     <button id="submit-btn" onclick="submitAnswer()">Submit</button>
   </div>
 

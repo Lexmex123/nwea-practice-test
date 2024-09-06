@@ -1,14 +1,22 @@
 const OPENAI_API_KEY = "sk-svcacct-Q2g4T7rgAjw3KPmRgXLfkEu95JiiHERdlK2WIgtDWTfyskW-p-yFFGePoglom7ODvaa8T3BlbkFJQkSG4gKAeOMxb7mA9bCnm7UFuS7PHufxhuqkzEHRR8ffS1CSZKA4kFIK8HoIXv2iylgA"; // Replace with your OpenAI API key
 const ARLIAI_API_KEY = "16911291-fd4a-4b17-ae91-cbfc101b5aea"
 
-let currentQuestionIndex = 0;
-let currentSection = "";
-let userAnswers = [];
 let quizQuestions = [];
+let userAnswers = [];
+let currentQuestionIndex = 0;
+let currentSection = '';
 let pastTests = [];
+let isReviewMode = false;
+let currentGradeLevel = '';
 
 function startNewTest(section) {
+  isReviewMode = false;
   currentSection = section;
+  currentGradeLevel = document.getElementById("grade-level").value;
+  
+  // Save the selected grade level
+  localStorage.setItem('lastSelectedGrade', currentGradeLevel);
+  
   currentQuestionIndex = 0;
   userAnswers = [];
   // Show the loading overlay
@@ -61,13 +69,14 @@ async function fetchNewQuestions() {
         "model": "Meta-Llama-3.1-8B-Instruct",
         "messages": [
           {"role": "system", "content": "You are an expert test creator for the NWEA MAP test who generates standardized test questions."},
-          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for Grade ${selectedGrade} students. Each question should include four choices, with one correct answer clearly indicated. Provide questions, choices,  correct answer indexes, and explanations for each choice, in JSON format. Questions and answer choices should be listed in a simple array. Correct answer shown as correctAnswerIndex. Explanations for each answer provided as an array named explanations at the root of the questoin object.`},
+          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for Grade ${selectedGrade} students. Each question should include four choices, with one correct answer. Provide questions, choices, correct answer indexes, and explanations of why each choice is correct/incorrect in detail, in JSON format with structure [{question,correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions and correctAnswerIndex to ensure they are correct.`},
+//          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for Grade ${selectedGrade} students. Each question should include four choices, with one correct answer. Provide questions, choices, correct answer indexes, and explanations for each choice, in JSON format with structure [{question,correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions and answers, ensure explanations correspond to the right index.`},          
         ],
         "repetition_penalty": 1.1,
         "temperature": 0.7,
         "top_p": 0.9,
         "top_k": 40,
-        "max_tokens": 1024,
+        "max_tokens": 40960,
         "stream": false
       })
     });
@@ -98,10 +107,10 @@ async function fetchNewQuestions() {
     }
   };
 */
-    const generatedText = data.choices[0].message.content.replace('json','');
+    const generatedText = data.choices[0].message.content.replace('json\n','');
 console.log(generatedText);
 //    quizQuestions = JSON.parse(generatedText.replace('\n','').split('```json')[1]).questions;
-  quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))).questions;
+  quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n',''))); //.questions
 console.log(quizQuestions);
     // Parsing the response from OpenAI API to extract the questions
 //    quizQuestions = parseQuestionsFromAPI(generatedText);
@@ -145,6 +154,11 @@ console.log(questionData)
 
   document.getElementById("main-menu").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
+  
+  // Hide "Back to Test Results" button during new test
+  document.getElementById("back-btn").style.display = isReviewMode ? "block" : "none";
+  // Show "Submit" button during new test
+  document.getElementById("submit-btn").style.display = isReviewMode ? "none" : "block";
 }
 
 function selectAnswer(index) {
@@ -159,6 +173,11 @@ function selectAnswer(index) {
 }
 
 function submitAnswer() {
+  if (isReviewMode) {
+    backToTestResults();
+    return;
+  }
+
   currentQuestionIndex++;
   // Remove the selected class from all buttons
   const buttons = document.querySelectorAll(".choice-btn");
@@ -167,6 +186,7 @@ function submitAnswer() {
   if (currentQuestionIndex < quizQuestions.length) {
     loadQuestion();
   } else {
+    saveTestResults();
     showResults();
   }
 }
@@ -176,7 +196,7 @@ function showResults() {
   document.getElementById("results-container").style.display = "block";
 
   const resultsList = document.getElementById("results-list");
-  resultsList.innerHTML = "";
+  resultsList.innerHTML = `<h3>Grade ${currentGradeLevel} ${currentSection} Test Results:</h3>`;
 
   quizQuestions.forEach((question, index) => {
     const resultItem = document.createElement("li");
@@ -187,31 +207,45 @@ function showResults() {
     `;
     resultsList.appendChild(resultItem);
   });
-
-  // Save test results to pastTests
-  saveTestResults();
 }
 
 function reviewQuestion(index) {
+  isReviewMode = true;
   const question = quizQuestions[index];
 
   document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
+  document.getElementById("section").textContent = currentSection;
+  document.getElementById("question-number").textContent = index + 1;
   document.getElementById("question").textContent = question.question;
-  document.getElementById("review-container").textContent = question.explanation;
+  document.getElementById("review-container").textContent = question.explanation || '';
+
   const buttons = document.querySelectorAll(".choice-btn");
-  buttons.forEach(button => button.classList.remove("selected"));
   buttons.forEach((button, i) => {
     button.textContent = question.choices[i].text;
-    buttons.classList.add("selected");
+    button.classList.remove("selected");
+    if (i === userAnswers[index]) {
+      button.classList.add("selected");
+    }
   });
+
+  // Show "Back to Test Results" button during review
   document.getElementById("back-btn").style.display = "block";
+  // Hide "Submit" button during review
   document.getElementById("submit-btn").style.display = "none";
 }
 
+function backToTestResults() {
+  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("results-container").style.display = "block";
+}
+
 function saveTestResults() {
+  if (isReviewMode) return;  // Don't save if in review mode
+
   const newTest = {
     section: currentSection,
+    gradeLevel: currentGradeLevel,
     questions: quizQuestions,
     answers: userAnswers
   };
@@ -225,14 +259,24 @@ function loadPastTests() {
   if (savedTests) {
     pastTests = JSON.parse(savedTests);
     const pastTestsList = document.getElementById("past-tests");
+    pastTestsList.innerHTML = ''; // Clear existing list items
     pastTests.forEach((test, index) => {
       const testItem = document.createElement("li");
       testItem.innerHTML = `
-        ${test.section} Test ${index + 1}
-        <button onclick="resumeTest(${index})">Resume</button>
+        Grade ${test.gradeLevel} ${test.section} Test ${index + 1}
+        <button onclick="resumeTest(${index})">Review</button>
+        <button onclick="deleteTest(${index})">Delete</button>
       `;
       pastTestsList.appendChild(testItem);
     });
+  }
+}
+
+function deleteTest(index) {
+  if (confirm("Are you sure you want to delete this test?")) {
+    pastTests.splice(index, 1);
+    localStorage.setItem("pastTests", JSON.stringify(pastTests));
+    loadPastTests(); // Reload the list after deletion
   }
 }
 
@@ -241,8 +285,82 @@ function resumeTest(testIndex) {
   quizQuestions = test.questions;
   userAnswers = test.answers;
   currentSection = test.section;
-  currentQuestionIndex = userAnswers.length - 1;
-  loadQuestion();
+  currentGradeLevel = test.gradeLevel;
+  currentQuestionIndex = 0;
+  isReviewMode = true;  // Set review mode to true
+  
+  document.getElementById("main-menu").style.display = "none";
+  document.getElementById("results-container").style.display = "block";
+  
+  showResults();
+}
+
+function showResults() {
+  document.getElementById("quiz-container").style.display = "none";
+  document.getElementById("results-container").style.display = "block";
+
+  const resultsList = document.getElementById("results-list");
+  resultsList.innerHTML = `<h3>Grade ${currentGradeLevel} ${currentSection} Test Results:</h3>`;
+
+  quizQuestions.forEach((question, index) => {
+    const resultItem = document.createElement("li");
+    resultItem.innerHTML = `
+      <strong>Question ${index + 1}:</strong> 
+      <span>${userAnswers[index] === question.correctAnswerIndex ? "Correct" : "Incorrect"}</span>
+      <button onclick="reviewQuestion(${index})">Review</button>
+    `;
+    resultsList.appendChild(resultItem);
+  });
+
+  // Don't save test results here, as we're reviewing an existing test
+}
+
+function submitAnswer() {
+  if (isReviewMode) {
+    backToTestResults();
+    return;
+  }
+
+  currentQuestionIndex++;
+  // Remove the selected class from all buttons
+  const buttons = document.querySelectorAll(".choice-btn");
+  buttons.forEach(button => button.classList.remove("selected"));
+
+  if (currentQuestionIndex < quizQuestions.length) {
+    loadQuestion();
+  } else {
+    saveTestResults();  // Only save results for new tests
+    showResults();
+  }
+}
+
+function saveTestResults() {
+  if (isReviewMode) return;  // Don't save if in review mode
+
+  const newTest = {
+    section: currentSection,
+    gradeLevel: currentGradeLevel,
+    questions: quizQuestions,
+    answers: userAnswers
+  };
+
+  pastTests.push(newTest);
+  localStorage.setItem("pastTests", JSON.stringify(pastTests));
+}
+
+function startNewTest(section) {
+  isReviewMode = false;
+  currentSection = section;
+  currentGradeLevel = document.getElementById("grade-level").value;
+  
+  // Save the selected grade level
+  localStorage.setItem('lastSelectedGrade', currentGradeLevel);
+  
+  currentQuestionIndex = 0;
+  userAnswers = [];
+  // Show the loading overlay
+  document.getElementById("loading-overlay").style.display = "flex";  
+  fetchNewQuestions();
 }
 
 function showExplanation(questionIndex) {
@@ -258,8 +376,24 @@ function showExplanation(questionIndex) {
 
 function backToMainMenu() {
   document.getElementById("results-container").style.display = "none";
+  document.getElementById("quiz-container").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
+  document.getElementById("past-tests-container").style.display = "block";
+  loadPastTests(); // Reload past tests
 }
 
-// Load past tests on page load
-window.onload = loadPastTests;
+// Add this function to initialize the app
+function initApp() {
+  loadPastTests();
+  setLastSelectedGrade();
+}
+
+function setLastSelectedGrade() {
+  const lastGrade = localStorage.getItem('lastSelectedGrade');
+  if (lastGrade) {
+    document.getElementById('grade-level').value = lastGrade;
+  }
+}
+
+// Call initApp when the page loads
+window.onload = initApp;
