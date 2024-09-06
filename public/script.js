@@ -1,5 +1,3 @@
-const ARLIAI_API_KEY = "16911291-fd4a-4b17-ae91-cbfc101b5aea"
-
 let quizQuestions = [];
 let userAnswers = [];
 let currentQuestionIndex = 0;
@@ -7,6 +5,117 @@ let currentSection = '';
 let pastTests = [];
 let isReviewMode = false;
 let currentGradeLevel = '';
+
+function updateURL(page, params = {}) {
+  const url = new URL(window.location);
+  url.pathname = `/${page}`;
+  
+  // Clear all existing parameters
+  url.search = '';
+  
+  // Add new parameters if any
+  Object.keys(params).forEach(key => url.searchParams.set(key, params[key]));
+  
+  history.pushState({}, '', url);
+}
+
+function handlePopState() {
+  const path = window.location.pathname.slice(1);
+  const params = Object.fromEntries(new URLSearchParams(window.location.search));
+  
+  console.log('Handling route:', path, params);
+
+  loadSavedState();
+
+  switch(path) {
+    case '':
+    case 'main':
+      backToMainMenu();
+      break;
+    case 'quiz':
+      if (params.section && params.grade) {
+        currentSection = params.section;
+        currentGradeLevel = params.grade;
+        document.getElementById('grade-level').value = params.grade;
+        if (quizQuestions.length === 0) {
+          startNewTest(params.section);
+        } else {
+          loadQuestion();
+        }
+      } else {
+        backToMainMenu();
+      }
+      break;
+    case 'results':
+      console.log('Handling results route', quizQuestions.length, params.test);
+      if (quizQuestions.length > 0) {
+        showResults(params.test);
+      } else if (params.test) {
+        loadPastTestResults(params.test);
+      } else {
+        backToMainMenu();
+      }
+      break;
+    case 'review':
+      console.log('Handling review route', quizQuestions.length, params.question);
+      if (params.question && params.test && quizQuestions.length > 0) {
+        const questionIndex = parseInt(params.question) - 1;
+        if (questionIndex >= 0 && questionIndex < quizQuestions.length) {
+          reviewQuestion(questionIndex, params.test);
+        } else {
+          showResults(params.test);
+        }
+      } else {
+        backToMainMenu();
+      }
+      break;
+    default:
+      backToMainMenu();
+  }
+}
+
+async function loadPastTestResults(testIndex) {
+  if (!pastTests) {
+    await loadPastTests();
+  }
+  
+  const testId = parseInt(testIndex);
+  if (isNaN(testId) || testId < 0 || testId >= pastTests.length) {
+    backToMainMenu();
+    return;
+  }
+
+  const test = pastTests[testId];
+  quizQuestions = test.questions;
+  userAnswers = test.answers;
+  currentSection = test.section;
+  currentGradeLevel = test.gradeLevel;
+  currentQuestionIndex = 0;
+  isReviewMode = true;
+  
+  currentTestIndex = testId;
+  showResults(testId);
+  updateQuestionNav();
+  saveCurrentState();
+}
+
+function loadSavedState() {
+  const savedState = localStorage.getItem('quizState');
+  console.log('Loading saved state:', savedState);
+  if (savedState) {
+    const state = JSON.parse(savedState);
+    currentQuestionIndex = state.currentQuestionIndex;
+    currentSection = state.currentSection;
+    currentGradeLevel = state.currentGradeLevel;
+    quizQuestions = state.quizQuestions;
+    userAnswers = state.userAnswers;
+    isReviewMode = state.isReviewMode;
+    currentTestIndex = state.currentTestIndex;
+    console.log('State loaded:', { currentQuestionIndex, currentSection, currentGradeLevel, quizQuestionsLength: quizQuestions.length, userAnswersLength: userAnswers.length, isReviewMode, currentTestIndex });
+  } else {
+    console.log('No saved state found');
+  }
+}
 
 async function startNewTest(section) {
   const gradeLevel = document.getElementById("grade-level").value;
@@ -19,65 +128,36 @@ async function startNewTest(section) {
   currentSection = section;
   currentGradeLevel = gradeLevel;
   
-  // Save the selected grade level
   localStorage.setItem('lastSelectedGrade', currentGradeLevel);
   
   currentQuestionIndex = 0;
   userAnswers = [];
-  // Show the loading overlay
   document.getElementById("loading-overlay").style.display = "flex";  
-  await fetchNewQuestions();
+  await fetchNewQuestions(section, gradeLevel);
+
+  updateURL('quiz', { section: section, grade: currentGradeLevel });
+  loadQuestion();
+  saveCurrentState();
 }
 
-function extractJsonString(input) {
-  const regex = /```([\s\S]*?)```/;
-  const match = input.match(regex);
-  return match ? match[1].trim() : null;
-}
-
-async function fetchOpenAIKey() {
-  const response = await fetch('/api/openaiKey');
-  const data = await response.json();
-  return data.key;
-}
-
-async function fetchNewQuestions() {
+async function fetchNewQuestions(section, gradeLevel) {
   try {
-    const selectedGrade = document.getElementById("grade-level").value;
-    const OPENAI_API_KEY = await fetchOpenAIKey();
-
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {      
+    const response = await fetch("/api/fetchQuestions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: "You are an expert test creator who generates standardized test questions."
-          },
-          {"role": "user", "content": `Generate a 5-question NWEA MAP ${currentSection} multiple-choice test for Grade ${selectedGrade} students. Each question should include four choices, with one correct answer. Provide challenging, randomized questions (some questions supported bydiagrams in SVG format), choices, correct answer indexes, and explanations of why each choice is correct/incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions and correctAnswerIndex to ensure they are correct.`},
-        ],
-        max_tokens: 4096,
-        n: 1,
-        temperature: 0.7
-      })
+        section: section,
+        gradeLevel: gradeLevel
+      }),
     });
 
-    const data = await response.json();
-    console.log(data);  // Log the response for debugging
-
-    if (data.choices && data.choices[0] && data.choices[0].message) {
-      const generatedText = data.choices[0].message.content.replace('json\n','');
-      console.log(generatedText);  // Log the generated text for debugging
-      quizQuestions = JSON.parse(extractJsonString(generatedText.replace('\n','')));
-      console.log(quizQuestions);  // Log the parsed questions for debugging
-    } else {
-      throw new Error("Unexpected response structure from API");
+    if (!response.ok) {
+      throw new Error("Failed to fetch questions");
     }
+
+    quizQuestions = await response.json();
 
     // Hide the loading overlay once questions are fetched
     document.getElementById("loading-overlay").style.display = "none";
@@ -88,7 +168,6 @@ async function fetchNewQuestions() {
     // Hide the loading overlay and show an error message to the user
     document.getElementById("loading-overlay").style.display = "none";
     alert("An error occurred while fetching questions. Please try again.");
-    document.getElementById("loading-overlay").style.display = "none";
   }
 }
 
@@ -110,9 +189,25 @@ function loadQuestion() {
   }
 
   const questionData = quizQuestions[currentQuestionIndex];
-console.log(questionData)
+  console.log(questionData);  // Add this line for debugging
+
+  // Extract quote if present
+  const questionText = questionData.question.question;
+  const quoteMatch = questionText.match(/\"([^\"]+)\"/);
+  
+  let displayText = questionText;
+  const quoteContainer = document.getElementById("quote-container");
+  
+  if (quoteMatch) {
+    displayText = questionText.replace(quoteMatch[0], '').trim();
+    quoteContainer.textContent = quoteMatch[1];
+    quoteContainer.style.display = "inline-block";
+  } else {
+    quoteContainer.style.display = "none";
+  }
+  
   document.getElementById("section").textContent = currentSection;
-  document.getElementById("question").textContent = questionData.question.question;
+  document.getElementById("question").textContent = displayText;
   document.getElementById("question-number").innerText = currentQuestionIndex + 1;
 
   // Handle diagram
@@ -134,6 +229,7 @@ console.log(questionData)
   });
 
   document.getElementById("main-menu").style.display = "none";
+  document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
   
   // Hide "Back to Test Results" button during new test
@@ -148,6 +244,12 @@ console.log(questionData)
   document.getElementById("explanations-container").innerHTML = "";
 
   updateQuestionNav();
+
+  if (isReviewMode) {
+    updateURL('review', { question: currentQuestionIndex + 1, test: currentTestIndex });
+  } else {
+    updateURL('quiz', { section: currentSection, grade: currentGradeLevel });
+  }
 }
 
 function selectAnswer(index) {
@@ -162,6 +264,8 @@ function selectAnswer(index) {
 
   // Enable the submit button
   document.getElementById("submit-btn").disabled = false;
+
+  saveCurrentState();
 }
 
 function submitAnswer() {
@@ -181,11 +285,15 @@ function submitAnswer() {
     saveTestResults();
     showResults();
   }
+
+  saveCurrentState();
 }
 
-function showResults() {
+function showResults(testIndex) {
+  console.log('Showing results');
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("results-container").style.display = "block";
+  document.getElementById("main-menu").style.display = "none";
 
   const resultsList = document.getElementById("results-list");
   const correctAnswers = quizQuestions.filter((q, index) => userAnswers[index] === q.correctAnswerIndex).length;
@@ -212,18 +320,24 @@ function showResults() {
     } else {
       navItem.classList.add("incorrect");
     }
-    navItem.onclick = () => reviewQuestion(index);
+    navItem.onclick = () => reviewQuestion(index, testIndex);
     questionNav.appendChild(navItem);
   });
   resultsList.appendChild(questionNav);
+
+  updateURL('results', { test: testIndex });
 }
 
-function reviewQuestion(index) {
+function reviewQuestion(index, testIndex) {
   isReviewMode = true;
+  currentQuestionIndex = index;
   const question = quizQuestions[index];
 
+  // Hide all other views
   document.getElementById("results-container").style.display = "none";
+  document.getElementById("main-menu").style.display = "none";
   document.getElementById("quiz-container").style.display = "block";
+
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question-number").textContent = index + 1;
   document.getElementById("question").textContent = question.question.question;
@@ -231,7 +345,7 @@ function reviewQuestion(index) {
   // Handle diagram
   const diagramContainer = document.getElementById("diagram-container");
   if (question.question.diagram) {
-    diagramContainer.innerHTML = `<img src="${question.question.diagram}" alt="Question Diagram">`;
+    diagramContainer.innerHTML = `${question.question.diagram}`;
     diagramContainer.style.display = "block";
   } else {
     diagramContainer.innerHTML = "";
@@ -242,7 +356,7 @@ function reviewQuestion(index) {
   buttons.forEach((button, i) => {
     button.textContent = question.choices[i].text;
     button.classList.remove("selected", "correct", "incorrect");
-    button.disabled = true; // Disable the button
+    button.disabled = true; // Disable the button in review mode
     
     if (i === question.correctAnswerIndex) {
       button.classList.add("correct");
@@ -270,11 +384,33 @@ function reviewQuestion(index) {
   document.getElementById("submit-btn").style.display = "none";
 
   updateQuestionNav();
+
+  updateURL('review', { question: index + 1, test: testIndex });
 }
 
 function backToTestResults() {
-  document.getElementById("quiz-container").style.display = "none";
+  showResults(currentTestIndex);
+}
+
+// Add this variable to keep track of the current test index
+let currentTestIndex = null;
+
+function resumeTest(testIndex) {
+  const test = pastTests[testIndex];
+  quizQuestions = test.questions;
+  userAnswers = test.answers;
+  currentSection = test.section;
+  currentGradeLevel = test.gradeLevel;
+  currentQuestionIndex = 0;
+  isReviewMode = true;
+  
+  document.getElementById("main-menu").style.display = "none";
   document.getElementById("results-container").style.display = "block";
+  
+  currentTestIndex = testIndex;
+  showResults(testIndex);
+  updateQuestionNav();
+  saveCurrentState();
 }
 
 async function saveTestResults() {
@@ -366,95 +502,55 @@ function updatePastTestsDisplay() {
 
 async function deleteTest(index) {
   if (confirm("Are you sure you want to delete this test?")) {
-    await fetch(`/api/deleteTest/${index}`, { method: 'DELETE' });
-    loadPastTests(); // Reload the list after deletion
-  }
-}
-
-function resumeTest(testIndex) {
-  const test = pastTests[testIndex];
-  quizQuestions = test.questions;
-  userAnswers = test.answers;
-  currentSection = test.section;
-  currentGradeLevel = test.gradeLevel;
-  currentQuestionIndex = 0;
-  isReviewMode = true;  // Set review mode to true
-  
-  document.getElementById("main-menu").style.display = "none";
-  document.getElementById("results-container").style.display = "block";
-  
-  showResults();
-
-  updateQuestionNav();
-}
-
-function showResults() {
-  document.getElementById("quiz-container").style.display = "none";
-  document.getElementById("results-container").style.display = "block";
-
-  const resultsList = document.getElementById("results-list");
-  const correctAnswers = quizQuestions.filter((q, index) => userAnswers[index] === q.correctAnswerIndex).length;
-  const totalQuestions = quizQuestions.length;
-  const scorePercentage = Math.round((correctAnswers / totalQuestions) * 100);
-
-  resultsList.innerHTML = `
-    <h3>Grade ${currentGradeLevel} ${currentSection} Test Results:</h3>
-    <div class="score-container">
-      <div class="score-circle">${scorePercentage}%</div>
-      <div class="score-details">${correctAnswers} out of ${totalQuestions} correct</div>
-    </div>
-  `;
-
-  // Create horizontal list of question numbers
-  const questionNav = document.createElement("div");
-  questionNav.id = "question-nav";
-  quizQuestions.forEach((question, index) => {
-    const navItem = document.createElement("div");
-    navItem.className = "question-nav-item";
-    navItem.textContent = index + 1;
-    if (userAnswers[index] === question.correctAnswerIndex) {
-      navItem.classList.add("correct");
-    } else {
-      navItem.classList.add("incorrect");
+    try {
+      const response = await fetch(`/api/deleteTest/${index}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete test');
+      }
+      pastTests.splice(index, 1);
+      loadPastTests(); // Reload the list after deletion
+    } catch (error) {
+      console.error('Error deleting test:', error);
+      alert('Failed to delete the test. Please try again.');
     }
-    navItem.onclick = () => reviewQuestion(index);
-    questionNav.appendChild(navItem);
-  });
-  resultsList.appendChild(questionNav);
-}
-
-function submitAnswer() {
-  if (isReviewMode) {
-    backToTestResults();
-    return;
-  }
-
-  currentQuestionIndex++;
-  // Remove the selected class from all buttons
-  const buttons = document.querySelectorAll(".choice-btn");
-  buttons.forEach(button => button.classList.remove("selected"));
-
-  if (currentQuestionIndex < quizQuestions.length) {
-    loadQuestion();
-  } else {
-    saveTestResults();  // Only save results for new tests
-    showResults();
   }
 }
 
 function backToMainMenu() {
+  console.log('Back to main menu');
   document.getElementById("results-container").style.display = "none";
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
   document.getElementById("past-tests-container").style.display = "block";
   loadPastTests(); // Reload past tests
+
+  // Update URL to /main without any query parameters
+  updateURL('main');
 }
 
+function saveCurrentState() {
+  const state = {
+    currentQuestionIndex,
+    currentSection,
+    currentGradeLevel,
+    quizQuestions,
+    userAnswers,
+    isReviewMode,
+    currentTestIndex
+  };
+  localStorage.setItem('quizState', JSON.stringify(state));
+  console.log('State saved:', state);
+}
 
 // Modify your initApp function to include the sync
 function initApp() {
+  console.log('Initializing app');
   loadPastTests();
   setLastSelectedGrade();
+  window.addEventListener('popstate', handlePopState);
+  handlePopState(); // Handle initial URL
 }
 
 function setLastSelectedGrade() {
@@ -482,7 +578,7 @@ function updateQuestionNav() {
       } else {
         navItem.classList.add("incorrect");
       }
-      navItem.onclick = () => reviewQuestion(index);
+      navItem.onclick = () => reviewQuestion(index, currentTestIndex);
     } else {
       if (index < currentQuestionIndex) {
         navItem.classList.add("completed");

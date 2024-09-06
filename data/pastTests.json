@@ -232,5 +232,1409 @@
       1
     ],
     "date": "2024-09-06T15:00:08.829Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the area of a rectangle with a length of 8 cm and a width of 5 cm?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Incorrect. 8 cm + 5 cm = 13 cm; this is not the area."
+          },
+          {
+            "index": 1,
+            "text": "Incorrect. The perimeter would be calculated, not the area."
+          },
+          {
+            "index": 2,
+            "text": "Correct. Area = length × width = 8 cm × 5 cm = 40 cm²."
+          },
+          {
+            "index": 3,
+            "text": "Incorrect. 8 cm - 5 cm = 3 cm; this does not represent the area."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "13 cm²"
+          },
+          {
+            "index": 1,
+            "text": "26 cm²"
+          },
+          {
+            "index": 2,
+            "text": "40 cm²"
+          },
+          {
+            "index": 3,
+            "text": "3 cm²"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "If the fraction 3/4 is equivalent to which of the following?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Incorrect. 2/3 does not equal 3/4; the numerators and denominators do not have the same proportion."
+          },
+          {
+            "index": 1,
+            "text": "Correct. 6/8 simplifies to 3/4 when both the numerator and denominator are divided by 2."
+          },
+          {
+            "index": 2,
+            "text": "Incorrect. 7/8 is larger than 3/4."
+          },
+          {
+            "index": 3,
+            "text": "Incorrect. 1/2 is less than 3/4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2/3"
+          },
+          {
+            "index": 1,
+            "text": "6/8"
+          },
+          {
+            "index": 2,
+            "text": "7/8"
+          },
+          {
+            "index": 3,
+            "text": "1/2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What is the value of x in the equation 5x - 10 = 0?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Correct. To solve for x, add 10 to both sides, giving 5x = 10, then divide by 5 to get x = 2."
+          },
+          {
+            "index": 1,
+            "text": "Incorrect. This is not the solution; you need to isolate x."
+          },
+          {
+            "index": 2,
+            "text": "Incorrect. This is not the correct simplification of the equation."
+          },
+          {
+            "index": 3,
+            "text": "Incorrect. This does not satisfy the original equation."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "A triangle has sides of lengths 6 cm, 8 cm, and 10 cm. What type of triangle is this?",
+          "diagram": "<svg height='100' width='100'><polygon points='50,15 100,100 0,100' style='fill:lime;stroke:purple;stroke-width:1' /></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Incorrect. This triangle has one angle that is 90 degrees, making it right."
+          },
+          {
+            "index": 1,
+            "text": "Correct. This triangle is a right triangle because it satisfies the Pythagorean theorem (6² + 8² = 10²)."
+          },
+          {
+            "index": 2,
+            "text": "Incorrect. An acute triangle has all angles less than 90 degrees, which is not the case here."
+          },
+          {
+            "index": 3,
+            "text": "Incorrect. An obtuse triangle has one angle greater than 90 degrees, which does not apply to this triangle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Scalene"
+          },
+          {
+            "index": 1,
+            "text": "Right"
+          },
+          {
+            "index": 2,
+            "text": "Acute"
+          },
+          {
+            "index": 3,
+            "text": "Obtuse"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the least common multiple (LCM) of 4 and 5?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "Incorrect. 10 is a multiple of 5, but not the least common multiple of 4 and 5."
+          },
+          {
+            "index": 1,
+            "text": "Incorrect. 20 is a multiple of both but not the least."
+          },
+          {
+            "index": 2,
+            "text": "Incorrect. 15 is a multiple of 5, but not of 4."
+          },
+          {
+            "index": 3,
+            "text": "Correct. The least common multiple of 4 and 5 is 20, as it is the smallest number that both can divide evenly into."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "20"
+          },
+          {
+            "index": 2,
+            "text": "15"
+          },
+          {
+            "index": 3,
+            "text": "20"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      1,
+      0,
+      0,
+      1
+    ],
+    "date": "2024-09-06T18:50:01.000Z"
+  },
+  {
+    "section": "Reading",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the main idea of the following passage? 'The sun rises in the east and sets in the west. This daily cycle is crucial for the survival of many plants and animals. Without the sun's warmth and light, life on Earth would not be possible.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it focuses on a specific detail rather than the overall concept presented in the passage."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as it emphasizes the effects of the sun on weather, which is a secondary idea in the passage."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because it summarizes the essential concept that the sun is vital for life on Earth."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect since it only mentions the sun's cycle without connecting it to the importance of life."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "The sun rises and sets every day."
+          },
+          {
+            "index": 1,
+            "text": "The sun affects the weather on Earth."
+          },
+          {
+            "index": 2,
+            "text": "The sun is essential for life on Earth."
+          },
+          {
+            "index": 3,
+            "text": "The sun's cycle is predictable."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which of the following sentences best describes the mood of the story? 'As the storm raged outside, Sarah sat by the fire, listening to the howling wind. She felt a mix of fear and excitement.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it suggests only fear, ignoring the excitement Sarah feels."
+          },
+          {
+            "index": 1,
+            "text": "This choice is correct since it captures both the fear and excitement Sarah experiences during the storm."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as it implies a calm, which contradicts the description of the storm."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect because it oversimplifies the complex emotions of Sarah."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Fearful and anxious."
+          },
+          {
+            "index": 1,
+            "text": "A blend of fear and excitement."
+          },
+          {
+            "index": 2,
+            "text": "Calm and peaceful."
+          },
+          {
+            "index": 3,
+            "text": "Relaxed and indifferent."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "Refer to the diagram below showing different habitats. Which habitat would most likely support the largest variety of plant and animal life?",
+          "diagram": "<svg width='200' height='100'><rect x='10' y='10' width='30' height='30' fill='green' /><text x='50' y='30'>Forest</text><rect x='100' y='10' width='30' height='30' fill='blue' /><text x='140' y='30'>Desert</text><rect x='10' y='60' width='30' height='30' fill='brown' /><text x='50' y='80'>Grassland</text><rect x='100' y='60' width='30' height='30' fill='gray' /><text x='140' y='80'>Tundra</text></svg>"
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is correct as forests typically provide diverse ecosystems that support a variety of species."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect because deserts have extreme conditions that limit biodiversity."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as grasslands have moderate biodiversity but not as rich as forests."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect since tundras have harsh climates that support fewer species."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Forest"
+          },
+          {
+            "index": 1,
+            "text": "Desert"
+          },
+          {
+            "index": 2,
+            "text": "Grassland"
+          },
+          {
+            "index": 3,
+            "text": "Tundra"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What is the author's purpose in writing the following excerpt? 'Many people think that recycling is just a trend, but it is, in fact, a crucial step towards protecting our environment for future generations.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it suggests the author is only informing rather than persuading."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as it implies that the author is simply entertaining the audience."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect because it does not capture the author's intent to argue for a cause."
+          },
+          {
+            "index": 3,
+            "text": "This choice is correct as the author aims to persuade readers of the importance of recycling."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "To inform readers about recycling."
+          },
+          {
+            "index": 1,
+            "text": "To entertain readers with a story."
+          },
+          {
+            "index": 2,
+            "text": "To describe the process of recycling."
+          },
+          {
+            "index": 3,
+            "text": "To persuade readers to recycle."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "In the following sentence, what does the word 'crucial' most likely mean? 'Water is crucial for survival in all living organisms.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect as it implies a minor role, which contradicts the context of survival."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect because it suggests that water is optional, which is not true for survival."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because it indicates that water is essential and necessary for life."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect as it suggests that water is only important in some situations, not universally."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Unimportant"
+          },
+          {
+            "index": 1,
+            "text": "Optional"
+          },
+          {
+            "index": 2,
+            "text": "Essential"
+          },
+          {
+            "index": 3,
+            "text": "Situational"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      1,
+      2,
+      3,
+      2
+    ],
+    "date": "2024-09-06T19:22:37.677Z"
+  },
+  {
+    "section": "Language",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "Which of the following sentences uses an adverb correctly?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because 'quick' is an adjective, not an adverb, and does not modify the verb 'ran'."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as 'slowly' is used correctly, but the sentence is missing a subject and does not provide complete information."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because 'quickly' modifies how 'the boy ran', making it a proper adverb usage."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect because 'very' modifies the adjective 'happy' instead of a verb."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "The boy ran quick."
+          },
+          {
+            "index": 1,
+            "text": "Slowly, the car drove past."
+          },
+          {
+            "index": 2,
+            "text": "The boy ran quickly."
+          },
+          {
+            "index": 3,
+            "text": "She is very happy."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which of the following sentences is a compound sentence?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it is a simple sentence with a single independent clause."
+          },
+          {
+            "index": 1,
+            "text": "This choice is correct because it contains two independent clauses joined by the conjunction 'and'."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as it is a complex sentence, not a compound sentence."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect because it is a fragment and lacks a complete thought."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "I went to the park."
+          },
+          {
+            "index": 1,
+            "text": "I went to the park, and I saw my friend."
+          },
+          {
+            "index": 2,
+            "text": "Although it was raining."
+          },
+          {
+            "index": 3,
+            "text": "Running fast."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "Identify the main idea of the following passage: 'Bats are fascinating creatures. They are the only flying mammals and are essential to the ecosystem. Bats help control insect populations and pollinate plants.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect as it only mentions one characteristic of bats instead of the main idea."
+          },
+          {
+            "index": 1,
+            "text": "This choice is correct because it encompasses the essential roles of bats in the ecosystem as described in the passage."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as it emphasizes only one function of bats instead of their overall importance."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect because it misrepresents the information in the passage."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Bats are mammals."
+          },
+          {
+            "index": 1,
+            "text": "Bats play important roles in ecosystems."
+          },
+          {
+            "index": 2,
+            "text": "Bats primarily eat insects."
+          },
+          {
+            "index": 3,
+            "text": "Bats can fly."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What is the correct way to combine these sentences? 'The cat is on the roof. The cat is sleeping.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it creates a run-on sentence without proper conjunction."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as it incorrectly uses the word 'and' to connect two independent clauses without appropriate punctuation."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because it uses a coordinating conjunction and a comma to properly combine the two independent clauses."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect as it makes it seem like the cat is both on the roof and sleeping, which is not clear."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "The cat is on the roof the cat is sleeping."
+          },
+          {
+            "index": 1,
+            "text": "The cat is on the roof, and is sleeping."
+          },
+          {
+            "index": 2,
+            "text": "The cat is on the roof, and the cat is sleeping."
+          },
+          {
+            "index": 3,
+            "text": "The cat is on the roof, sleeping."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "Which word in the sentence is a synonym for 'happy'? 'She was cheerful when she received the good news.'",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is correct because 'cheerful' means feeling or showing happiness."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect; 'received' refers to obtaining something and is unrelated to the emotion of happiness."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as 'good' describes the news but does not mean happy."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect; 'news' denotes information and does not relate to happiness."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "cheerful"
+          },
+          {
+            "index": 1,
+            "text": "received"
+          },
+          {
+            "index": 2,
+            "text": "good"
+          },
+          {
+            "index": 3,
+            "text": "news"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      1,
+      1,
+      1,
+      0
+    ],
+    "date": "2024-09-06T19:38:33.491Z"
+  },
+  {
+    "section": "Reading",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the main idea of the following passage? \"The importance of recycling cannot be overstated. Recycling helps reduce waste, conserves natural resources, and saves energy. By recycling, we not only help the environment but also create jobs and stimulate the economy.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice focuses only on reducing waste, which is a part of the main idea but not the complete concept."
+          },
+          {
+            "index": 1,
+            "text": "This choice emphasizes energy savings but overlooks the broader benefits of recycling mentioned in the passage."
+          },
+          {
+            "index": 2,
+            "text": "Correct! This choice encompasses all the benefits of recycling, which include environmental protection, economic benefits, and resource conservation."
+          },
+          {
+            "index": 3,
+            "text": "This choice discusses environmental protection alone, missing other key aspects highlighted in the passage."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Recycling primarily reduces waste."
+          },
+          {
+            "index": 1,
+            "text": "Recycling saves energy and is beneficial."
+          },
+          {
+            "index": 2,
+            "text": "Recycling has multiple benefits, including environmental and economic."
+          },
+          {
+            "index": 3,
+            "text": "Recycling protects the environment."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "In a story, a character's motivations can change over time. Which of the following best describes a character who starts as a selfish individual but becomes generous by the end of the story?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice describes a character with consistent traits, which does not reflect the change in motivation."
+          },
+          {
+            "index": 1,
+            "text": "Correct! This choice accurately depicts a character who undergoes significant development, moving from selfishness to generosity."
+          },
+          {
+            "index": 2,
+            "text": "This choice implies a character who is only generous, which does not account for their initial selfishness."
+          },
+          {
+            "index": 3,
+            "text": "This choice describes a character who is dishonest, which does not relate to the character's change in motivation."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "A static character."
+          },
+          {
+            "index": 1,
+            "text": "A dynamic character."
+          },
+          {
+            "index": 2,
+            "text": "A flat character."
+          },
+          {
+            "index": 3,
+            "text": "A round character."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What can be inferred about the character's feelings based on the following quote? \"As she watched the sunset, a deep sense of peace washed over her, melting away the worries of the day.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice suggests she is anxious, which contradicts the peace she feels in the quote."
+          },
+          {
+            "index": 1,
+            "text": "This choice implies she is indifferent, which does not align with the strong emotions described."
+          },
+          {
+            "index": 2,
+            "text": "This choice suggests she is frustrated, which is not supported by the peaceful imagery in the quote."
+          },
+          {
+            "index": 3,
+            "text": "Correct! This choice accurately reflects her feelings of tranquility and relief as described in the quote."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "She feels anxious."
+          },
+          {
+            "index": 1,
+            "text": "She feels indifferent."
+          },
+          {
+            "index": 2,
+            "text": "She feels frustrated."
+          },
+          {
+            "index": 3,
+            "text": "She feels peaceful."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What is the author's purpose in writing the following sentence? \"The ancient trees stood tall, whispering secrets of the past to those who took the time to listen.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice focuses only on description and does not capture the broader purpose of the sentence."
+          },
+          {
+            "index": 1,
+            "text": "Correct! The author aims to evoke a sense of wonder and encourage appreciation for nature's history."
+          },
+          {
+            "index": 2,
+            "text": "This choice suggests a purely factual statement, which ignores the emotional aspect intended by the author."
+          },
+          {
+            "index": 3,
+            "text": "This choice implies the author wants to entertain, which does not align with the reflective tone of the sentence."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "To provide a description of the trees."
+          },
+          {
+            "index": 1,
+            "text": "To evoke emotion and appreciation for nature."
+          },
+          {
+            "index": 2,
+            "text": "To state a fact about trees."
+          },
+          {
+            "index": 3,
+            "text": "To entertain the reader."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "Which of the following sentences uses figurative language effectively?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is a straightforward statement and lacks any figurative language."
+          },
+          {
+            "index": 1,
+            "text": "This choice uses a common saying but does not provide a vivid image."
+          },
+          {
+            "index": 2,
+            "text": "Correct! This sentence uses a metaphor, creating a strong visual image of how fast the runner was."
+          },
+          {
+            "index": 3,
+            "text": "This choice includes an exaggeration but is not as effective in creating a picture in the reader's mind."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "The cat sat on the mat."
+          },
+          {
+            "index": 1,
+            "text": "Time flies when you're having fun."
+          },
+          {
+            "index": 2,
+            "text": "He ran like the wind."
+          },
+          {
+            "index": 3,
+            "text": "I'm so hungry I could eat a horse."
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      1,
+      3,
+      1,
+      3
+    ],
+    "date": "2024-09-06T19:40:53.695Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "A rectangle has a length of 8 cm and a width of 5 cm. What is its area?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "The area of a rectangle is calculated by multiplying its length by its width. Here, 8 cm * 5 cm = 40 cm²."
+          },
+          {
+            "index": 1,
+            "text": "8 cm is the length, and adding 5 cm does not calculate area; it only results in a perimeter (26 cm)."
+          },
+          {
+            "index": 2,
+            "text": "This answer is the correct calculation of the area: 8 cm * 5 cm = 40 cm²."
+          },
+          {
+            "index": 3,
+            "text": "This choice does not consider the multiplication needed to find the area; it's only 8 cm."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "26 cm²"
+          },
+          {
+            "index": 1,
+            "text": "13 cm²"
+          },
+          {
+            "index": 2,
+            "text": "40 cm²"
+          },
+          {
+            "index": 3,
+            "text": "8 cm²"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which of the following fractions is equivalent to 3/4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "1/2 is not equivalent to 3/4; it represents a smaller portion of a whole."
+          },
+          {
+            "index": 1,
+            "text": "This fraction is equivalent to 3/4 because 3 * 2 = 6 and 4 * 2 = 8, hence 6/8 is equal to 3/4."
+          },
+          {
+            "index": 2,
+            "text": "5/6 represents a larger portion than 3/4 and is not equivalent."
+          },
+          {
+            "index": 3,
+            "text": "2/3 is less than 3/4; therefore, it is not equivalent."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1/2"
+          },
+          {
+            "index": 1,
+            "text": "6/8"
+          },
+          {
+            "index": 2,
+            "text": "5/6"
+          },
+          {
+            "index": 3,
+            "text": "2/3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "A triangle has a base of 10 cm and a height of 6 cm. What is the area of the triangle?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "The area of a triangle is calculated using the formula: (base * height) / 2. So, (10 cm * 6 cm) / 2 = 30 cm²."
+          },
+          {
+            "index": 1,
+            "text": "This would be the perimeter of the triangle if you add all sides, not the area."
+          },
+          {
+            "index": 2,
+            "text": "This formula misapplies the dimensions; you need to divide the total area by two for a triangle."
+          },
+          {
+            "index": 3,
+            "text": "This choice does not apply the area formula correctly; it's simply the height."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "30 cm²"
+          },
+          {
+            "index": 1,
+            "text": "16 cm²"
+          },
+          {
+            "index": 2,
+            "text": "60 cm²"
+          },
+          {
+            "index": 3,
+            "text": "6 cm²"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "If 5x = 20, what is the value of x?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This option represents a calculation error; dividing 20 by 5 gives 4."
+          },
+          {
+            "index": 1,
+            "text": "This does not solve for x correctly from the equation."
+          },
+          {
+            "index": 2,
+            "text": "This choice suggests a multiplication error in the equation."
+          },
+          {
+            "index": 3,
+            "text": "Correct! Dividing both sides of the equation by 5 gives x = 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "10"
+          },
+          {
+            "index": 2,
+            "text": "15"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the greatest common factor (GCF) of 36 and 48?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "12 is indeed the GCF of 36 and 48, as it divides both numbers evenly."
+          },
+          {
+            "index": 1,
+            "text": "This option is not a factor of 36 or 48."
+          },
+          {
+            "index": 2,
+            "text": "Correct! 12 is the largest number that divides both 36 and 48 evenly."
+          },
+          {
+            "index": 3,
+            "text": "This number is too small to be the GCF of both numbers."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "18"
+          },
+          {
+            "index": 3,
+            "text": "24"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      1,
+      0,
+      3,
+      1
+    ],
+    "date": "2024-09-06T19:57:44.579Z"
+  },
+  {
+    "section": "Reading",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the main theme of the following passage? \"In a small village, the residents discovered a hidden cave filled with ancient artifacts. They learned the importance of preserving their history and sharing it with future generations.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it describes the cave itself rather than the broader message of the passage."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as it focuses on the artifacts rather than the overall theme of preservation."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because the passage highlights the importance of sharing and preserving history for future generations."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect as it suggests a theme of exploration rather than the significance of historical preservation."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "The cave's physical characteristics"
+          },
+          {
+            "index": 1,
+            "text": "The value of the ancient artifacts"
+          },
+          {
+            "index": 2,
+            "text": "The importance of preserving history"
+          },
+          {
+            "index": 3,
+            "text": "The thrill of exploration"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which word best describes the character's feelings in the sentence? \"Maya felt a surge of excitement as she opened the letter, her heart racing with anticipation.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is correct as 'excitement' directly relates to Maya's feelings of joy and eagerness."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect because 'nervousness' implies anxiety, which is not supported by the context."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as 'indifference' suggests a lack of interest, contrasting with Maya's clear excitement."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect as 'fear' contradicts the sentiment of anticipation described in the sentence."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Excitement"
+          },
+          {
+            "index": 1,
+            "text": "Nervousness"
+          },
+          {
+            "index": 2,
+            "text": "Indifference"
+          },
+          {
+            "index": 3,
+            "text": "Fear"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "Identify the figurative language used in the sentence: \"The wind whispered through the trees, carrying secrets of the forest.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect as it suggests a literal interpretation rather than a figurative expression."
+          },
+          {
+            "index": 1,
+            "text": "This choice is correct because 'whispered' is a personification, giving the wind human-like qualities."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as it misidentifies the description of the wind as a metaphor."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect because it addresses imagery rather than the personification present in the sentence."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Metaphor"
+          },
+          {
+            "index": 1,
+            "text": "Personification"
+          },
+          {
+            "index": 2,
+            "text": "Simile"
+          },
+          {
+            "index": 3,
+            "text": "Imagery"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What can be inferred about the character from the following sentence? \"Despite the storm raging outside, Jake remained calm, reading his book as if nothing could disturb him.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect as it suggests Jake is unaware of his surroundings, which is not supported by the context."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect because it implies Jake is careless, while the passage suggests he is simply calm."
+          },
+          {
+            "index": 2,
+            "text": "This choice is incorrect as it suggests that Jake is uninterested in the storm, which does not capture his calm demeanor."
+          },
+          {
+            "index": 3,
+            "text": "This choice is correct because it indicates that Jake is composed and focused, unaffected by external chaos."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "He is unaware of the storm"
+          },
+          {
+            "index": 1,
+            "text": "He is careless about the situation"
+          },
+          {
+            "index": 2,
+            "text": "He is uninterested in the storm"
+          },
+          {
+            "index": 3,
+            "text": "He is calm and composed"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the author's purpose in writing the following passage? \"The sun dipped below the horizon, painting the sky in hues of orange and pink. As the stars began to twinkle, the world felt at peace.\"",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "This choice is incorrect because it misinterprets the purpose as merely descriptive without considering the intended emotional response."
+          },
+          {
+            "index": 1,
+            "text": "This choice is incorrect as it suggests the author aims to inform, which does not align with the poetic nature of the passage."
+          },
+          {
+            "index": 2,
+            "text": "This choice is correct because the author seeks to evoke a sense of peace and beauty in the reader through vivid imagery."
+          },
+          {
+            "index": 3,
+            "text": "This choice is incorrect as it implies a persuasive intent that is not evident in the given passage."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "To provide a detailed description"
+          },
+          {
+            "index": 1,
+            "text": "To inform the reader about nature"
+          },
+          {
+            "index": 2,
+            "text": "To evoke emotions of peace and beauty"
+          },
+          {
+            "index": 3,
+            "text": "To persuade the reader to appreciate nature"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      0,
+      1,
+      3,
+      2
+    ],
+    "date": "2024-09-06T20:28:33.041Z"
   }
 ]

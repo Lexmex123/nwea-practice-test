@@ -322,3 +322,13 @@ button {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+#quote-container {
+  background-color: #999999;
+  border-left: 4px solid #ccc;
+  padding: 10px 15px;
+  margin: 10px 0;
+  font-style: italic;
+  width: 50%;
+  min-width: 600px;
+}
