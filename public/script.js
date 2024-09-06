@@ -2,9 +2,10 @@ let quizQuestions = [];
 let userAnswers = [];
 let currentQuestionIndex = 0;
 let currentSection = '';
-let pastTests = [];
+let pastTests = null;
 let isReviewMode = false;
 let currentGradeLevel = '';
+let currentTestIndex = null;
 
 function updateURL(page, params = {}) {
   const url = new URL(window.location);
@@ -75,7 +76,7 @@ function handlePopState() {
 }
 
 async function loadPastTestResults(testIndex) {
-  if (!pastTests) {
+  if (pastTests === null) {
     await loadPastTests();
   }
   
@@ -392,9 +393,6 @@ function backToTestResults() {
   showResults(currentTestIndex);
 }
 
-// Add this variable to keep track of the current test index
-let currentTestIndex = null;
-
 function resumeTest(testIndex) {
   const test = pastTests[testIndex];
   quizQuestions = test.questions;
@@ -434,8 +432,13 @@ async function saveTestResults() {
 }
 
 async function loadPastTests() {
-  const response = await fetch('/api/pastTests');
-  pastTests = await response.json();
+  if (pastTests === null) {
+    console.log('Fetching past tests from API');
+    const response = await fetch('/api/pastTests');
+    pastTests = await response.json();
+  } else {
+    console.log('Using cached past tests');
+  }
   updatePastTestsDisplay();
 }
 
@@ -524,7 +527,7 @@ function backToMainMenu() {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
   document.getElementById("past-tests-container").style.display = "block";
-  loadPastTests(); // Reload past tests
+  updatePastTestsDisplay(); // Update display without fetching again
 
   // Update URL to /main without any query parameters
   updateURL('main');

@@ -83,7 +83,7 @@ console.log(OPENAI_API_KEY);
         },
         {
           role: "user",
-          content: `Generate a 5-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized questions (some questions supported by diagrams/images in SVG format), choices, correct answer indexes, and accurate explanations of why each corresponding choice is correct/incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions, correctAnswerIndex, and explanations to ensure they are correct. If quote is used, full passage/context should be provided in double quotes. If diagram/image is used, should be useful.` 
+          content: `Generate a 5-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized questions (some questions supported by diagrams/images in SVG format), choices, correct answer indexes, and accurate explanations of why each corresponding choice is correct/incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions, correctAnswerIndex, and explanations to ensure they are correct, if an error is found, redo. If quote is used, full passage/context should be provided in double quotes. If diagram/image is used, should be useful.` 
         },
       ],
       max_tokens: 4096,
