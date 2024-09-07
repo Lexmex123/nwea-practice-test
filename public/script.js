@@ -291,8 +291,9 @@ function submitAnswer() {
   if (currentQuestionIndex < quizQuestions.length) {
     loadQuestion();
   } else {
-    saveTestResults();
-    showResults();
+    saveTestResults().then(() => {
+      showResults();
+    });
   }
 
   saveCurrentState();
@@ -447,6 +448,8 @@ async function saveTestResults() {
     date: new Date().toISOString()
   };
 
+  console.log('Attempting to save test:', newTest);
+
   try {
     const response = await fetch('/api/saveTest', {
       method: 'POST',
@@ -460,11 +463,14 @@ async function saveTestResults() {
       throw new Error('Failed to save test results');
     }
 
-    // After successfully saving the test, refresh the past tests list
-    await refreshPastTests();
+    const result = await response.json();
+    console.log('Test saved successfully:', result);
 
-    // Set the currentTestIndex to the index of the new test
+    await refreshPastTests();
+    console.log('Past tests refreshed, new count:', pastTests.length);
+
     currentTestIndex = pastTests.length - 1;
+    console.log('Current test index set to:', currentTestIndex);
 
   } catch (error) {
     console.error('Error saving test results:', error);
