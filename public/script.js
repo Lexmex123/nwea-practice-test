@@ -6,6 +6,7 @@ let pastTests = null;
 let isReviewMode = false;
 let currentGradeLevel = '';
 let currentTestIndex = null;
+let lastAddedQuestionIndex = -1;
 
 function updateURL(page, params = {}) {
   const url = new URL(window.location);
@@ -191,8 +192,10 @@ async function fetchNewQuestions(section, gradeLevel) {
           updateURL('quiz', { section: section, grade: currentGradeLevel });
           loadQuestion();
           saveCurrentState();
+          updateQuestionNav(); // Initial setup of question nav
+        } else {
+          addNewQuestionToNav(); // Add new question to nav with animation
         }
-        updateQuestionNav(); // Update the question navigation
         buffer = '';
         break;
       } catch (error) {
@@ -211,8 +214,10 @@ async function fetchNewQuestions(section, gradeLevel) {
               updateURL('quiz', { section: section, grade: currentGradeLevel });
               loadQuestion();
               saveCurrentState();
+              updateQuestionNav(); // Initial setup of question nav
+            } else {
+              addNewQuestionToNav(); // Add new question to nav with animation
             }
-            updateQuestionNav(); // Update the question navigation
             buffer = buffer.slice(lastBracketIndex + 1);
           } catch (innerError) {
             // If we still can't parse, wait for more data
@@ -282,6 +287,9 @@ function loadQuestion() {
     quoteContainer.style.display = "none";
   }
   
+  // Remove <svg> tags from the question text
+  displayText = displayText.replace(/<svg[^>]*>|<\/svg>/g, '');
+
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question").textContent = displayText;
   document.getElementById("question-number").innerText = currentQuestionIndex + 1;
@@ -742,34 +750,7 @@ function updateQuestionNav() {
   const questionNavWrapper = document.createElement("div");
   questionNavWrapper.className = "question-nav-wrapper";
   quizQuestions.forEach((_, index) => {
-    const navItem = document.createElement("div");
-    navItem.className = "question-nav-item";
-    navItem.textContent = index + 1;
-
-    if (isReviewMode) {
-      if (userAnswers[index] === quizQuestions[index].correctAnswerIndex) {
-        navItem.classList.add("correct");
-      } else {
-        navItem.classList.add("incorrect");
-      }
-      if (index === currentQuestionIndex) {
-        navItem.classList.add("current");
-      }
-      navItem.onclick = () => reviewQuestion(index, currentTestIndex);
-    } else {
-      if (index < currentQuestionIndex) {
-        navItem.classList.add("completed");
-      } else if (index === currentQuestionIndex) {
-        navItem.classList.add("current");
-      }
-      // Only allow navigation to answered questions or the current question
-      if (index <= currentQuestionIndex) {
-        navItem.onclick = () => navigateQuestion(index - currentQuestionIndex);
-      } else {
-        navItem.classList.add("disabled");
-      }
-    }
-
+    const navItem = createNavItem(index);
     questionNavWrapper.appendChild(navItem);
   });
   navContainer.appendChild(questionNavWrapper);
@@ -779,10 +760,86 @@ function updateQuestionNav() {
   nextButton.textContent = "Next ▶";
   nextButton.className = "nav-button next-button";
   nextButton.onclick = () => navigateQuestion(1);
-  // Disable next button if current question is unanswered or it's the last question
   nextButton.disabled = currentQuestionIndex === quizQuestions.length - 1 || 
                         userAnswers[currentQuestionIndex] === undefined;
   navContainer.appendChild(nextButton);
+}
+
+function createNavItem(index) {
+  const navItem = document.createElement("div");
+  navItem.className = "question-nav-item";
+  navItem.textContent = index + 1;
+
+  if (isReviewMode) {
+    if (userAnswers[index] === quizQuestions[index].correctAnswerIndex) {
+      navItem.classList.add("correct");
+    } else {
+      navItem.classList.add("incorrect");
+    }
+    if (index === currentQuestionIndex) {
+      navItem.classList.add("current");
+    }
+    navItem.onclick = () => reviewQuestion(index, currentTestIndex);
+  } else {
+    if (index < currentQuestionIndex) {
+      navItem.classList.add("completed");
+    } else if (index === currentQuestionIndex) {
+      navItem.classList.add("current");
+    }
+    // Only allow navigation to answered questions or the current question
+    if (index <= currentQuestionIndex) {
+      navItem.onclick = () => navigateQuestion(index - currentQuestionIndex);
+    } else {
+      navItem.classList.add("disabled");
+    }
+  }
+
+  return navItem;
+}
+
+function addNewQuestionToNav() {
+  const navWrapper = document.querySelector(".question-nav-wrapper");
+  if (navWrapper && quizQuestions.length > lastAddedQuestionIndex + 1) {
+    const newIndex = lastAddedQuestionIndex + 1;
+    const newNavItem = createNavItem(newIndex);
+    newNavItem.classList.add("new-question");
+    navWrapper.appendChild(newNavItem);
+    lastAddedQuestionIndex = newIndex;
+
+    // Remove the "new-question" class after the animation
+    setTimeout(() => {
+      newNavItem.classList.remove("new-question");
+    }, 500); // 500ms matches the animation duration
+  }
+}
+
+function navigateQuestion(direction) {
+  const newIndex = currentQuestionIndex + direction;
+  if (newIndex >= 0 && newIndex < quizQuestions.length) {
+    // Only allow forward navigation if the current question is answered
+    if (direction > 0 && userAnswers[currentQuestionIndex] === undefined) {
+      alert("Please answer the current question before moving to the next one.");
+      return;
+    }
+    currentQuestionIndex = newIndex;
+    loadQuestion();
+  }
+}
+
+function addNewQuestionToNav() {
+  const navWrapper = document.querySelector(".question-nav-wrapper");
+  if (navWrapper && quizQuestions.length > lastAddedQuestionIndex + 1) {
+    const newIndex = lastAddedQuestionIndex + 1;
+    const newNavItem = createNavItem(newIndex);
+    newNavItem.classList.add("new-question");
+    navWrapper.appendChild(newNavItem);
+    lastAddedQuestionIndex = newIndex;
+
+    // Remove the "new-question" class after the animation
+    setTimeout(() => {
+      newNavItem.classList.remove("new-question");
+    }, 500); // 500ms matches the animation duration
+  }
 }
 
 // Add these navigation functions

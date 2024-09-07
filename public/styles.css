@@ -151,16 +151,34 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid #fff;
-  background-color: #999;
-  cursor: pointer;
-  font-weight: bold;
+  border: 2px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 5px;
-  color: #fff;
-  animation: bounce 0.5s;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.question-nav-item.current {
+  border-color: #007bff;
+  font-weight: bold;
+}
+
+.question-nav-item.completed {
+  background-color: #e0e0e0;
+}
+
+.question-nav-item.correct {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.question-nav-item.incorrect {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
 }
 
 .question-nav-item.disabled {
@@ -168,21 +186,14 @@ button {
   cursor: not-allowed;
 }
 
-.question-nav-item.current {
-  border: 2px solid #000;
-  font-weight: bold;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
 }
 
-.question-nav-item.completed {
-  background-color: #ccc;
-}
-
-.question-nav-item.correct {
-  background-color: #4CAF50;
-}
-
-.question-nav-item.incorrect {
-  background-color: #f44336;
+.question-nav-item.new-question {
+  animation: bounce 0.5s;
 }
 
 @media (max-width: 600px) {
@@ -401,3 +412,9 @@ button {
   40% {transform: translateY(-10px);}
   60% {transform: translateY(-5px);}
 }
+
+.question-nav-item.new-question {
+  animation: bounce 0.5s;
+}
+
+/* ... rest of your existing styles ... */
