@@ -1636,5 +1636,179 @@
       2
     ],
     "date": "2024-09-06T20:28:33.041Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the area of a rectangle with a length of 8 cm and a width of 5 cm?",
+          "diagram": "<svg width='100' height='60'><rect width='80' height='50' style='fill:blue;stroke:black;stroke-width:2;' /><text x='30' y='30' fill='white'>8 cm</text><text x='85' y='30' fill='white'>5 cm</text></svg>"
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "The area of a rectangle is calculated by multiplying the length by the width. So, 8 cm * 5 cm = 40 cm². Therefore, the correct answer is 40 cm²."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "30 cm²"
+          },
+          {
+            "index": 1,
+            "text": "35 cm²"
+          },
+          {
+            "index": 2,
+            "text": "40 cm²"
+          },
+          {
+            "index": 3,
+            "text": "45 cm²"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which of the following fractions is equivalent to 3/4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "To find an equivalent fraction, you can multiply the numerator and denominator by the same number. 3/4 is equivalent to 9/12 because 3*3 = 9 and 4*3 = 12."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1/2"
+          },
+          {
+            "index": 1,
+            "text": "2/3"
+          },
+          {
+            "index": 2,
+            "text": "5/8"
+          },
+          {
+            "index": 3,
+            "text": "9/12"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What is the value of 12 + (3 * 4) - 5?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "According to the order of operations (PEMDAS/BODMAS), you first solve the multiplication: 3 * 4 = 12. Then, you perform the addition and subtraction: 12 + 12 - 5 = 19. So the correct answer is 19."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "16"
+          },
+          {
+            "index": 1,
+            "text": "19"
+          },
+          {
+            "index": 2,
+            "text": "20"
+          },
+          {
+            "index": 3,
+            "text": "22"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "A farmer has 24 apples. If he wants to pack them into boxes of 6 apples each, how many boxes can he fill?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "To find out how many boxes can be filled, divide the total number of apples by the number of apples per box: 24 ÷ 6 = 4. Thus, the farmer can fill 4 boxes."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the greatest common factor (GCF) of 36 and 48?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 0,
+            "text": "To find the GCF, list the factors of each number. The factors of 36 are 1, 2, 3, 4, 6, 9, 12, 18, 36. The factors of 48 are 1, 2, 3, 4, 6, 8, 12, 16, 24, 48. The largest common factor is 12."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "12"
+          },
+          {
+            "index": 3,
+            "text": "18"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      3,
+      1,
+      1,
+      2
+    ],
+    "date": "2024-09-06T21:10:42.363Z"
   }
 ]

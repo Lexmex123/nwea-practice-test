@@ -327,11 +327,13 @@ function showResults(testIndex) {
   resultsList.appendChild(questionNav);
 
   updateURL('results', { test: testIndex });
+  updateQuestionNav();
 }
 
 function reviewQuestion(index, testIndex) {
   isReviewMode = true;
   currentQuestionIndex = index;
+  currentTestIndex = testIndex;  // Make sure to set this
   const question = quizQuestions[index];
 
   // Hide all other views
@@ -341,7 +343,22 @@ function reviewQuestion(index, testIndex) {
 
   document.getElementById("section").textContent = currentSection;
   document.getElementById("question-number").textContent = index + 1;
-  document.getElementById("question").textContent = question.question.question;
+
+  // Handle quote
+  const questionText = question.question.question;
+  const quoteMatch = questionText.match(/\"([^\"]+)\"/);
+  const quoteContainer = document.getElementById("quote-container");
+  
+  if (quoteMatch) {
+    const displayText = questionText.replace(quoteMatch[0], '').trim();
+    document.getElementById("question").textContent = displayText;
+    quoteContainer.textContent = quoteMatch[1];
+    quoteContainer.style.display = "inline-block";
+  } else {
+    document.getElementById("question").textContent = questionText;
+    quoteContainer.textContent = "";
+    quoteContainer.style.display = "none";
+  }
 
   // Handle diagram
   const diagramContainer = document.getElementById("diagram-container");
@@ -422,13 +439,36 @@ async function saveTestResults() {
     date: new Date().toISOString()
   };
 
-  await fetch('/api/saveTest', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newTest),
-  });
+  try {
+    const response = await fetch('/api/saveTest', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTest),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to save test results');
+    }
+
+    // After successfully saving the test, refresh the past tests list
+    await refreshPastTests();
+
+    // Set the currentTestIndex to the index of the new test
+    currentTestIndex = pastTests.length - 1;
+
+  } catch (error) {
+    console.error('Error saving test results:', error);
+    alert('Failed to save test results. Please try again.');
+  }
+}
+
+async function refreshPastTests() {
+  console.log('Refreshing past tests');
+  const response = await fetch('/api/pastTests');
+  pastTests = await response.json();
+  updatePastTestsDisplay();
 }
 
 async function loadPastTests() {
@@ -513,7 +553,7 @@ async function deleteTest(index) {
         throw new Error('Failed to delete test');
       }
       pastTests.splice(index, 1);
-      loadPastTests(); // Reload the list after deletion
+      updatePastTestsDisplay(); // Update display without fetching again
     } catch (error) {
       console.error('Error deleting test:', error);
       alert('Failed to delete the test. Please try again.');
@@ -580,6 +620,9 @@ function updateQuestionNav() {
         navItem.classList.add("correct");
       } else {
         navItem.classList.add("incorrect");
+      }
+      if (index === currentQuestionIndex) {
+        navItem.classList.add("current");
       }
       navItem.onclick = () => reviewQuestion(index, currentTestIndex);
     } else {

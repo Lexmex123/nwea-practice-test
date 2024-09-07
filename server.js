@@ -73,7 +73,7 @@ app.post('/api/fetchQuestions', async (req, res) => {
   try {
     const { section, gradeLevel } = req.body;
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-console.log(OPENAI_API_KEY);
+
     const response = await axios.post("https://api.openai.com/v1/chat/completions", {
       model: "gpt-4o-mini",
       messages: [
@@ -83,7 +83,7 @@ console.log(OPENAI_API_KEY);
         },
         {
           role: "user",
-          content: `Generate a 5-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized questions (some questions supported by diagrams/images in SVG format), choices, correct answer indexes, and accurate explanations of why each corresponding choice is correct/incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check questions, correctAnswerIndex, and explanations to ensure they are correct, if an error is found, redo. If quote is used, full passage/context should be provided in double quotes. If diagram/image is used, should be useful.` 
+          content: `Generate a 20-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized questions (some questions supported by diagrams/images in SVG format), choices, correct answer indexes, and accurate, unique explanations of why each choice is correct or incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check the correctAnswerIndex and explanations are correct like your life depended on it, if an error is found, redo. If quote/article/book is referenced, full passage/context should be provided in double quotes. If diagram/image is used, should be big and detailed enough to be useful.` 
         },
       ],
       max_tokens: 4096,
