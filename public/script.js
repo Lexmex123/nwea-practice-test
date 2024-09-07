@@ -532,8 +532,17 @@ function updatePastTestsDisplay() {
       <tbody>
   `;
 
-  for (const [key, tests] of Object.entries(groupedTests)) {
+  // Sort grades in ascending order
+  const sortedGrades = Object.keys(groupedTests).sort((a, b) => {
+    const gradeA = parseInt(a.split('-')[0]);
+    const gradeB = parseInt(b.split('-')[0]);
+    return gradeA - gradeB;
+  });
+
+  sortedGrades.forEach(key => {
     const [grade, section] = key.split('-');
+    const tests = groupedTests[key];
+
     tableHTML += `
       <tr>
         <td>${grade}</td>
@@ -557,7 +566,7 @@ function updatePastTestsDisplay() {
         </td>
       </tr>
     `;
-  }
+  });
 
   tableHTML += `
       </tbody>
