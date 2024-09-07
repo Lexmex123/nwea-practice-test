@@ -159,9 +159,12 @@ button {
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
 }
+.question-nav-item:hover {
+  border-color: #000!important;
+}
 
 .question-nav-item.current {
-  border-color: #007bff;
+  border-color: #000!important;
   font-weight: bold;
 }
 

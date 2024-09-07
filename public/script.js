@@ -663,7 +663,8 @@ function updatePastTestsDisplay() {
 async function deleteTest(index) {
   if (confirm("Are you sure you want to delete this test?")) {
     try {
-      const response = await fetch(`/api/deleteTest/${index}`, {
+      const testId = pastTests[index].id;
+      const response = await fetch(`/api/deleteTest/${testId}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -752,14 +753,37 @@ function updateQuestionNav() {
   // Question navigation items
   const questionNavWrapper = document.createElement("div");
   questionNavWrapper.className = "question-nav-wrapper";
-  navContainer.appendChild(questionNavWrapper);
+  quizQuestions.forEach((_, index) => {
+    const navItem = document.createElement("div");
+    navItem.className = "question-nav-item";
+    navItem.textContent = index + 1;
 
-  // Create nav items for all questions in review mode
-  const totalQuestions = isReviewMode ? quizQuestions.length : lastAddedQuestionIndex + 1;
-  for (let i = 0; i < totalQuestions; i++) {
-    const navItem = createNavItem(i);
+    if (isReviewMode) {
+      if (userAnswers[index] === quizQuestions[index].correctAnswerIndex) {
+        navItem.classList.add("correct");
+      } else {
+        navItem.classList.add("incorrect");
+      }
+      if (index === currentQuestionIndex) {
+        navItem.classList.add("current");
+      }
+      navItem.onclick = () => reviewQuestion(index, currentTestIndex);
+    } else {
+      if (index < currentQuestionIndex) {
+        navItem.classList.add("completed");
+      } else if (index === currentQuestionIndex) {
+        navItem.classList.add("current");
+      }
+      if (index <= currentQuestionIndex) {
+        navItem.onclick = () => navigateQuestion(index - currentQuestionIndex);
+      } else {
+        navItem.classList.add("disabled");
+      }
+    }
+
     questionNavWrapper.appendChild(navItem);
-  }
+  });
+  navContainer.appendChild(questionNavWrapper);
 
   // Add Next button
   const nextButton = document.createElement("button");
