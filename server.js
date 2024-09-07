@@ -3,6 +3,7 @@ const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
 const axios = require('axios');
+const OpenAI = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -69,12 +70,15 @@ app.post('/api/saveTest', async (req, res) => {
 //});
 
 // Add this new endpoint
-app.post('/api/fetchQuestions', async (req, res) => {
-  try {
-    const { section, gradeLevel } = req.body;
-    const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
-    const response = await axios.post("https://api.openai.com/v1/chat/completions", {
+app.post('/api/fetchQuestions', async (req, res) => {
+  const { section, gradeLevel } = req.body;
+
+  try {
+    const stream = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         {
@@ -86,24 +90,28 @@ app.post('/api/fetchQuestions', async (req, res) => {
           content: `Generate a 15-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized questions (some questions supported by diagrams/images in SVG format), choices, correct answer indexes, and accurate, unique explanations of why each choice is correct or incorrect in detail, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check the correctAnswerIndex and explanations are correct like your life depended on it, if an error is found, redo. If quote/article/book is referenced, full passage/context should be provided in double quotes. If diagram/image is used, should be big and detailed enough to be useful.` 
         },
       ],
-      max_tokens: 4096,
-      n: 1,
-      temperature: 0.7
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
-      }
+      stream: true,
     });
-    const generatedText = response.data.choices[0].message.content.replace('json\n','');
-console.log(generatedText);    
-    const questions = JSON.parse(extractJsonString(generatedText)); //.replace('\n','')
 
-    res.json(questions);
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive'
+    });
+
+    for await (const chunk of stream) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      if (content) {
+        res.write(`data: ${content}\n\n`);
+      }
+    }
+
+    res.write('data: [DONE]\n\n');
+    res.end();
+
   } catch (error) {
-    console.error("Error fetching questions:", error); //
-    if (error.response && error.response.data && error.response.data.error) console.log(error.response.data.error);
-    res.status(500).json({ error: 'Error fetching questions' });
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while fetching questions.' });
   }
 });
 

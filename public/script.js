@@ -129,13 +129,11 @@ async function startNewTest(section) {
   
   currentQuestionIndex = 0;
   userAnswers = [];
+  quizQuestions = [];
   document.getElementById("loading-overlay").style.display = "flex";  
   
   try {
     await fetchNewQuestions(section, gradeLevel);
-    updateURL('quiz', { section: section, grade: currentGradeLevel });
-    loadQuestion();
-    saveCurrentState();
   } catch (error) {
     console.error("Error starting new test:", error);
     document.getElementById("loading-overlay").style.display = "none";
@@ -145,36 +143,103 @@ async function startNewTest(section) {
 }
 
 async function fetchNewQuestions(section, gradeLevel) {
+  const response = await fetch("/api/fetchQuestions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      section: section,
+      gradeLevel: gradeLevel
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch questions");
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+  let questionCount = 0;
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    
+    buffer += decoder.decode(value, { stream: true });
+    if (buffer.length) {
+      buffer = buffer.replace(/data: /g,"")
+      buffer = buffer.replace(/[\n\r]/g,"")
+      buffer = buffer.replace(/```/g,"")
+      buffer = buffer.replace(/,\s*{\s*\"question\"/g,`{ "question"`)
+      const bufferParts = buffer.split(/json\[/);
+      if (bufferParts.length>1) buffer = bufferParts[1];
+    }
+//console.log(buffer.length,buffer)
+//if (buffer.length>3000) break;
+
+    while (true) {
+      try {
+        const result = JSON.parse(buffer);
+//console.log('OBJECT FOUND:', result);
+        processQuestion(result);
+        questionCount++;
+        if (questionCount === 1) {
+          // Start the test with the first question
+          document.getElementById("loading-overlay").style.display = "none";  // Hide loading overlay
+          updateURL('quiz', { section: section, grade: currentGradeLevel });
+          loadQuestion();
+          saveCurrentState();
+        }
+        buffer = '';
+        break;
+      } catch (error) {
+        // If we can't parse the entire buffer, try to find a complete object
+        const lastBracketIndex = buffer.lastIndexOf('}');
+        if (lastBracketIndex !== -1) {
+          try {
+            const possibleObject = buffer.slice(0, lastBracketIndex + 1);
+            const result = JSON.parse(possibleObject);
+//console.log('POSSIBLE FOUND:', possibleObject)
+            processQuestion(result);
+            questionCount++;
+            if (questionCount === 1) {
+              // Start the test with the first question
+              document.getElementById("loading-overlay").style.display = "none";  // Hide loading overlay
+              updateURL('quiz', { section: section, grade: currentGradeLevel });
+              loadQuestion();
+              saveCurrentState();
+            }
+            buffer = buffer.slice(lastBracketIndex + 1);
+          } catch (innerError) {
+            // If we still can't parse, wait for more data
+            break;
+          }
+        } else {
+          // If we don't have a complete object yet, wait for more data
+          break;
+        }
+      }
+    }
+    
+    if (buffer.includes('[DONE]')) {
+      console.log('All questions received');
+      break;
+    }
+  }
+
+  // Ensure loading overlay is hidden even if no questions were received
+  document.getElementById("loading-overlay").style.display = "none";
+}
+
+function processQuestion(questionJson) {
   try {
-    const response = await fetch("/api/fetchQuestions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        section: section,
-        gradeLevel: gradeLevel
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch questions");
-    }
-
-    quizQuestions = await response.json();
-
-    if (!quizQuestions || quizQuestions.length === 0) {
-      throw new Error("No questions received");
-    }
-
-    // Hide the loading overlay once questions are fetched
-    document.getElementById("loading-overlay").style.display = "none";
-
+    console.log('Received question:', questionJson);
+    quizQuestions.push(questionJson);
+    console.log('Processed question:', questionJson);
   } catch (error) {
-    console.error("Error fetching questions:", error);
-    // Hide the loading overlay and show an error message to the user
-    document.getElementById("loading-overlay").style.display = "none";
-    throw error; // Re-throw the error to be caught in startNewTest
+    console.error('Error processing question:', error);
   }
 }
 
@@ -330,12 +395,12 @@ function showResults(testIndex) {
     } else {
       navItem.classList.add("incorrect");
     }
-    navItem.onclick = () => reviewQuestion(index, testIndex);
+    navItem.onclick = () => reviewQuestion(index, currentTestIndex);
     questionNav.appendChild(navItem);
   });
   resultsList.appendChild(questionNav);
 
-  updateURL('results', { test: testIndex });
+  updateURL('results', { test: currentTestIndex });
   updateQuestionNav();
 }
 
