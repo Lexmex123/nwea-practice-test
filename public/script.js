@@ -34,15 +34,11 @@ function handlePopState() {
       backToMainMenu();
       break;
     case 'quiz':
-      if (params.section && params.grade) {
+      if (params.section && params.grade && quizQuestions && quizQuestions.length > 0) {
         currentSection = params.section;
         currentGradeLevel = params.grade;
         document.getElementById('grade-level').value = params.grade;
-        if (quizQuestions.length === 0) {
-          startNewTest(params.section);
-        } else {
-          loadQuestion();
-        }
+        loadQuestion();
       } else {
         backToMainMenu();
       }
@@ -108,7 +104,7 @@ function loadSavedState() {
     currentQuestionIndex = state.currentQuestionIndex;
     currentSection = state.currentSection;
     currentGradeLevel = state.currentGradeLevel;
-    quizQuestions = state.quizQuestions;
+    quizQuestions = state.quizQuestions || [];
     userAnswers = state.userAnswers;
     isReviewMode = state.isReviewMode;
     currentTestIndex = state.currentTestIndex;
@@ -134,11 +130,18 @@ async function startNewTest(section) {
   currentQuestionIndex = 0;
   userAnswers = [];
   document.getElementById("loading-overlay").style.display = "flex";  
-  await fetchNewQuestions(section, gradeLevel);
-
-  updateURL('quiz', { section: section, grade: currentGradeLevel });
-  loadQuestion();
-  saveCurrentState();
+  
+  try {
+    await fetchNewQuestions(section, gradeLevel);
+    updateURL('quiz', { section: section, grade: currentGradeLevel });
+    loadQuestion();
+    saveCurrentState();
+  } catch (error) {
+    console.error("Error starting new test:", error);
+    document.getElementById("loading-overlay").style.display = "none";
+    alert("Failed to start a new test. Please try again.");
+    backToMainMenu();
+  }
 }
 
 async function fetchNewQuestions(section, gradeLevel) {
@@ -160,15 +163,18 @@ async function fetchNewQuestions(section, gradeLevel) {
 
     quizQuestions = await response.json();
 
+    if (!quizQuestions || quizQuestions.length === 0) {
+      throw new Error("No questions received");
+    }
+
     // Hide the loading overlay once questions are fetched
     document.getElementById("loading-overlay").style.display = "none";
 
-    loadQuestion();
   } catch (error) {
     console.error("Error fetching questions:", error);
     // Hide the loading overlay and show an error message to the user
     document.getElementById("loading-overlay").style.display = "none";
-    alert("An error occurred while fetching questions. Please try again.");
+    throw error; // Re-throw the error to be caught in startNewTest
   }
 }
 
@@ -184,8 +190,10 @@ function parseQuestionsFromAPI(apiResponse) {
 }
 
 function loadQuestion() {
-  if (quizQuestions.length === 0) {
-    alert("No questions found. Please try again.");
+  if (!quizQuestions || quizQuestions.length === 0) {
+    console.error("No questions available to load");
+    alert("No questions found. Please try starting a new test.");
+    backToMainMenu();
     return;
   }
 
@@ -472,19 +480,29 @@ async function refreshPastTests() {
 }
 
 async function loadPastTests() {
-  if (pastTests === null) {
+  try {
     console.log('Fetching past tests from API');
     const response = await fetch('/api/pastTests');
+    if (!response.ok) {
+      throw new Error('Failed to fetch past tests');
+    }
     pastTests = await response.json();
-  } else {
-    console.log('Using cached past tests');
+    updatePastTestsDisplay();
+  } catch (error) {
+    console.error('Error loading past tests:', error);
+    pastTests = [];
+    updatePastTestsDisplay();
   }
-  updatePastTestsDisplay();
 }
 
 function updatePastTestsDisplay() {
   const pastTestsContainer = document.getElementById("past-tests-container");
   
+  if (!pastTests || pastTests.length === 0) {
+    pastTestsContainer.innerHTML = "<p>No past tests available.</p>";
+    return;
+  }
+
   // Group tests by grade and section
   const groupedTests = pastTests.reduce((acc, test, index) => {
     const key = `${test.gradeLevel}-${test.section}`;
@@ -567,10 +585,19 @@ function backToMainMenu() {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("main-menu").style.display = "block";
   document.getElementById("past-tests-container").style.display = "block";
-  updatePastTestsDisplay(); // Update display without fetching again
-
-  // Update URL to /main without any query parameters
+  
+  // Reset state variables
+  currentQuestionIndex = 0;
+  quizQuestions = [];
+  userAnswers = [];
+  isReviewMode = false;
+  currentTestIndex = null;
+  
+  updatePastTestsDisplay();
   updateURL('main');
+  
+  // Clear the saved state in localStorage
+  localStorage.removeItem('quizState');
 }
 
 function saveCurrentState() {
@@ -578,7 +605,7 @@ function saveCurrentState() {
     currentQuestionIndex,
     currentSection,
     currentGradeLevel,
-    quizQuestions,
+    quizQuestions: quizQuestions || [],
     userAnswers,
     isReviewMode,
     currentTestIndex
@@ -590,7 +617,11 @@ function saveCurrentState() {
 // Modify your initApp function to include the sync
 function initApp() {
   console.log('Initializing app');
-  loadPastTests();
+  loadPastTests().catch(error => {
+    console.error('Error in initApp:', error);
+    pastTests = [];
+    updatePastTestsDisplay();
+  });
   setLastSelectedGrade();
   window.addEventListener('popstate', handlePopState);
   handlePopState(); // Handle initial URL
@@ -635,4 +666,10 @@ function updateQuestionNav() {
 
     navContainer.appendChild(navItem);
   });
+}
+
+function goHome() {
+  if (confirm("Are you sure you want to go back to the main menu? Any unsaved progress will be lost.")) {
+    backToMainMenu();
+  }
 }

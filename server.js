@@ -102,6 +102,7 @@ console.log(generatedText);
     res.json(questions);
   } catch (error) {
     console.error("Error fetching questions:", error); //
+    if (error.response && error.response.data && error.response.data.error) console.log(error.response.data.error);
     res.status(500).json({ error: 'Error fetching questions' });
   }
 });
