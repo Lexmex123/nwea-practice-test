@@ -192,6 +192,7 @@ async function fetchNewQuestions(section, gradeLevel) {
           loadQuestion();
           saveCurrentState();
         }
+        updateQuestionNav(); // Update the question navigation
         buffer = '';
         break;
       } catch (error) {
@@ -211,6 +212,7 @@ async function fetchNewQuestions(section, gradeLevel) {
               loadQuestion();
               saveCurrentState();
             }
+            updateQuestionNav(); // Update the question navigation
             buffer = buffer.slice(lastBracketIndex + 1);
           } catch (innerError) {
             // If we still can't parse, wait for more data
@@ -339,6 +341,9 @@ function selectAnswer(index) {
   // Enable the submit button
   document.getElementById("submit-btn").disabled = false;
 
+  // Update the navigation to enable the next button
+  updateQuestionNav();
+
   saveCurrentState();
 }
 
@@ -386,6 +391,8 @@ function showResults(testIndex) {
   // Create horizontal list of question numbers
   const questionNav = document.createElement("div");
   questionNav.id = "question-nav";
+  const questionNavWrapper = document.createElement("div");
+  questionNavWrapper.className = "question-nav-wrapper";
   quizQuestions.forEach((question, index) => {
     const navItem = document.createElement("div");
     navItem.className = "question-nav-item";
@@ -396,8 +403,9 @@ function showResults(testIndex) {
       navItem.classList.add("incorrect");
     }
     navItem.onclick = () => reviewQuestion(index, currentTestIndex);
-    questionNav.appendChild(navItem);
+    questionNavWrapper.appendChild(navItem);
   });
+  questionNav.appendChild(questionNavWrapper);
   resultsList.appendChild(questionNav);
 
   updateURL('results', { test: currentTestIndex });
@@ -717,6 +725,7 @@ function setLastSelectedGrade() {
 // Call initApp when the page loads
 window.onload = initApp;
 
+// Add this function to create and update the question navigation
 function updateQuestionNav() {
   const navContainer = document.getElementById("question-nav");
   navContainer.innerHTML = "";
@@ -753,6 +762,12 @@ function updateQuestionNav() {
       } else if (index === currentQuestionIndex) {
         navItem.classList.add("current");
       }
+      // Only allow navigation to answered questions or the current question
+      if (index <= currentQuestionIndex) {
+        navItem.onclick = () => navigateQuestion(index - currentQuestionIndex);
+      } else {
+        navItem.classList.add("disabled");
+      }
     }
 
     questionNavWrapper.appendChild(navItem);
@@ -764,19 +779,23 @@ function updateQuestionNav() {
   nextButton.textContent = "Next ▶";
   nextButton.className = "nav-button next-button";
   nextButton.onclick = () => navigateQuestion(1);
-  nextButton.disabled = currentQuestionIndex === quizQuestions.length - 1;
+  // Disable next button if current question is unanswered or it's the last question
+  nextButton.disabled = currentQuestionIndex === quizQuestions.length - 1 || 
+                        userAnswers[currentQuestionIndex] === undefined;
   navContainer.appendChild(nextButton);
 }
 
+// Add these navigation functions
 function navigateQuestion(direction) {
   const newIndex = currentQuestionIndex + direction;
   if (newIndex >= 0 && newIndex < quizQuestions.length) {
-    if (isReviewMode) {
-      reviewQuestion(newIndex, currentTestIndex);
-    } else {
-      currentQuestionIndex = newIndex;
-      loadQuestion();
+    // Only allow forward navigation if the current question is answered
+    if (direction > 0 && userAnswers[currentQuestionIndex] === undefined) {
+      alert("Please answer the current question before moving to the next one.");
+      return;
     }
+    currentQuestionIndex = newIndex;
+    loadQuestion();
   }
 }
 
