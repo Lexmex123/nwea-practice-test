@@ -597,8 +597,17 @@ function updatePastTestsDisplay() {
       <tbody>
   `;
 
-  for (const [key, tests] of Object.entries(groupedTests)) {
+  // Sort grades in ascending order
+  const sortedGrades = Object.keys(groupedTests).sort((a, b) => {
+    const gradeA = parseInt(a.split('-')[0]);
+    const gradeB = parseInt(b.split('-')[0]);
+    return gradeA - gradeB;
+  });
+
+  sortedGrades.forEach(key => {
     const [grade, section] = key.split('-');
+    const tests = groupedTests[key];
+
     tableHTML += `
       <tr>
         <td>${grade}</td>
@@ -622,7 +631,7 @@ function updatePastTestsDisplay() {
         </td>
       </tr>
     `;
-  }
+  });
 
   tableHTML += `
       </tbody>
@@ -712,6 +721,17 @@ function updateQuestionNav() {
   const navContainer = document.getElementById("question-nav");
   navContainer.innerHTML = "";
 
+  // Add Previous button
+  const prevButton = document.createElement("button");
+  prevButton.textContent = "◀ Prev";
+  prevButton.className = "nav-button prev-button";
+  prevButton.onclick = () => navigateQuestion(-1);
+  prevButton.disabled = currentQuestionIndex === 0;
+  navContainer.appendChild(prevButton);
+
+  // Question navigation items
+  const questionNavWrapper = document.createElement("div");
+  questionNavWrapper.className = "question-nav-wrapper";
   quizQuestions.forEach((_, index) => {
     const navItem = document.createElement("div");
     navItem.className = "question-nav-item";
@@ -735,8 +755,29 @@ function updateQuestionNav() {
       }
     }
 
-    navContainer.appendChild(navItem);
+    questionNavWrapper.appendChild(navItem);
   });
+  navContainer.appendChild(questionNavWrapper);
+
+  // Add Next button
+  const nextButton = document.createElement("button");
+  nextButton.textContent = "Next ▶";
+  nextButton.className = "nav-button next-button";
+  nextButton.onclick = () => navigateQuestion(1);
+  nextButton.disabled = currentQuestionIndex === quizQuestions.length - 1;
+  navContainer.appendChild(nextButton);
+}
+
+function navigateQuestion(direction) {
+  const newIndex = currentQuestionIndex + direction;
+  if (newIndex >= 0 && newIndex < quizQuestions.length) {
+    if (isReviewMode) {
+      reviewQuestion(newIndex, currentTestIndex);
+    } else {
+      currentQuestionIndex = newIndex;
+      loadQuestion();
+    }
+  }
 }
 
 function goHome() {
