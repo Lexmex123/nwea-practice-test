@@ -144,6 +144,9 @@ async function startNewTest(section) {
 }
 
 async function fetchNewQuestions(section, gradeLevel) {
+  // Reset lastAddedQuestionIndex at the start of fetching new questions
+  lastAddedQuestionIndex = -1;
+
   const response = await fetch("/api/fetchQuestions", {
     method: "POST",
     headers: {
@@ -188,7 +191,7 @@ async function fetchNewQuestions(section, gradeLevel) {
         questionCount++;
         if (questionCount === 1) {
           // Start the test with the first question
-          document.getElementById("loading-overlay").style.display = "none";  // Hide loading overlay
+          document.getElementById("loading-overlay").style.display = "none";
           updateURL('quiz', { section: section, grade: currentGradeLevel });
           loadQuestion();
           saveCurrentState();
@@ -210,7 +213,7 @@ async function fetchNewQuestions(section, gradeLevel) {
             questionCount++;
             if (questionCount === 1) {
               // Start the test with the first question
-              document.getElementById("loading-overlay").style.display = "none";  // Hide loading overlay
+              document.getElementById("loading-overlay").style.display = "none";
               updateURL('quiz', { section: section, grade: currentGradeLevel });
               loadQuestion();
               saveCurrentState();
@@ -749,11 +752,14 @@ function updateQuestionNav() {
   // Question navigation items
   const questionNavWrapper = document.createElement("div");
   questionNavWrapper.className = "question-nav-wrapper";
-  quizQuestions.forEach((_, index) => {
-    const navItem = createNavItem(index);
-    questionNavWrapper.appendChild(navItem);
-  });
   navContainer.appendChild(questionNavWrapper);
+
+  // Create nav items for all questions in review mode
+  const totalQuestions = isReviewMode ? quizQuestions.length : lastAddedQuestionIndex + 1;
+  for (let i = 0; i < totalQuestions; i++) {
+    const navItem = createNavItem(i);
+    questionNavWrapper.appendChild(navItem);
+  }
 
   // Add Next button
   const nextButton = document.createElement("button");
@@ -786,7 +792,6 @@ function createNavItem(index) {
     } else if (index === currentQuestionIndex) {
       navItem.classList.add("current");
     }
-    // Only allow navigation to answered questions or the current question
     if (index <= currentQuestionIndex) {
       navItem.onclick = () => navigateQuestion(index - currentQuestionIndex);
     } else {
@@ -797,32 +802,20 @@ function createNavItem(index) {
   return navItem;
 }
 
-function addNewQuestionToNav() {
-  const navWrapper = document.querySelector(".question-nav-wrapper");
-  if (navWrapper && quizQuestions.length > lastAddedQuestionIndex + 1) {
-    const newIndex = lastAddedQuestionIndex + 1;
-    const newNavItem = createNavItem(newIndex);
-    newNavItem.classList.add("new-question");
-    navWrapper.appendChild(newNavItem);
-    lastAddedQuestionIndex = newIndex;
-
-    // Remove the "new-question" class after the animation
-    setTimeout(() => {
-      newNavItem.classList.remove("new-question");
-    }, 500); // 500ms matches the animation duration
-  }
-}
-
 function navigateQuestion(direction) {
   const newIndex = currentQuestionIndex + direction;
   if (newIndex >= 0 && newIndex < quizQuestions.length) {
-    // Only allow forward navigation if the current question is answered
-    if (direction > 0 && userAnswers[currentQuestionIndex] === undefined) {
-      alert("Please answer the current question before moving to the next one.");
-      return;
+    if (isReviewMode) {
+      reviewQuestion(newIndex, currentTestIndex);
+    } else {
+      // Only allow forward navigation if the current question is answered
+      if (direction > 0 && userAnswers[currentQuestionIndex] === undefined) {
+        alert("Please answer the current question before moving to the next one.");
+        return;
+      }
+      currentQuestionIndex = newIndex;
+      loadQuestion();
     }
-    currentQuestionIndex = newIndex;
-    loadQuestion();
   }
 }
 
@@ -842,7 +835,22 @@ function addNewQuestionToNav() {
   }
 }
 
-// Add these navigation functions
+function addNewQuestionToNav() {
+  const navWrapper = document.querySelector(".question-nav-wrapper");
+  if (navWrapper && quizQuestions.length > lastAddedQuestionIndex + 1) {
+    const newIndex = lastAddedQuestionIndex + 1;
+    const newNavItem = createNavItem(newIndex);
+    newNavItem.classList.add("new-question");
+    navWrapper.appendChild(newNavItem);
+    lastAddedQuestionIndex = newIndex;
+
+    // Remove the "new-question" class after the animation
+    setTimeout(() => {
+      newNavItem.classList.remove("new-question");
+    }, 500); // 500ms matches the animation duration
+  }
+}
+
 function navigateQuestion(direction) {
   const newIndex = currentQuestionIndex + direction;
   if (newIndex >= 0 && newIndex < quizQuestions.length) {
