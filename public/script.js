@@ -147,7 +147,7 @@ async function startNewTest(section) {
 async function fetchNewQuestions(section, gradeLevel) {
   // Reset lastAddedQuestionIndex at the start of fetching new questions
   lastAddedQuestionIndex = -1;
-
+  console.log(`Fetching questions: ${section} Grade ${gradeLevel}`);
   const response = await fetch("/api/fetchQuestions", {
     method: "POST",
     headers: {
@@ -209,6 +209,9 @@ async function fetchNewQuestions(section, gradeLevel) {
         if (lastBracketIndex !== -1) {
           try {
             const possibleObject = buffer.slice(0, lastBracketIndex + 1);
+            if (questionCount === 0) {
+              console.log(`Matching possible question: ${possibleObject}`);
+            }
             const result = JSON.parse(possibleObject);
             processQuestion(result);
             questionCount++;
@@ -245,10 +248,65 @@ async function fetchNewQuestions(section, gradeLevel) {
   document.getElementById("loading-overlay").style.display = "none";
 }
 
+async function makeDiagram(questionData) {
+  const response = await fetch("/api/makeDiagram", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(questionData),
+  });
+  if (!response.ok) {
+    console.error('Failed to make diagram:', response.statusText);
+    return questionData;
+  }
+  const responseData = await response.json();
+  console.log(`Made diagram for question ${questionData.question.index}:`, responseData)
+  questionData.question.diagram = `<img src="${responseData.response}" alt="Diagram for question ${questionData.question.index}">`;
+  return questionData;
+}
+
+async function checkAnswer(questionData) {
+  const response = await fetch("/api/checkAnswer", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(questionData),
+  });
+  if (!response.ok) {
+    console.error('Failed to check answer:', response.statusText);
+    return questionData;
+  }
+  const responseData = await response.json();
+//  console.log(`Checking answer ${questionData.question.index}:`, responseData)
+  // Log questions that were found to be incorrect
+  responseData.response = JSON.parse(responseData.response)
+  console.log(`Checking question ${questionData.question.index}: original (${questionData.correctAnswerIndex}), new (${responseData.response.correctAnswerIndex})`, responseData.response)
+  if (questionData.correctAnswerIndex !== responseData.response.correctAnswerIndex) {
+    console.log(`Question ${questionData.question.index} found to be incorrect: original (${questionData.correctAnswerIndex}) != new (${responseData.response.correctAnswerIndex})`);
+    questionData.correctAnswerIndex = responseData.response.correctAnswerIndex;
+    questionData.explanation = [responseData.response.explanation];
+  }
+
+  return questionData;
+}
+
 function processQuestion(questionJson) {
   try {
     quizQuestions.push(questionJson);
-    console.log(`Processed question ${quizQuestions.length}:`, questionJson);
+    const quizQuestionsLength = quizQuestions.length;
+    console.log(`Processed question ${quizQuestionsLength}:`, questionJson);
+    // Ask model to recheck every answer
+    checkAnswer(quizQuestions[quizQuestionsLength - 1]).then((updatedQuestionData) => {
+      quizQuestions[quizQuestionsLength - 1] = updatedQuestionData;
+//      console.log(`Checked question ${quizQuestionsLength}:`, updatedQuestionData);
+    });
+    if (quizQuestions[quizQuestionsLength - 1].question.diagram) {
+      makeDiagram(quizQuestions[quizQuestionsLength - 1]).then((updatedQuestionData) => {
+        quizQuestions[quizQuestionsLength - 1] = updatedQuestionData;
+      });
+    }
   } catch (error) {
     console.error('Error processing question:', error);
   }
@@ -265,7 +323,7 @@ function parseQuestionsFromAPI(apiResponse) {
   }
 }
 
-function loadQuestion() {
+ function loadQuestion() {
   if (!quizQuestions || quizQuestions.length === 0) {
     console.error("No questions available to load");
     alert("No questions found. Please try starting a new test.");
@@ -275,6 +333,20 @@ function loadQuestion() {
 
   const questionData = quizQuestions[currentQuestionIndex];
 
+  // Ensure correctAnswerIndex matches the index in explanations
+  if (questionData.explanations.length === 1) {
+    if (questionData.correctAnswerIndex !== questionData.explanations[0].index) {
+      questionData.correctAnswerIndex = questionData.explanations[0].index;
+    }
+  } else {
+    const correctExplanation = questionData.explanations.find(exp => exp.text.toLowerCase().includes("is correct"));
+    if (correctExplanation) {
+      questionData.correctAnswerIndex = correctExplanation.index;
+    } else {
+      console.error("No correct explanation found");
+    }
+  }
+  
   // Extract quote if present
   const questionText = questionData.question.question;
   const quoteMatch = questionText.match(/\"([^\"]+)\"/);
@@ -641,7 +713,7 @@ function updatePastTestsDisplay() {
           <button onclick="resumeTest(${test.index})" class="review-btn" title="${date}">
             Test ${i + 1}
           </button>
-          <span class="delete-icon" onclick="deleteTest(${test.index})" title="Delete this test">🗑️</span>
+          <span class="delete-icon" onclick="deleteTest('${test.id}')" title="Delete this test">🗑️</span>
         </div>
       `;
     });
@@ -660,21 +732,19 @@ function updatePastTestsDisplay() {
   pastTestsContainer.innerHTML = tableHTML;
 }
 
-async function deleteTest(index) {
+function deleteTest(id) {
   if (confirm("Are you sure you want to delete this test?")) {
-    try {
-      const response = await fetch(`/api/deleteTest/${index}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to delete test');
-      }
-      pastTests.splice(index, 1);
-      updatePastTestsDisplay(); // Update display without fetching again
-    } catch (error) {
-      console.error('Error deleting test:', error);
-      alert('Failed to delete the test. Please try again.');
-    }
+    fetch(`/api/deleteTest/${id}`, { method: 'DELETE' })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          pastTests = pastTests.filter(test => test.id !== id);
+          updatePastTestsDisplay();
+        } else {
+          console.error('Failed to delete test:', data.error);
+        }
+      })
+      .catch(error => console.error('Error:', error));
   }
 }
 
@@ -707,8 +777,7 @@ function saveCurrentState() {
     quizQuestions,
     userAnswers,
     isReviewMode,
-    currentTestIndex,
-    lastAddedQuestionIndex
+    currentTestIndex
   };
   localStorage.setItem('quizState', JSON.stringify(state));
   console.log('State saved:', state);

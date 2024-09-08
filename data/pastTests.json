@@ -2479,5 +2479,3473 @@
       2
     ],
     "date": "2024-09-08T06:01:08.023Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the total number of apples in the basket?",
+          "diagram": "<svg width='200' height='100'><circle cx='30' cy='50' r='20' fill='red'/><circle cx='80' cy='50' r='20' fill='red'/><circle cx='130' cy='50' r='20' fill='red'/><circle cx='180' cy='50' r='20' fill='red'/><text x='50' y='15' font-family='Arial' font-size='14'>4 Apples</text></svg>"
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The diagram shows 4 red circles representing apples. Therefore, the total number of apples in the basket is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "How many sides does a triangle have?",
+          "diagram": "<svg width='100' height='100'><polygon points='50,10 90,90 10,90' style='fill:lightblue;stroke:black;stroke-width:2'/><text x='50' y='50' font-family='Arial' font-size='14' text-anchor='middle' alignment-baseline='middle'>Triangle</text></svg>"
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A triangle is a three-sided polygon. The diagram shows a triangle with three corners, confirming that it has 3 sides."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      0
+    ],
+    "date": "2024-09-08T10:37:28.546Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "How many sides does a triangle have?",
+          "diagram": "<svg width='100' height='100'><polygon points='50,15 90,85 10,85' style='fill:lightblue;stroke:black;stroke-width:2'/><text x='35' y='50' fill='black'>Triangle</text></svg>"
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A triangle is a shape with three straight sides and three corners (vertices). This is its defining property, making the correct answer '3'."
+          }
+        ],
+        "choices": [
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          },
+          {
+            "index": 4,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "If you have 4 apples and you buy 3 more, how many apples do you have now?",
+          "diagram": "<svg width='100' height='100'><circle cx='30' cy='30' r='10' fill='red'/><circle cx='30' cy='70' r='10' fill='red'/><circle cx='70' cy='30' r='10' fill='red'/><circle cx='70' cy='70' r='10' fill='red'/><circle cx='30' cy='110' r='10' fill='red'/><circle cx='70' cy='110' r='10' fill='red'/><text x='20' y='25' fill='black'>4 Apples</text><text x='80' y='25' fill='black'>3 More</text></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the total number of apples, add the apples you have (4) to the apples you buy (3): 4 + 3 = 7. Therefore, the answer is '7'."
+          }
+        ],
+        "choices": [
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          },
+          {
+            "index": 4,
+            "text": "8"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      1,
+      0
+    ],
+    "date": "2024-09-08T10:37:48.014Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is 7 + 2?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 2 more to 7 gives you 9."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "9"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "11"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "What is the value of 5 - 3?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Subtracting 3 from 5 leaves you with 2."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "1"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "Which shape has 4 equal sides?",
+          "diagram": "<svg width='100' height='100'><rect width='100' height='100' style='fill:blue;' /></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A square has 4 sides that are all the same length."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Circle"
+          },
+          {
+            "index": 1,
+            "text": "Square"
+          },
+          {
+            "index": 2,
+            "text": "Triangle"
+          },
+          {
+            "index": 3,
+            "text": "Rectangle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "How many sides does a pentagon have?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A pentagon has 5 sides."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What number is greater, 3 or 6?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "6 is greater than 3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "Both are equal"
+          },
+          {
+            "index": 3,
+            "text": "None of these"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "If you have 3 apples and get 2 more, how many apples do you have?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "You would have 5 apples total."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "What does 10 - 4 equal?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you subtract 4 from 10, you get 6."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "How many legs do 2 dogs have?",
+          "diagram": "<svg width='100' height='100'><text x='10' y='50' fill='black'>2 Dogs = 4 legs each = 8 legs</text></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Each dog has 4 legs, so 2 dogs have 8 legs in total."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "12"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "What is the missing number in the sequence: 1, 2, __, 4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The missing number is 3, as it continues the counting sequence."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "1"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "What is double the number 4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Doubling 4 means adding another 4, which equals 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "Which number is the largest: 12, 5, or 9?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "12 is larger than both 5 and 9."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "All are equal"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "If a rectangle has a width of 3 and a length of 4, what is its area?",
+          "diagram": "<svg width='100' height='100'><rect width='40' height='30' style='fill:green;' /><text x='5' y='50' fill='white'>Area = 3 x 4 = 12</text></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The area of a rectangle is calculated by multiplying the width by the length."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "12"
+          },
+          {
+            "index": 2,
+            "text": "15"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "What is 4 + 4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 4 and 4 together equals 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "9"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "Which is an odd number: 2 or 3?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "3 is odd because it cannot be divided into two equal whole numbers."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "Both are even"
+          },
+          {
+            "index": 3,
+            "text": "Neither are odd"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "If I have 10 candies and I give away 6, how many do I have left?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "You have 4 candies left after giving away 6."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "What number comes after 10?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number after 10 is 11."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "11"
+          },
+          {
+            "index": 1,
+            "text": "10"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "12"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "What is the sum of 1 and 1?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "1 plus 1 equals 2."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "1"
+          },
+          {
+            "index": 3,
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "What shape has no corners?",
+          "diagram": "<svg width='100' height='100'><circle cx='50' cy='50' r='40' style='fill:red;' /></svg>"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A circle has no corners."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Square"
+          },
+          {
+            "index": 1,
+            "text": "Circle"
+          },
+          {
+            "index": 2,
+            "text": "Triangle"
+          },
+          {
+            "index": 3,
+            "text": "Rectangle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "If I have 15 grapes and eat 5, how many do I have left?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "After eating 5 grapes, you would have 10 grapes left."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "15"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 20,
+          "question": "What is the value of 6 + 3?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 3 to 6 totals 9."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "9"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "date": "2024-09-08T10:43:11.061Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is 5 + 3?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you add 5 and 3 together, you get 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which number is greater: 4 or 7?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "7 is greater than 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What is 10 - 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you subtract 4 from 10, you have 6 left."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "If you have 3 apples and you buy 2 more, how many apples do you have now?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "3 apples plus 2 apples equals 5 apples."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What shape has 3 sides?",
+          "diagram": "<svg width='100' height='100'><polygon points='50,15 100,100 0,100' style='fill:lime;stroke:black;stroke-width:1'/></svg>"
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A shape with 3 sides is called a triangle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Triangle"
+          },
+          {
+            "index": 1,
+            "text": "Square"
+          },
+          {
+            "index": 2,
+            "text": "Circle"
+          },
+          {
+            "index": 3,
+            "text": "Rectangle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "Which of these is an even number?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "2 is an even number, while 1, 3, and 5 are odd."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "What is the result of 6 + 2?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you add 6 and 2, the total is 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "7"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "If you see 4 birds on a tree and 1 flies away, how many are left?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "If 1 bird flies away from 4, you have 3 birds left."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "What is 11 - 3?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Subtracting 3 from 11 gives us 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "7"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "Which of these animals is the smallest?",
+          "diagram": "<svg width='100' height='100'><circle cx='50' cy='50' r='10' fill='brown'/><circle cx='70' cy='50' r='12' fill='blue'/><circle cx='30' cy='50' r='14' fill='green'/><circle cx='10' cy='50' r='16' fill='red'/></svg>"
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The smallest animal represented is the one with the smallest circle, which is brown."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Brown"
+          },
+          {
+            "index": 1,
+            "text": "Blue"
+          },
+          {
+            "index": 2,
+            "text": "Green"
+          },
+          {
+            "index": 3,
+            "text": "Red"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "What is the next number in this sequence: 1, 2, 3, ...?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The next number after 3 is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "How many sides does a rectangle have?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A rectangle has 4 sides."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "What do you call a number that is less than 10?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Any number that is less than 10 is a single-digit number."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Single-digit number"
+          },
+          {
+            "index": 1,
+            "text": "Double-digit number"
+          },
+          {
+            "index": 2,
+            "text": "Whole number"
+          },
+          {
+            "index": 3,
+            "text": "Fraction"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "How many quarters make one dollar?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "There are 4 quarters in one dollar."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "What is 1 more than 10?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 1 to 10 gives you 11."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "11"
+          },
+          {
+            "index": 2,
+            "text": "12"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "Lisa has 2 red balls and 3 blue balls. How many balls does she have in total?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "2 red balls plus 3 blue balls equals 5 balls."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "What is the sum of 4 and 6?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you add 4 and 6, you get 10."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "9"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "11"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "What number comes before 5?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes before 5 is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "How many days are in a week?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "There are 7 days in a week."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 20,
+          "question": "Which of these numbers is an odd number?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "1 is an odd number while 2, 4 and 6 are even numbers."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      3,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      2,
+      3,
+      0,
+      1,
+      1,
+      1,
+      2,
+      0,
+      1,
+      0
+    ],
+    "date": "2024-09-08T10:48:09.961Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is 3 + 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you add 3 and 4 together, you get 7. This can be visualized with counting blocks or fingers."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which number is greater: 10 or 6?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "10 is greater than 6 because it is a larger number on the number line."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "Both are equal"
+          },
+          {
+            "index": 3,
+            "text": "Neither"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "If you have 5 apples and you eat 2, how many apples are left?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "You start with 5 apples and take away 2, leaving you with 3 apples."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "Which shape has 3 sides?",
+          "diagram": "https://example.com/triangle.svg"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A triangle is a shape that has exactly 3 sides."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Triangle"
+          },
+          {
+            "index": 1,
+            "text": "Square"
+          },
+          {
+            "index": 2,
+            "text": "Circle"
+          },
+          {
+            "index": 3,
+            "text": "Rectangle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is 8 - 3?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "When you subtract 3 from 8, you are left with 5."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "7"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "How many sides does a square have?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A square has 4 sides of equal length."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "What is the value of 2 + 2?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 2 and 2 together gives you 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "What comes after the number 5?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes after 5 is 6."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "What is the total number of fingers on 2 hands?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Each hand has 5 fingers, so 2 hands have 5 + 5 = 10 fingers."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "10"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "12"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "What number is missing in the sequence: 1, 2, __, 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The missing number is 3. The sequence is counting up by 1."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "Which of the following adds up to 10?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "5 and 5 together equal 10."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4 + 5"
+          },
+          {
+            "index": 1,
+            "text": "5 + 5"
+          },
+          {
+            "index": 2,
+            "text": "3 + 6"
+          },
+          {
+            "index": 3,
+            "text": "2 + 9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "If you have 10 candies and give away 4, how many candies do you have left?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Starting with 10 candies and giving away 4 leaves you with 6 candies."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "What shape is a soccer ball?",
+          "diagram": "https://example.com/soccer-ball.svg"
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A soccer ball is round, which makes it a circle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Square"
+          },
+          {
+            "index": 1,
+            "text": "Triangle"
+          },
+          {
+            "index": 2,
+            "text": "Rectangle"
+          },
+          {
+            "index": 3,
+            "text": "Circle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "What is the sum of 6 + 1?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 6 and 1 together results in 7."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "Which number is less: 2 or 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "2 is less than 4, which can be seen on the number line."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "Both are equal"
+          },
+          {
+            "index": 3,
+            "text": "Neither"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "What does the number 9 look like?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number 9 is shaped like a loop with a straight line down the side."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "What number is before 5?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes before 5 is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "If you have 2 oranges and your friend gives you 3 more, how many oranges do you have now?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Starting with 2 oranges and getting 3 more means you have 5 oranges total."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "Which of the following numbers is odd?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number 3 is an odd number because it cannot be divided evenly by 2."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 20,
+          "question": "What is half of 8?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Half of 8 is 4, because when you divide 8 into two equal parts, each part has 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      1,
+      0,
+      2,
+      0,
+      2,
+      0,
+      0,
+      2,
+      0,
+      0,
+      1,
+      2,
+      3,
+      2,
+      0,
+      3,
+      2,
+      2,
+      1,
+      2
+    ],
+    "date": "2024-09-08T11:09:59.258Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is 5 + 3?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "5 + 3 equals 8 because when you add three more to five, you get eight."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "What is the shape with 4 equal sides called?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A shape with 4 equal sides is called a square. All sides are the same length."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Rectangle"
+          },
+          {
+            "index": 1,
+            "text": "Triangle"
+          },
+          {
+            "index": 2,
+            "text": "Circle"
+          },
+          {
+            "index": 3,
+            "text": "Square"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "If you have 10 apples and you give away 2, how many apples do you have left?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "If you start with 10 apples and give away 2, you have 10 - 2 = 8 apples remaining."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "8"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "Which number is the smallest?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Among the numbers 5, 12, 3, and 8, the smallest is 3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "12"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "What is the next number in the sequence: 1, 2, 3, 4,...?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The next number after 1, 2, 3, and 4 is 5. The sequence adds 1 each time."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "How many sides does a pentagon have?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A pentagon has 5 sides."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "How many tens are in the number 30?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "30 contains 3 tens because 10 + 10 + 10 = 30."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "1"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "What number comes before 7?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes before 7 is 6."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "What is the result of 9 - 5?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "9 - 5 equals 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "Which is larger: 15 or 10?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "15 is larger than 10."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "15"
+          },
+          {
+            "index": 1,
+            "text": "10"
+          },
+          {
+            "index": 2,
+            "text": "Both are equal"
+          },
+          {
+            "index": 3,
+            "text": "Neither"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "What is the total of 4 + 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "4 + 4 equals 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "9"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "What is a half of 10?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Half of 10 is 5."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "How many days are in a week?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "There are 7 days in a week."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "If you have three groups of two apples, how many apples do you have in total?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Three groups of two apples each means 3 x 2 = 6 apples."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "Which number comes after 12?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes after 12 is 13."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "11"
+          },
+          {
+            "index": 1,
+            "text": "12"
+          },
+          {
+            "index": 2,
+            "text": "13"
+          },
+          {
+            "index": 3,
+            "text": "14"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "What is the sum of 2 and 3?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "2 + 3 equals 5."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "3"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "How many colors are in a rainbow?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "There are 7 colors in a rainbow: red, orange, yellow, green, blue, indigo, and violet."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "What do you call a 3-sided shape?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A shape with 3 sides is called a triangle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Triangle"
+          },
+          {
+            "index": 1,
+            "text": "Square"
+          },
+          {
+            "index": 2,
+            "text": "Circle"
+          },
+          {
+            "index": 3,
+            "text": "Pentagon"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "If a toy costs $10 and you have $12, how much money will you have left after buying the toy?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "If you have $12 and spend $10 on a toy, you will have 12 - 10 = $2 left."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "$1"
+          },
+          {
+            "index": 1,
+            "text": "$2"
+          },
+          {
+            "index": 2,
+            "text": "$3"
+          },
+          {
+            "index": 3,
+            "text": "$4"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      3,
+      1,
+      0,
+      3,
+      2,
+      2,
+      1,
+      1,
+      0,
+      2,
+      1,
+      2,
+      1,
+      2,
+      2,
+      2,
+      0,
+      1
+    ],
+    "date": "2024-09-08T11:48:43.958Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "5",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is the area of a rectangle that has a length of 8 cm and a width of 5 cm?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The area of a rectangle is calculated by multiplying the length by the width. Here, Area = 8 cm * 5 cm = 40 cm²."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "30 cm²"
+          },
+          {
+            "index": 1,
+            "text": "35 cm²"
+          },
+          {
+            "index": 2,
+            "text": "40 cm²"
+          },
+          {
+            "index": 3,
+            "text": "45 cm²"
+          }
+        ],
+        "explanation": [
+          "The area of a rectangle is calculated by multiplying the length by the width. In this case, the length is 8 cm and the width is 5 cm, so the area is 8 cm * 5 cm = 40 cm². Therefore, the correct answer is at index 2."
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "If a store sells pencils for $0.75 each, how much will 10 pencils cost?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the total cost, multiply the price per pencil ($0.75) by the number of pencils (10). Total cost = $0.75 * 10 = $7.50."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "$6.50"
+          },
+          {
+            "index": 1,
+            "text": "$7.50"
+          },
+          {
+            "index": 2,
+            "text": "$8.50"
+          },
+          {
+            "index": 3,
+            "text": "$9.00"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "What is the greatest common factor (GCF) of 8 and 12?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The factors of 8 are 1, 2, 4, 8 and the factors of 12 are 1, 2, 3, 4, 6, 12. The greatest common factor is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "1"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What is the value of 5² + 3²?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Calculating the squares, we get 5² = 25 and 3² = 9. Adding them together gives 25 + 9 = 34."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "28"
+          },
+          {
+            "index": 1,
+            "text": "30"
+          },
+          {
+            "index": 2,
+            "text": "32"
+          },
+          {
+            "index": 3,
+            "text": "34"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "If you roll a standard six-sided die, what is the probability of rolling a number greater than 4?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The numbers greater than 4 on a six-sided die are 5 and 6. There are 2 favorable outcomes (5 and 6) out of 6 possible outcomes. Thus, the probability is 2/6, which simplifies to 1/3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1/2"
+          },
+          {
+            "index": 1,
+            "text": "1/3"
+          },
+          {
+            "index": 2,
+            "text": "1/6"
+          },
+          {
+            "index": 3,
+            "text": "1/4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "What is the perimeter of a triangle with sides measuring 7 cm, 10 cm, and 5 cm?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The perimeter of a triangle is the sum of all its sides. Therefore, Perimeter = 7 cm + 10 cm + 5 cm = 22 cm."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "20 cm"
+          },
+          {
+            "index": 1,
+            "text": "21 cm"
+          },
+          {
+            "index": 2,
+            "text": "22 cm"
+          },
+          {
+            "index": 3,
+            "text": "23 cm"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "If 3x + 5 = 14, what is the value of x?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To solve for x, first subtract 5 from both sides to get 3x = 9. Then, divide both sides by 3 to find x = 3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "Which of the following fractions is equivalent to 1/2?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Fractions are equivalent if they represent the same part of a whole. The fraction 2/4 simplifies to 1/2, making it equivalent."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1/3"
+          },
+          {
+            "index": 1,
+            "text": "3/5"
+          },
+          {
+            "index": 2,
+            "text": "2/4"
+          },
+          {
+            "index": 3,
+            "text": "1/4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "How many degrees are in a right angle?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A right angle is defined as an angle that measures exactly 90 degrees."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "90 degrees"
+          },
+          {
+            "index": 1,
+            "text": "45 degrees"
+          },
+          {
+            "index": 2,
+            "text": "180 degrees"
+          },
+          {
+            "index": 3,
+            "text": "360 degrees"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "What is 225 ÷ 15?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To divide 225 by 15, perform the operation to get 15."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12"
+          },
+          {
+            "index": 1,
+            "text": "15"
+          },
+          {
+            "index": 2,
+            "text": "14"
+          },
+          {
+            "index": 3,
+            "text": "16"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "If a car travels 60 miles in 1 hour, how far will it travel in 3 hours?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the distance traveled in 3 hours, multiply the speed (60 miles/hour) by time (3 hours): 60 * 3 = 180 miles."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "150 miles"
+          },
+          {
+            "index": 1,
+            "text": "160 miles"
+          },
+          {
+            "index": 2,
+            "text": "180 miles"
+          },
+          {
+            "index": 3,
+            "text": "200 miles"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "What is the value of 12 - (3 × 2)?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Using the order of operations (PEMDAS), first calculate 3 × 2 = 6, then subtract from 12: 12 - 6 = 6."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "If a box can hold 24 toy cars, how many boxes are needed to hold 120 toy cars?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the number of boxes needed, divide the total number of toy cars (120) by the capacity of each box (24): 120 ÷ 24 = 5."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "8"
+          }
+        ],
+        "explanation": [
+          "The correct answer is 5. To find the number of boxes needed, divide the total number of toy cars (120) by the capacity of each box (24): 120 ÷ 24 = 5. Therefore, the correctAnswerIndex should be 1, not 2."
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "What is the combined weight of two objects that weigh 3 kg and 4 kg?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find combined weight, add the weights together: 3 kg + 4 kg = 7 kg."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5 kg"
+          },
+          {
+            "index": 1,
+            "text": "7 kg"
+          },
+          {
+            "index": 2,
+            "text": "8 kg"
+          },
+          {
+            "index": 3,
+            "text": "9 kg"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "If a chocolate bar costs $2.50 and you buy 4 bars, how much do you spend?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The total cost can be found by multiplying the price of one bar by the number of bars purchased: $2.50 * 4 = $10."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "$10"
+          },
+          {
+            "index": 1,
+            "text": "$8"
+          },
+          {
+            "index": 2,
+            "text": "$6"
+          },
+          {
+            "index": 3,
+            "text": "$12"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "What is 3/4 of 24?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find 3/4 of 24, multiply 24 by 3 and then divide by 4: (24 * 3) / 4 = 72 / 4 = 18."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12"
+          },
+          {
+            "index": 1,
+            "text": "14"
+          },
+          {
+            "index": 2,
+            "text": "18"
+          },
+          {
+            "index": 3,
+            "text": "20"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "A recipe requires 2 cups of flour. How many cups of flour are needed for 3 batches of the recipe?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "For 3 batches, you multiply the amount of flour needed for one batch (2 cups) by the number of batches (3): 2 cups * 3 = 6 cups."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4 cups"
+          },
+          {
+            "index": 1,
+            "text": "6 cups"
+          },
+          {
+            "index": 2,
+            "text": "8 cups"
+          },
+          {
+            "index": 3,
+            "text": "10 cups"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "Which of the following is an even number?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "An even number is any integer that is exactly divisible by 2. The number 8 is even because 8 ÷ 2 = 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "15"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "If 5 apples cost $1.25, how much does 1 apple cost?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the cost of 1 apple, divide the total cost by the number of apples: $1.25 ÷ 5 = $0.25."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "$0.20"
+          },
+          {
+            "index": 1,
+            "text": "$0.25"
+          },
+          {
+            "index": 2,
+            "text": "$0.30"
+          },
+          {
+            "index": 3,
+            "text": "$0.50"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 20,
+          "question": "What is the median of the following set of numbers: 3, 1, 4, 2, 5?",
+          "diagram": ""
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the median, first arrange the numbers in order: 1, 2, 3, 4, 5. The median is the middle number, which is 3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "2"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      3,
+      2,
+      3,
+      3,
+      3,
+      3
+    ],
+    "date": "2024-09-08T16:55:38.536Z"
   }
 ]

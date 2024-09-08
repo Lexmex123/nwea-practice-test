@@ -1,0 +1,13 @@
+ROADMAP
+
+[DONE] Shift to DynamoDB, add table, setup key permission
+- For questions with diagrams, use OpenAI to make a real image
+- Add authentication with Google OAuth, add user table for permitted users only
+- Add a way to save tests and continue later
+- Show tests in progress to user, so they can resume later
+- Upload sample tests to vector database, use RAG and embeddings with OpenAI 
+- Add other test subjects, such as Math Olympiad, Chinese reading and writing, etc.
+- Add written response questions, use OpenAI to evaluate answers and determine scores
+- Add a leaderboard for each test subject by grade
+- Add analytics to show which questions are most difficult, usage, and progress by scores
+- Add chatbot during tests to answer questions and give hints
