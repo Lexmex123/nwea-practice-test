@@ -1810,5 +1810,674 @@
       2
     ],
     "date": "2024-09-06T21:10:42.363Z"
+  },
+  {
+    "section": "Math",
+    "gradeLevel": "1",
+    "questions": [
+      {
+        "question": {
+          "index": 1,
+          "question": "What is 3 + 4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find the sum of 3 and 4, we start at 3 and count up 4 more: 4, 5, 6, 7, 8. Thus, 3 + 4 equals 7."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 2,
+          "question": "Which number is the largest?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The numbers are 6, 3, 9, and 2. The largest number among them is 9."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "9"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 3,
+          "question": "How many sides does a triangle have?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A triangle has three sides. You can visualize it by drawing one or think about shapes you see every day."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 4,
+          "question": "What number comes before 11?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number that comes before 11 is 10. You can count backward from 11 to see this."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "12"
+          },
+          {
+            "index": 1,
+            "text": "11"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 5,
+          "question": "If you have 5 apples and you eat 2, how many do you have left?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "You start with 5 apples and eat 2. To find out how many you have left, you subtract: 5 - 2 = 3. So, you have 3 apples left."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 6,
+          "question": "What is the next number in the sequence: 1, 2, 3, ...?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "In this sequence, we are counting up by one each time. Therefore, the next number after 3 is 4."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "5"
+          },
+          {
+            "index": 1,
+            "text": "4"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 7,
+          "question": "What is 10 - 3?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To find 10 - 3, you start from 10 and count backwards 3 steps: 10, 9, 8, 7. Thus, 10 - 3 equals 7."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "9"
+          },
+          {
+            "index": 3,
+            "text": "7"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 8,
+          "question": "Which number is missing? 2, __, 4, 5",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "In this sequence, the numbers increase gradually. The missing number between 2 and 4 is 3."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 9,
+          "question": "Which object has a shape similar to a disc?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 3,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A disc is flat and round. Common items that resemble this shape include a coin, pizza, a clock face, and a frisbee."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Cube"
+          },
+          {
+            "index": 1,
+            "text": "Sphere"
+          },
+          {
+            "index": 2,
+            "text": "Cone"
+          },
+          {
+            "index": 3,
+            "text": "Frisbee"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 10,
+          "question": "Which of these numbers is odd?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Odd numbers are not divisible by 2 without a remainder. The number 7 is odd, while 2, 4, and 6 are even."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "7"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "4"
+          },
+          {
+            "index": 3,
+            "text": "6"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 11,
+          "question": "What do you get when you double 4?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Doubling means multiplying by 2. So, 4 doubled is 4 * 2, which equals 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "6"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "8"
+          },
+          {
+            "index": 3,
+            "text": "10"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 12,
+          "question": "What shape has 4 equal sides?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A square has 4 equal sides. This is the defining property of a square."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "Triangle"
+          },
+          {
+            "index": 1,
+            "text": "Square"
+          },
+          {
+            "index": 2,
+            "text": "Rectangle"
+          },
+          {
+            "index": 3,
+            "text": "Circle"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 13,
+          "question": "How many tens are in the number 25?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The number 25 consists of 2 tens (20) and 5 ones. So, there are 2 tens in 25."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "3"
+          },
+          {
+            "index": 1,
+            "text": "1"
+          },
+          {
+            "index": 2,
+            "text": "2"
+          },
+          {
+            "index": 3,
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 14,
+          "question": "What is 5 + 2 + 1?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "To solve this, you can add in steps: 5 + 2 equals 7, and then adding 1 gives you 8."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "7"
+          },
+          {
+            "index": 3,
+            "text": "9"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 15,
+          "question": "Which picture shows a rectangle?",
+          "diagram": "<svg width='100' height='50'><rect width='100' height='50' style='fill:blue'/></svg>"
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "A rectangle has opposite sides that are equal. The shape here shows a rectangle."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "This is a rectangle."
+          },
+          {
+            "index": 1,
+            "text": "This is a circle."
+          },
+          {
+            "index": 2,
+            "text": "This is a triangle."
+          },
+          {
+            "index": 3,
+            "text": "This is a square."
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 16,
+          "question": "If you have 3 balloons and someone gives you 2 more, how many do you have?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "You start with 3 balloons and add 2. So you have 3 + 2 = 5 balloons in total."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "2"
+          },
+          {
+            "index": 2,
+            "text": "5"
+          },
+          {
+            "index": 3,
+            "text": "3"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 17,
+          "question": "What is the value of the time on the clock shown below?",
+          "diagram": "<svg width='100' height='100'><circle cx='50' cy='50' r='40' stroke='black' stroke-width='3' fill='white' /><line x1='50' y1='50' x2='80' y2='20' stroke='black' stroke-width='4' /><line x1='50' y1='50' x2='50' y2='10' stroke='black' stroke-width='4'/></svg>"
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "The short hand is indicating 12 and the long hand is indicating 1, so the time is 12:05."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "1:00"
+          },
+          {
+            "index": 1,
+            "text": "12:00"
+          },
+          {
+            "index": 2,
+            "text": "12:05"
+          },
+          {
+            "index": 3,
+            "text": "12:30"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 18,
+          "question": "What is the value of 6 + 1?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 1,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Adding 6 and 1 gives us a total of 7. You can count up from 6: 6, 7."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "7"
+          },
+          {
+            "index": 2,
+            "text": "6"
+          },
+          {
+            "index": 3,
+            "text": "5"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 19,
+          "question": "Which number is equal to 4 groups of 2?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 0,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "4 groups of 2 means you are multiplying: 4 * 2 = 8. So, 8 is the answer."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "8"
+          },
+          {
+            "index": 1,
+            "text": "6"
+          },
+          {
+            "index": 2,
+            "text": "10"
+          },
+          {
+            "index": 3,
+            "text": "4"
+          }
+        ]
+      },
+      {
+        "question": {
+          "index": 20,
+          "question": "What is half of 6?",
+          "diagram": null
+        },
+        "correctAnswerIndex": 2,
+        "explanations": [
+          {
+            "index": 1,
+            "text": "Half of 6 is obtaining 3. You can visualize this by dividing 6 objects into 2 groups, which gives 3 in each group."
+          }
+        ],
+        "choices": [
+          {
+            "index": 0,
+            "text": "4"
+          },
+          {
+            "index": 1,
+            "text": "5"
+          },
+          {
+            "index": 2,
+            "text": "3"
+          },
+          {
+            "index": 3,
+            "text": "2"
+          }
+        ]
+      }
+    ],
+    "answers": [
+      3,
+      1,
+      2,
+      3,
+      3,
+      1,
+      3,
+      2,
+      3,
+      0,
+      2,
+      1,
+      2,
+      0,
+      0,
+      2,
+      0,
+      1,
+      1,
+      2
+    ],
+    "date": "2024-09-08T06:01:08.023Z"
   }
 ]

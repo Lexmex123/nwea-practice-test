@@ -109,7 +109,8 @@ function loadSavedState() {
     userAnswers = state.userAnswers;
     isReviewMode = state.isReviewMode;
     currentTestIndex = state.currentTestIndex;
-    console.log('State loaded:', { currentQuestionIndex, currentSection, currentGradeLevel, quizQuestionsLength: quizQuestions.length, userAnswersLength: userAnswers.length, isReviewMode, currentTestIndex });
+    lastAddedQuestionIndex = state.lastAddedQuestionIndex;
+    console.log('State loaded:', { currentQuestionIndex, currentSection, currentGradeLevel, quizQuestionsLength: quizQuestions.length, userAnswersLength: userAnswers.length, isReviewMode, currentTestIndex, lastAddedQuestionIndex });
   } else {
     console.log('No saved state found');
   }
@@ -166,6 +167,7 @@ async function fetchNewQuestions(section, gradeLevel) {
   const decoder = new TextDecoder();
   let buffer = '';
   let questionCount = 0;
+  let dataBuffer = '';
 
   while (true) {
     const { value, done } = await reader.read();
@@ -180,13 +182,13 @@ async function fetchNewQuestions(section, gradeLevel) {
       const bufferParts = buffer.split(/json\[/);
       if (bufferParts.length>1) buffer = bufferParts[1];
     }
+    dataBuffer = buffer;
 //console.log(buffer.length,buffer)
 //if (buffer.length>3000) break;
 
     while (true) {
       try {
         const result = JSON.parse(buffer);
-//console.log('OBJECT FOUND:', result);
         processQuestion(result);
         questionCount++;
         if (questionCount === 1) {
@@ -194,11 +196,11 @@ async function fetchNewQuestions(section, gradeLevel) {
           document.getElementById("loading-overlay").style.display = "none";
           updateURL('quiz', { section: section, grade: currentGradeLevel });
           loadQuestion();
-          saveCurrentState();
-          updateQuestionNav(); // Initial setup of question nav
         } else {
           addNewQuestionToNav(); // Add new question to nav with animation
         }
+        saveCurrentState(); // Save state after each new question
+        updateQuestionNav();
         buffer = '';
         break;
       } catch (error) {
@@ -208,7 +210,6 @@ async function fetchNewQuestions(section, gradeLevel) {
           try {
             const possibleObject = buffer.slice(0, lastBracketIndex + 1);
             const result = JSON.parse(possibleObject);
-//console.log('POSSIBLE FOUND:', possibleObject)
             processQuestion(result);
             questionCount++;
             if (questionCount === 1) {
@@ -216,11 +217,11 @@ async function fetchNewQuestions(section, gradeLevel) {
               document.getElementById("loading-overlay").style.display = "none";
               updateURL('quiz', { section: section, grade: currentGradeLevel });
               loadQuestion();
-              saveCurrentState();
-              updateQuestionNav(); // Initial setup of question nav
             } else {
               addNewQuestionToNav(); // Add new question to nav with animation
             }
+            saveCurrentState(); // Save state after each new question
+            updateQuestionNav();
             buffer = buffer.slice(lastBracketIndex + 1);
           } catch (innerError) {
             // If we still can't parse, wait for more data
@@ -235,6 +236,7 @@ async function fetchNewQuestions(section, gradeLevel) {
     
     if (buffer.includes('[DONE]')) {
       console.log('All questions received');
+      console.log('Buffer: ', buffer);
       break;
     }
   }
@@ -245,9 +247,8 @@ async function fetchNewQuestions(section, gradeLevel) {
 
 function processQuestion(questionJson) {
   try {
-    console.log('Received question:', questionJson);
     quizQuestions.push(questionJson);
-    console.log('Processed question:', questionJson);
+    console.log(`Processed question ${quizQuestions.length}:`, questionJson);
   } catch (error) {
     console.error('Error processing question:', error);
   }
@@ -273,7 +274,6 @@ function loadQuestion() {
   }
 
   const questionData = quizQuestions[currentQuestionIndex];
-  console.log(questionData);  // Add this line for debugging
 
   // Extract quote if present
   const questionText = questionData.question.question;
@@ -426,7 +426,7 @@ function showResults(testIndex) {
 function reviewQuestion(index, testIndex) {
   isReviewMode = true;
   currentQuestionIndex = index;
-  currentTestIndex = testIndex;  // Make sure to set this
+  currentTestIndex = testIndex;
   const question = quizQuestions[index];
 
   // Hide all other views
@@ -663,8 +663,7 @@ function updatePastTestsDisplay() {
 async function deleteTest(index) {
   if (confirm("Are you sure you want to delete this test?")) {
     try {
-      const testId = pastTests[index].id;
-      const response = await fetch(`/api/deleteTest/${testId}`, {
+      const response = await fetch(`/api/deleteTest/${index}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -705,10 +704,11 @@ function saveCurrentState() {
     currentQuestionIndex,
     currentSection,
     currentGradeLevel,
-    quizQuestions: quizQuestions || [],
+    quizQuestions,
     userAnswers,
     isReviewMode,
-    currentTestIndex
+    currentTestIndex,
+    lastAddedQuestionIndex
   };
   localStorage.setItem('quizState', JSON.stringify(state));
   console.log('State saved:', state);
@@ -840,22 +840,6 @@ function navigateQuestion(direction) {
       currentQuestionIndex = newIndex;
       loadQuestion();
     }
-  }
-}
-
-function addNewQuestionToNav() {
-  const navWrapper = document.querySelector(".question-nav-wrapper");
-  if (navWrapper && quizQuestions.length > lastAddedQuestionIndex + 1) {
-    const newIndex = lastAddedQuestionIndex + 1;
-    const newNavItem = createNavItem(newIndex);
-    newNavItem.classList.add("new-question");
-    navWrapper.appendChild(newNavItem);
-    lastAddedQuestionIndex = newIndex;
-
-    // Remove the "new-question" class after the animation
-    setTimeout(() => {
-      newNavItem.classList.remove("new-question");
-    }, 500); // 500ms matches the animation duration
   }
 }
 
