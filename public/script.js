@@ -136,12 +136,22 @@ async function startNewTest(section) {
   
   try {
     await fetchNewQuestions(section, gradeLevel);
+    // After successfully fetching questions, switch to quiz view
+    switchToQuizView();
   } catch (error) {
     console.error("Error starting new test:", error);
     document.getElementById("loading-overlay").style.display = "none";
     alert("Failed to start a new test. Please try again.");
     backToMainMenu();
   }
+}
+
+function switchToQuizView() {
+  document.getElementById("main-menu").style.display = "none";
+  document.getElementById("results-container").style.display = "none";
+  document.getElementById("quiz-container").style.display = "block";
+  loadQuestion(); // Load the first question
+  updateURL('quiz', { section: currentSection, grade: currentGradeLevel });
 }
 
 async function fetchNewQuestions(section, gradeLevel) {
@@ -192,10 +202,8 @@ async function fetchNewQuestions(section, gradeLevel) {
         processQuestion(result);
         questionCount++;
         if (questionCount === 1) {
-          // Start the test with the first question
+          // Only hide the loading overlay here
           document.getElementById("loading-overlay").style.display = "none";
-          updateURL('quiz', { section: section, grade: currentGradeLevel });
-          loadQuestion();
         } else {
           addNewQuestionToNav(); // Add new question to nav with animation
         }
@@ -216,10 +224,8 @@ async function fetchNewQuestions(section, gradeLevel) {
             processQuestion(result);
             questionCount++;
             if (questionCount === 1) {
-              // Start the test with the first question
+              // Only hide the loading overlay here
               document.getElementById("loading-overlay").style.display = "none";
-              updateURL('quiz', { section: section, grade: currentGradeLevel });
-              loadQuestion();
             } else {
               addNewQuestionToNav(); // Add new question to nav with animation
             }
