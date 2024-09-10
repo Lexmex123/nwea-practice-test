@@ -249,12 +249,13 @@ async function fetchNewQuestions(section, gradeLevel) {
 }
 
 async function makeDiagram(questionData) {
+//return questionData; // TEMPORARY problem with openai api, dall-e-2 cannot access
   const response = await fetch("/api/makeDiagram", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(questionData),
+    body: JSON.stringify({ prompt: questionData.question.diagram, index: questionData.question.index }),
   });
   if (!response.ok) {
     console.error('Failed to make diagram:', response.statusText);
@@ -262,7 +263,7 @@ async function makeDiagram(questionData) {
   }
   const responseData = await response.json();
   console.log(`Made diagram for question ${questionData.question.index}:`, responseData)
-  questionData.question.diagram = `<img src="${responseData.response}" alt="Diagram for question ${questionData.question.index}">`;
+  questionData.question.diagram = `<link rel="preload" as="image" sizes="256x256" href="${responseData.response}" alt="Diagram for question ${questionData.question.index}"><img width="256" height="256" src="${responseData.response}" alt="Diagram for question ${questionData.question.index}">`;
   return questionData;
 }
 
@@ -285,10 +286,10 @@ async function checkAnswer(questionData) {
   console.log(`Checking question ${questionData.question.index}: original (${questionData.correctAnswerIndex}), new (${responseData.response.correctAnswerIndex})`, responseData.response)
   if (questionData.correctAnswerIndex !== responseData.response.correctAnswerIndex) {
     console.log(`Question ${questionData.question.index} found to be incorrect: original (${questionData.correctAnswerIndex}) != new (${responseData.response.correctAnswerIndex})`);
-    questionData.correctAnswerIndex = responseData.response.correctAnswerIndex;
-    questionData.explanation = [responseData.response.explanation];
   }
-
+  questionData.correctAnswerIndex = responseData.response.correctAnswerIndex;
+  questionData.explanation = [responseData.response.explanation];
+  saveCurrentState()
   return questionData;
 }
 
@@ -944,5 +945,39 @@ function navigateQuestion(direction) {
 function goHome() {
   if (confirm("Are you sure you want to go back to the main menu? Any unsaved progress will be lost.")) {
     backToMainMenu();
+  }
+}
+
+function debugQuizView() {
+  console.log("Debug: Quiz View");
+  console.log("Current Section:", currentSection);
+  console.log("Current Grade Level:", currentGradeLevel);
+  console.log("Quiz Questions:", quizQuestions);
+  console.log("Current Question Index:", currentQuestionIndex);
+  console.log("User Answers:", userAnswers);
+  
+  console.log("Main Menu Display:", document.getElementById("main-menu").style.display);
+  console.log("Quiz Container Display:", document.getElementById("quiz-container").style.display);
+  console.log("Results Container Display:", document.getElementById("results-container").style.display);
+  console.log("Loading Overlay Display:", document.getElementById("loading-overlay").style.display);
+  
+  if (quizQuestions.length > 0) {
+    console.log("First Question:", quizQuestions[0]);
+  } else {
+    console.log("No questions available");
+  }
+  
+  console.log("Attempting to switch to quiz view...");
+  document.getElementById("main-menu").style.display = "none";
+  document.getElementById("results-container").style.display = "none";
+  document.getElementById("quiz-container").style.display = "block";
+  document.getElementById("loading-overlay").style.display = "none";
+  
+  if (quizQuestions.length > 0) {
+    loadQuestion();
+    updateURL('quiz', { section: currentSection, grade: currentGradeLevel });
+    console.log("Switched to quiz view and loaded question");
+  } else {
+    console.log("Failed to switch to quiz view: No questions available");
   }
 }

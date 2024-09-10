@@ -1,7 +1,7 @@
 ROADMAP
 
 [DONE] Shift to DynamoDB, add table, setup key permission
-- For questions with diagrams, use OpenAI to make a real image
+[DONE] For questions with diagrams, use OpenAI to make a real image
 - Add authentication with Google OAuth, add user table for permitted users only
 - Add a way to save tests and continue later
 - Show tests in progress to user, so they can resume later

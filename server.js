@@ -93,15 +93,19 @@ app.post('/api/checkAnswer', async (req, res) => {
 //Make a helpful and useful diagram used in a test (cannot give away the answers) that corresponds to this test question object:
 
 app.post('/api/makeDiagram', async (req, res) => {
-    console.log(`Requesting diagram: ${JSON.stringify(req.body.question)}`);
+    console.log(`Requesting diagram: ${req.body.prompt}`);
     try {
         const response = await openai.images.generate({
-            model: "dall-e-2",
-            prompt: `Make an original helpful and useful diagram used in a test (cannot give away the answers) that corresponds to this test question object: \n${JSON.stringify(req.body)}`,
+            model: "dall-e-3",
+            prompt: 'Use this exact prompt: "' + req.body.prompt + '. Image should precise follow the prompt, simple and straightforward. Do not alter the prompt. In SVG format."',
             n: 1,
-            size: "512x512"
+            size: "1024x1024"
         });
-        res.json({ response: response.choices[0].message.content });
+        if (response.error) {
+            throw new Error('Error from OpenAI: ', response.error.message);
+        } else {
+            res.json({ response: response.data[0].url });
+        }
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'An error occurred while making a diagram.' });
@@ -121,7 +125,7 @@ app.post('/api/fetchQuestions', async (req, res) => {
         },
         {
           role: "user",
-          content: `Generate a 20-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized, self-explanatory questions (if need supporting diagrams/illustrations/images use SVG), choices, correct answer indexes, and accurate and detailed explanations of the correct answer, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check the correctAnswerIndex and explanations are correct like your life depended on it. Answer your own question with the choices provided, and if an error/duplicate is found, remake the answers. If quote/article/book/story is referenced, full passage/context/story should be provided in double quotes. If diagram/image is used, should be big and detailed enough to be useful.` 
+          content: `Generate a 20-question NWEA MAP ${section} randomized multiple-choice test for Grade ${gradeLevel} students. Each question should include four unique choices, with only one correct answer. Provide challenging, randomized, self-explanatory questions (if need supporting diagrams/illustrations/images, provide a good DALL-E-3 prompt), choices, correct answer indexes, and accurate and detailed explanations of the correct answer, in JSON format with structure [{question{index,question,diagram},correctAnswerIndex,explanations[{index,text}],choices[{index,text}]}. Double check the correctAnswerIndex and explanations are correct like your life depended on it. Answer your own question with the choices provided, and if an error/duplicate is found, remake the answers. If quote/article/book/story is referenced, full passage/context/story should be provided in double quotes.` 
         },
       ],
       stream: true,
@@ -145,7 +149,10 @@ app.post('/api/fetchQuestions', async (req, res) => {
 
   } catch (error) {
     console.error('Error:', error);
-    res.status(500).json({ error: 'An error occurred while fetching questions.' });
+    try {
+      res.status(500).json({ error: 'An error occurred while fetching questions.' });
+    } catch (error) {
+    }
   }
 });
 
