@@ -137,7 +137,7 @@ async function startNewTest(section) {
   try {
     await fetchNewQuestions(section, gradeLevel);
     // After successfully fetching questions, switch to quiz view
-    switchToQuizView();
+//    switchToQuizView();
   } catch (error) {
     console.error("Error starting new test:", error);
     document.getElementById("loading-overlay").style.display = "none";
@@ -199,13 +199,16 @@ async function fetchNewQuestions(section, gradeLevel) {
     while (true) {
       try {
         const result = JSON.parse(buffer);
-        processQuestion(result);
+        await processQuestion(result);
         questionCount++;
         if (questionCount === 1) {
           // Only hide the loading overlay here
           document.getElementById("loading-overlay").style.display = "none";
+//          addNewQuestionToNav();
+          isReviewMode = false;
+          switchToQuizView();
         } else {
-          addNewQuestionToNav(); // Add new question to nav with animation
+//          addNewQuestionToNav(); // Add new question to nav with animation
         }
         saveCurrentState(); // Save state after each new question
         updateQuestionNav();
@@ -221,13 +224,17 @@ async function fetchNewQuestions(section, gradeLevel) {
               console.log(`Matching possible question: ${possibleObject}`);
             }
             const result = JSON.parse(possibleObject);
-            processQuestion(result);
+            await processQuestion(result);
             questionCount++;
+console.log(`Loaded question count: ${questionCount} === 1`, questionCount === 1)
             if (questionCount === 1) {
               // Only hide the loading overlay here
+//              addNewQuestionToNav();
+              isReviewMode = false;
               document.getElementById("loading-overlay").style.display = "none";
+              switchToQuizView();
             } else {
-              addNewQuestionToNav(); // Add new question to nav with animation
+//              addNewQuestionToNav(); // Add new question to nav with animation
             }
             saveCurrentState(); // Save state after each new question
             updateQuestionNav();
@@ -289,31 +296,32 @@ async function checkAnswer(questionData) {
 //  console.log(`Checking answer ${questionData.question.index}:`, responseData)
   // Log questions that were found to be incorrect
   responseData.response = JSON.parse(responseData.response)
+console.log(`Inside check`, questionData, responseData)
   console.log(`Checking question ${questionData.question.index}: original (${questionData.correctAnswerIndex}), new (${responseData.response.correctAnswerIndex})`, responseData.response)
   if (questionData.correctAnswerIndex !== responseData.response.correctAnswerIndex) {
     console.log(`Question ${questionData.question.index} found to be incorrect: original (${questionData.correctAnswerIndex}) != new (${responseData.response.correctAnswerIndex})`);
   }
   questionData.correctAnswerIndex = responseData.response.correctAnswerIndex;
-  questionData.explanation = [responseData.response.explanation];
-  saveCurrentState()
+  questionData.explanations = [{ index: responseData.response.correctAnswerIndex, text: responseData.response.explanation }];
+//  quizQuestions[questionData.question.index] = questionData;
+console.log(`Updated question ${questionData.question.index}:`, questionData.correctAnswerIndex, questionData.explanations)
   return questionData;
 }
 
-function processQuestion(questionJson) {
+async function processQuestion(questionJson) {
   try {
-    quizQuestions.push(questionJson);
-    const quizQuestionsLength = quizQuestions.length;
-    console.log(`Processed question ${quizQuestionsLength}:`, questionJson);
-    // Ask model to recheck every answer
-    checkAnswer(quizQuestions[quizQuestionsLength - 1]).then((updatedQuestionData) => {
-      quizQuestions[quizQuestionsLength - 1] = updatedQuestionData;
-//      console.log(`Checked question ${quizQuestionsLength}:`, updatedQuestionData);
-    });
-    if (quizQuestions[quizQuestionsLength - 1].question.diagram) {
-      makeDiagram(quizQuestions[quizQuestionsLength - 1]).then((updatedQuestionData) => {
-        quizQuestions[quizQuestionsLength - 1] = updatedQuestionData;
-      });
+    const quizQuestionsLength = quizQuestions.length + 1;
+    console.log(`Processing question ${quizQuestions.length + 1}:`, questionJson);
+console.log(`Prechecked question length: ${quizQuestions.length}`)
+    questionJson = await checkAnswer(questionJson);
+console.log(`Postchecked question length: ${quizQuestions.length}`)
+
+    if (questionJson.question.diagram) {
+      const updatedQuestionData = await makeDiagram(questionJson)
+      questionJson = updatedQuestionData;
     }
+    quizQuestions.push(questionJson);
+//    saveCurrentState()
   } catch (error) {
     console.error('Error processing question:', error);
   }
@@ -330,7 +338,12 @@ function parseQuestionsFromAPI(apiResponse) {
   }
 }
 
- function loadQuestion() {
+function handleDoubleClick(index) {
+  selectAnswer(index);
+  submitAnswer();
+}
+
+function loadQuestion() {
   if (!quizQuestions || quizQuestions.length === 0) {
     console.error("No questions available to load");
     alert("No questions found. Please try starting a new test.");
@@ -392,6 +405,7 @@ function parseQuestionsFromAPI(apiResponse) {
     button.classList.remove("selected", "correct", "incorrect");
     button.disabled = isReviewMode; // Disable buttons in review mode
     button.onclick = () => selectAnswer(index); // Add click event listener
+//    button.ondblclick = () => handleDoubleClick(index); // Double click event
   });
 
   document.getElementById("main-menu").style.display = "none";
@@ -419,6 +433,11 @@ function parseQuestionsFromAPI(apiResponse) {
 }
 
 function selectAnswer(index) {
+  // Prevent immediate submission if this is part of a double-click
+  if (userAnswers[currentQuestionIndex] === index) {
+    return;
+  }
+
   userAnswers[currentQuestionIndex] = index;
 
   // Remove the selected class from all buttons
@@ -547,7 +566,7 @@ function reviewQuestion(index, testIndex) {
     button.textContent = question.choices[i].text;
     button.classList.remove("selected", "correct", "incorrect");
     button.disabled = true; // Disable the button in review mode
-    
+console.log(`Question ${currentQuestionIndex}: ${i} === key ${question.correctAnswerIndex} === user ${userAnswers[index]}`, question)    
     if (i === question.correctAnswerIndex) {
       button.classList.add("correct");
     }
